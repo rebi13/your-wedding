@@ -80,42 +80,42 @@ export default function HomePage() {
         <Text>갤러리</Text>
         <SimpleGrid cols={3}>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
           <Flex>
-            <Image src="https://i.ytimg.com/vi/QVa2O6uLaXo/hq720_2.jpg?sqp=-oaymwEiCNAFENAFSFryq4qpAxQIARUAAAAAJQAAyEI9AICiQ9ABAQ==&rs=AOn4CLBuA-em84WBM7woEB18JkohoB_Svw" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" />
           </Flex>
         </SimpleGrid>
       </Flex>
       <Flex direction="column" p="md">
-        <Text>어 형이야</Text>
+        <Text>너의 결혼식</Text>
         <Text>멀리서도 축하의 마음을</Text>
         <Text>전하고 싶으신 분들을 위해</Text>
         <Text>계좌번호를 안내드린다.</Text>
