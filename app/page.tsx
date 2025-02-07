@@ -3,8 +3,8 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { useEffect, useState } from 'react';
-import { IconArrowDown } from '@tabler/icons-react';
-import { Button, Flex, Image, SimpleGrid, Text } from '@mantine/core';
+import { IconArrowDown, IconDotsVertical } from '@tabler/icons-react';
+import { ActionIcon, Button, Card, Flex, Image, SimpleGrid, Text, Title } from '@mantine/core';
 import { Contents } from '@/components/Contents';
 import { GiftAccount } from '@/components/GiftAccount';
 import { useModal } from '@/hooks/useModal';
@@ -84,7 +84,10 @@ export default function HomePage() {
         <SimpleGrid cols={3}>
           {temp.map((t) => {
             return (
-              <Flex key={t}>
+              <Flex
+                key={t}
+                onClick={() => openModal(<Image src="/assets/wedding_bouquet.png" />, null, '')}
+              >
                 <Image src="/assets/wedding_bouquet.png" />
               </Flex>
             );
@@ -98,16 +101,29 @@ export default function HomePage() {
         <Contents contents={contents3} />
         <GiftAccount />
       </Flex>
-      <Button
-        onClick={() => {
-          openModal(<Flex>뀽뀽</Flex>, null, '제목제목');
-        }}
-      >
-        버튼
-      </Button>
+      <Flex direction="column" p="md" gap="md" w="100%" align="center">
+        <Title order={3}>방명록</Title>
+
+        <Card shadow="sm" padding="md" radius="md" bg="#D7C8C2" h="8rem" w="100%">
+          <Flex justify="space-between">
+            <Flex gap="sm">
+              <Text>은비</Text>
+              <Text>2025.02.06 03:22</Text>
+            </Flex>
+            <ActionIcon variant="subtle" color="dark" size="sm">
+              <IconDotsVertical />
+            </ActionIcon>
+          </Flex>
+          <Text>결혼 너무너무 축하해 행복하게 잘 살아!! 🥹🎉🎉🎉🎉</Text>
+        </Card>
+      </Flex>
       <Flex direction="column">
         <Text>함께한 시간</Text>
         <Text>{timeElapsed}</Text>
+      </Flex>
+      <Flex direction="column">
+        <Text>For Your Wedding</Text>
+        <Text>Made By jswon</Text>
       </Flex>
     </Flex>
   );
