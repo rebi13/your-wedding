@@ -16,7 +16,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
           mx="auto"
           direction="column"
           align="center"
-          bg="#F9F4E9"
         >
           {children}
         </Flex>
