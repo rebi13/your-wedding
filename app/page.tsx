@@ -3,33 +3,13 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { useEffect, useState } from 'react';
-import { Accordion, Button, Flex, Image, SimpleGrid, Text } from '@mantine/core';
+import { Button, Flex, Image, SimpleGrid, Text } from '@mantine/core';
+import { GiftAccount } from '@/components/GiftAccount';
 import { useModal } from '@/hooks/useModal';
 
 dayjs.extend(duration);
 
 const baseDate = dayjs('2023-12-24T00:00:00'); // 기준 시간 (2023년 4월 3일)
-
-// import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-// import { Welcome } from '../components/Welcome/Welcome';
-
-const groceries1 = [
-  {
-    emoji: '🤵‍♂️',
-    value: '신랑측',
-    description:
-      'Crisp and refreshing fruit. Apples are known for their versatility and nutritional benefits. They come in a variety of flavors and are great for snacking, baking, or adding to salads.',
-  },
-];
-
-const groceries2 = [
-  {
-    emoji: '🤵‍♀️',
-    value: '신부측',
-    description:
-      'Naturally sweet and potassium-rich fruit. Bananas are a popular choice for their energy-boosting properties and can be enjoyed as a quick snack, added to smoothies, or used in baking.',
-  },
-];
 
 export default function HomePage() {
   const { openModal } = useModal();
@@ -121,60 +101,7 @@ export default function HomePage() {
         <Text>계좌번호를 안내드린다.</Text>
         <Text>소중한 축하를 보내주셔서 감사드리며,</Text>
         <Text>따뜻한 마음(돈)에 깊이 감사드립니다.</Text>
-        <Accordion>
-          {groceries1.map((item) => (
-            <Accordion.Item key={item.value} value={item.value}>
-              <Accordion.Control icon={item.emoji}>{item.value}</Accordion.Control>
-              <Accordion.Panel>
-                <Flex direction="column" gap="md">
-                  <Flex justify="space-between" align="center">
-                    <Flex direction="column">
-                      <Text>신랑</Text>
-                      <Text>01012345678</Text>
-                      <Text>기업은행 송재인</Text>
-                    </Flex>
-                    <Button>복사</Button>
-                  </Flex>
-                  <Flex justify="space-between" align="center">
-                    <Flex direction="column">
-                      <Text>신랑</Text>
-                      <Text>01012345678</Text>
-                      <Text>기업은행 송재인</Text>
-                    </Flex>
-                    <Button>복사</Button>
-                  </Flex>
-                </Flex>
-              </Accordion.Panel>
-            </Accordion.Item>
-          ))}
-        </Accordion>
-        <Accordion>
-          {groceries2.map((item) => (
-            <Accordion.Item key={item.value} value={item.value}>
-              <Accordion.Control icon={item.emoji}>{item.value}</Accordion.Control>
-              <Accordion.Panel>
-                <Flex direction="column" gap="md">
-                  <Flex justify="space-between" align="center">
-                    <Flex direction="column">
-                      <Text>신부</Text>
-                      <Text>01087654321</Text>
-                      <Text>기업은행 최하슬</Text>
-                    </Flex>
-                    <Button>복사</Button>
-                  </Flex>
-                  <Flex justify="space-between" align="center">
-                    <Flex direction="column">
-                      <Text>신부</Text>
-                      <Text>01087654321</Text>
-                      <Text>기업은행 최하슬</Text>
-                    </Flex>
-                    <Button>복사</Button>
-                  </Flex>
-                </Flex>
-              </Accordion.Panel>
-            </Accordion.Item>
-          ))}
-        </Accordion>
+        <GiftAccount />
       </Flex>
       <Button
         onClick={() => {
