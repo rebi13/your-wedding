@@ -1,3 +1,4 @@
+import '@/app/global.css';
 import '@mantine/core/styles.css';
 
 import React from 'react';
@@ -35,15 +36,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
-        <style>
-          {`
-            html, body {
-              height: 100%;
-              margin: 0;
-              padding: 0;
-            }
-          `}
-        </style>
       </head>
       <body>
         {/* 클라이언트 컴포넌트로 props 전달 없음 */}
