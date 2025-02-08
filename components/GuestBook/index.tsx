@@ -19,9 +19,9 @@ export const GuestBook = () => {
           style={{ gap: '1rem' }}
         >
           <Flex justify="space-between">
-            <Flex gap="sm">
-              <Text>은비</Text>
-              <Text>2025.02.06 03:22</Text>
+            <Flex gap="sm" align="center">
+              <Text fz="lg">은비</Text>
+              <Text fz="xs">2025.02.06 03:22</Text>
             </Flex>
             <ActionIcon variant="subtle" color="dark" size="sm">
               <IconDotsVertical />
