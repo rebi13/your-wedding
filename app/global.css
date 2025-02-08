@@ -5,4 +5,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f9f4e9 !important; /* 원하는 배경색 */
+  font-family: 'Ownglyph', sans-serif !important; /* 폰트 강제 적용 */
+}
+
+@font-face {
+  font-family: 'Ownglyph'; /* 폰트 이름 */
+  src: url('/fonts/Ownglyph.ttf') format('truetype'); /* 폰트 경로 */
+  font-weight: normal; /* 폰트 굵기 */
+  font-style: normal; /* 폰트 스타일 */
 }
