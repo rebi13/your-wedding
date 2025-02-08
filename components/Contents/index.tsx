@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Flex, Text, Title } from '@mantine/core';
+import { FramerMotionWrapper } from '../FramerMotionWrapper';
 
 interface ContentsProps {
   title?: string;
@@ -10,16 +10,7 @@ interface ContentsProps {
 
 export const Contents = ({ title, contents }: ContentsProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{
-        ease: 'easeInOut',
-        duration: 2,
-        y: { duration: 1 },
-      }}
-    >
+    <FramerMotionWrapper>
       <Flex direction="column" p="md" align="center" gap="md">
         {title && <Title order={2}>{title}</Title>}
         <Flex direction="column" gap="xs">
@@ -32,6 +23,6 @@ export const Contents = ({ title, contents }: ContentsProps) => {
           })}
         </Flex>
       </Flex>
-    </motion.div>
+    </FramerMotionWrapper>
   );
 };

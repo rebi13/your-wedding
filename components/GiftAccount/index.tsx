@@ -1,4 +1,5 @@
 import { Accordion, Button, Flex, Text } from '@mantine/core';
+import { FramerMotionWrapper } from '../FramerMotionWrapper';
 
 const groomSideInfo = [
   {
@@ -16,7 +17,7 @@ const brideSideInfo = [
 
 export const GiftAccount = () => {
   return (
-    <>
+    <FramerMotionWrapper>
       <Accordion>
         {groomSideInfo.map((item) => (
           <Accordion.Item key={item.value} value={item.value}>
@@ -71,6 +72,6 @@ export const GiftAccount = () => {
           </Accordion.Item>
         ))}
       </Accordion>
-    </>
+    </FramerMotionWrapper>
   );
 };

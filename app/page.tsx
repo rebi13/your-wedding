@@ -1,17 +1,12 @@
 'use client';
 
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
-import { useEffect, useState } from 'react';
-import { IconArrowDown, IconDotsVertical } from '@tabler/icons-react';
-import { ActionIcon, Button, Card, Flex, Image, SimpleGrid, Text, Title } from '@mantine/core';
+import { Flex, Image } from '@mantine/core';
 import { Contents } from '@/components/Contents';
+import { Footer } from '@/components/Footer';
+import { Gallery } from '@/components/Gallery';
 import { GiftAccount } from '@/components/GiftAccount';
-import { useModal } from '@/hooks/useModal';
-
-dayjs.extend(duration);
-
-const baseDate = dayjs('2023-12-24T00:00:00'); // 기준 시간 (2023년 4월 3일)
+import { GuestBook } from '@/components/GuestBook';
+import { Timer } from '@/components/Timer';
 
 const title1 = '언제나 변함없이 ⭐️';
 const contents1 = [
@@ -42,36 +37,9 @@ const contents3 = [
   '따뜻한 마음에 깊이 감사드립니다.',
 ];
 
-const temp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
 // chill guy image link: https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg
 
 export default function HomePage() {
-  const { openModal } = useModal();
-
-  const [timeElapsed, setTimeElapsed] = useState('');
-
-  useEffect(() => {
-    const updateElapsedTime = () => {
-      const now = dayjs();
-      const diff = dayjs.duration(now.diff(baseDate));
-
-      const years = diff.years();
-      const months = diff.months();
-      const days = diff.days();
-      const hours = diff.hours();
-      const minutes = diff.minutes();
-      const seconds = diff.seconds();
-
-      setTimeElapsed(`${years}년 ${months}개월 ${days}일 ${hours}시간 ${minutes}분 ${seconds}초`);
-    };
-
-    updateElapsedTime(); // 최초 실행
-    const interval = setInterval(updateElapsedTime, 1000); // 1초마다 업데이트
-
-    return () => clearInterval(interval); // 컴포넌트 언마운트 시 인터벌 해제
-  }, []);
-
   return (
     <Flex direction="column" gap="md" h="100%">
       <Flex direction="column">
@@ -79,52 +47,12 @@ export default function HomePage() {
       </Flex>
       <Contents title={title1} contents={contents1} />
       <Contents contents={contents2} />
-      <Flex direction="column" p="md" gap="sm">
-        <Text>갤러리</Text>
-        <SimpleGrid cols={3}>
-          {temp.map((t) => {
-            return (
-              <Flex
-                key={t}
-                onClick={() => openModal(<Image src="/assets/wedding_bouquet.png" />, null, '')}
-              >
-                <Image src="/assets/wedding_bouquet.png" />
-              </Flex>
-            );
-          })}
-        </SimpleGrid>
-        <Button variant="subtle" rightSection={<IconArrowDown />} c="dark">
-          더보기
-        </Button>
-      </Flex>
-      <Flex direction="column" p="md">
-        <Contents contents={contents3} />
-        <GiftAccount />
-      </Flex>
-      <Flex direction="column" p="md" gap="md" w="100%" align="center">
-        <Title order={3}>방명록</Title>
-
-        <Card shadow="sm" padding="md" radius="md" bg="#D7C8C2" h="8rem" w="100%">
-          <Flex justify="space-between">
-            <Flex gap="sm">
-              <Text>은비</Text>
-              <Text>2025.02.06 03:22</Text>
-            </Flex>
-            <ActionIcon variant="subtle" color="dark" size="sm">
-              <IconDotsVertical />
-            </ActionIcon>
-          </Flex>
-          <Text>결혼 너무너무 축하해 행복하게 잘 살아!! 🥹🎉🎉🎉🎉</Text>
-        </Card>
-      </Flex>
-      <Flex direction="column">
-        <Text>함께한 시간</Text>
-        <Text>{timeElapsed}</Text>
-      </Flex>
-      <Flex direction="column">
-        <Text>For Your Wedding</Text>
-        <Text>Made By jswon</Text>
-      </Flex>
+      <Gallery />
+      <Contents contents={contents3} />
+      <GiftAccount />
+      <GuestBook />
+      <Timer />
+      <Footer />
     </Flex>
   );
 }
