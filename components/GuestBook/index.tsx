@@ -9,7 +9,15 @@ export const GuestBook = () => {
     <FramerMotionWrapper>
       <Flex direction="column" p="md" gap="md" w="100%" align="center">
         <Title order={3}>방명록</Title>
-        <Card shadow="sm" padding="md" radius="md" bg="#D7C8C2" h="8rem" w="100%">
+        <Card
+          shadow="sm"
+          padding="md"
+          radius="md"
+          bg="#D7C8C2"
+          h="8rem"
+          w="100%"
+          style={{ gap: '1rem' }}
+        >
           <Flex justify="space-between">
             <Flex gap="sm">
               <Text>은비</Text>
