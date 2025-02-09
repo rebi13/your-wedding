@@ -21,11 +21,20 @@ export const GiftAccount = () => {
     <FramerMotionWrapper>
       <Accordion>
         {groomSideInfo.map((item) => (
-          <Accordion.Item key={item.value} value={item.value}>
+          <Accordion.Item
+            key={item.value}
+            value={item.value}
+            style={{ borderTop: '1px solid var(--item-border-color)' }}
+          >
             <Accordion.Control icon={item.emoji}>{item.value}</Accordion.Control>
             <Accordion.Panel>
               <Flex direction="column" gap="md">
-                <Flex justify="space-between" align="center">
+                <Flex
+                  justify="space-between"
+                  p="sm"
+                  align="center"
+                  style={{ border: '1px solid #D7C8C2' }}
+                >
                   <Flex direction="column">
                     <Text>신랑</Text>
                     <Text>01011112222</Text>
@@ -38,7 +47,12 @@ export const GiftAccount = () => {
                     복사
                   </Button>
                 </Flex>
-                <Flex justify="space-between" align="center">
+                <Flex
+                  justify="space-between"
+                  p="sm"
+                  align="center"
+                  style={{ border: '1px solid #D7C8C2' }}
+                >
                   <Flex direction="column">
                     <Text>신랑 아버지</Text>
                     <Text>01022223333</Text>
@@ -51,7 +65,12 @@ export const GiftAccount = () => {
                     복사
                   </Button>
                 </Flex>
-                <Flex justify="space-between" align="center">
+                <Flex
+                  justify="space-between"
+                  p="sm"
+                  align="center"
+                  style={{ border: '1px solid #D7C8C2' }}
+                >
                   <Flex direction="column">
                     <Text>신랑 어머니</Text>
                     <Text>01033334444</Text>
@@ -75,7 +94,12 @@ export const GiftAccount = () => {
             <Accordion.Control icon={item.emoji}>{item.value}</Accordion.Control>
             <Accordion.Panel>
               <Flex direction="column" gap="md">
-                <Flex justify="space-between" align="center">
+                <Flex
+                  justify="space-between"
+                  p="sm"
+                  align="center"
+                  style={{ border: '1px solid #D7C8C2' }}
+                >
                   <Flex direction="column">
                     <Text>신부</Text>
                     <Text>01044445555</Text>
@@ -88,7 +112,12 @@ export const GiftAccount = () => {
                     복사
                   </Button>
                 </Flex>
-                <Flex justify="space-between" align="center">
+                <Flex
+                  justify="space-between"
+                  p="sm"
+                  align="center"
+                  style={{ border: '1px solid #D7C8C2' }}
+                >
                   <Flex direction="column">
                     <Text>신부 아버지</Text>
                     <Text>01055556666</Text>
@@ -101,7 +130,12 @@ export const GiftAccount = () => {
                     복사
                   </Button>
                 </Flex>
-                <Flex justify="space-between" align="center">
+                <Flex
+                  justify="space-between"
+                  p="sm"
+                  align="center"
+                  style={{ border: '1px solid #D7C8C2' }}
+                >
                   <Flex direction="column">
                     <Text>신부 어머니</Text>
                     <Text>01066667777</Text>
