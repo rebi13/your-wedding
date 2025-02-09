@@ -27,7 +27,7 @@ const contents1 = [
   '',
 ];
 
-const contents2 = ['강명성, 이수정의 아들 정호', '하주석, 김소영의 딸 효림'];
+const contents2 = ['강명성, 이수정의 아들 건우', '하주석, 김소영의 딸 유리'];
 
 const contents3 = [
   '멀리서도 축하의 마음을',
