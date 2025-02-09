@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex, Text, Title } from '@mantine/core';
+import { Flex, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '../FramerMotionWrapper';
 
 interface ContentsProps {
@@ -12,7 +12,7 @@ export const Contents = ({ title, contents }: ContentsProps) => {
   return (
     <FramerMotionWrapper>
       <Flex direction="column" p="md" align="center" gap="md">
-        {title && <Title order={2}>{title}</Title>}
+        {title && <Text fz="2rem">{title}</Text>}
         <Flex direction="column" gap="xs">
           {contents.map((content, index) => {
             return (
