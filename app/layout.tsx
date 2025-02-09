@@ -1,6 +1,7 @@
 import '@/app/global.css';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
+import '@mantine/dates/styles.css';
 
 import React from 'react';
 import { Metadata } from 'next';

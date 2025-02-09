@@ -1,6 +1,8 @@
 'use client';
 
-import { Flex, Image } from '@mantine/core';
+import dayjs from 'dayjs';
+import { Flex, Image, Indicator } from '@mantine/core';
+import { Calendar } from '@mantine/dates';
 import { Contact } from '@/components/Contact';
 import { Contents } from '@/components/Contents';
 import { Footer } from '@/components/Footer';
@@ -49,6 +51,19 @@ export default function HomePage() {
       <Contents title={title1} contents={contents1} />
       <Contents contents={contents2} />
       <Gallery />
+      <Calendar
+        maxLevel="month"
+        date={dayjs('2025-08-30').toDate()}
+        static
+        renderDay={(date) => {
+          const day = date.getDate();
+          return (
+            <Indicator size={6} color="red" offset={-2} disabled={day !== 30}>
+              <div>{day}</div>
+            </Indicator>
+          );
+        }}
+      />
       <Contact />
       <Contents contents={contents3} />
       <GiftAccount />
