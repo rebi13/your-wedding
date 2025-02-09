@@ -1,6 +1,7 @@
 'use client';
 
 import { Flex, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { ModalStackManager } from '@/components/Modal';
 import { theme } from '@/theme';
 
@@ -8,7 +9,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <MantineProvider theme={theme}>
       <ModalStackManager>
+        <Notifications position="top-center" />
         <Flex
+          flex={1}
           w="100%"
           h="100vh"
           miw="20rem"
