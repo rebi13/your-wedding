@@ -1,6 +1,7 @@
 'use client';
 
 import { Flex, Image } from '@mantine/core';
+import { Contact } from '@/components/Contact';
 import { Contents } from '@/components/Contents';
 import { Footer } from '@/components/Footer';
 import { Gallery } from '@/components/Gallery';
@@ -27,7 +28,7 @@ const contents1 = [
   '',
 ];
 
-const contents2 = ['강명성, 이수정의 아들 건우', '하주석, 김소영의 딸 유리'];
+const contents2 = ['결혼합니다.', '', '강명성, 이수정의 아들 건우', '하주석, 김소영의 딸 유리'];
 
 const contents3 = [
   '멀리서도 축하의 마음을',
@@ -48,6 +49,7 @@ export default function HomePage() {
       <Contents title={title1} contents={contents1} />
       <Contents contents={contents2} />
       <Gallery />
+      <Contact />
       <Contents contents={contents3} />
       <GiftAccount />
       <GuestBooks />
