@@ -5,7 +5,7 @@ import { Contents } from '@/components/Contents';
 import { Footer } from '@/components/Footer';
 import { Gallery } from '@/components/Gallery';
 import { GiftAccount } from '@/components/GiftAccount';
-import { GuestBook } from '@/components/GuestBook';
+import { GuestBooks } from '@/components/GuestBooks';
 import { Timer } from '@/components/Timer';
 
 const title1 = '언제나 변함없이 ⭐️';
@@ -50,7 +50,7 @@ export default function HomePage() {
       <Gallery />
       <Contents contents={contents3} />
       <GiftAccount />
-      <GuestBook />
+      <GuestBooks />
       <Timer />
       <Footer />
     </Flex>
