@@ -12,8 +12,10 @@ export const Gallery = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" p="md" gap="sm">
-        <Text>갤러리</Text>
+      <Flex direction="column" p="md" gap="md">
+        <Text size="2rem" ta="center">
+          갤러리
+        </Text>
         <SimpleGrid cols={3}>
           {temp.map((t) => {
             return (
