@@ -1,8 +1,6 @@
 'use client';
 
-import dayjs from 'dayjs';
-import { Flex, Image, Indicator } from '@mantine/core';
-import { Calendar } from '@mantine/dates';
+import { Flex, Image } from '@mantine/core';
 import { Contact } from '@/components/Contact';
 import { Contents } from '@/components/Contents';
 import { Footer } from '@/components/Footer';
@@ -10,6 +8,7 @@ import { Gallery } from '@/components/Gallery';
 import { GiftAccount } from '@/components/GiftAccount';
 import { GuestBooks } from '@/components/GuestBooks';
 import { Timer } from '@/components/Timer';
+import { WeddingDate } from '@/components/WeddingDate';
 
 const title1 = '언제나 변함없이 ⭐️';
 const contents1 = [
@@ -44,40 +43,14 @@ const contents3 = [
 
 export default function HomePage() {
   return (
-    <Flex direction="column" gap="md" h="100%" align="center">
+    <Flex w="100%" direction="column" gap="md" h="100%">
       <Flex direction="column">
         <Image src="/assets/wedding_bouquet.png" />
       </Flex>
       <Contents title={title1} contents={contents1} />
       <Contents contents={contents2} />
       <Gallery />
-      <Calendar
-        maxLevel="month"
-        date={dayjs('2025-08-30').toDate()}
-        static
-        hideOutsideDates
-        hasNextLevel={false}
-        monthLabelFormat="YYYY년 MM월"
-        renderDay={(date) => {
-          const isSaturday = date.getDay() === 6; // 6 = 토요일
-
-          return (
-            <Indicator size={6} color="red" offset={-2} disabled={date.getDate() !== 30}>
-              <div style={{ color: isSaturday ? 'blue' : 'inherit' }}>{date.getDate()}</div>
-            </Indicator>
-          );
-        }}
-        styles={{
-          calendarHeaderLevel: {
-            cursor: 'auto',
-            fontSize: '2rem',
-          },
-          calendarHeaderControl: {
-            display: 'none',
-          },
-        }}
-      />
-      ;
+      <WeddingDate />
       <Contact />
       <Contents contents={contents3} />
       <GiftAccount />
