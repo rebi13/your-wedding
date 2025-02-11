@@ -5,6 +5,7 @@ import '@mantine/dates/styles.css';
 
 import React from 'react';
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import Template from '@/app/template'; // Import 방식 변경
 
@@ -40,7 +41,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {/* 클라이언트 컴포넌트로 props 전달 없음 */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}`}
+        />
         <Template>{children}</Template>
       </body>
     </html>
