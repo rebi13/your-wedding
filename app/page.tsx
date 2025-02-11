@@ -44,7 +44,7 @@ const contents3 = [
 
 export default function HomePage() {
   return (
-    <Flex direction="column" gap="md" h="100%">
+    <Flex direction="column" gap="md" h="100%" align="center">
       <Flex direction="column">
         <Image src="/assets/wedding_bouquet.png" />
       </Flex>
@@ -55,15 +55,29 @@ export default function HomePage() {
         maxLevel="month"
         date={dayjs('2025-08-30').toDate()}
         static
+        hideOutsideDates
+        hasNextLevel={false}
+        monthLabelFormat="YYYY년 MM월"
         renderDay={(date) => {
-          const day = date.getDate();
+          const isSaturday = date.getDay() === 6; // 6 = 토요일
+
           return (
-            <Indicator size={6} color="red" offset={-2} disabled={day !== 30}>
-              <div>{day}</div>
+            <Indicator size={6} color="red" offset={-2} disabled={date.getDate() !== 30}>
+              <div style={{ color: isSaturday ? 'blue' : 'inherit' }}>{date.getDate()}</div>
             </Indicator>
           );
         }}
+        styles={{
+          calendarHeaderLevel: {
+            cursor: 'auto',
+            fontSize: '2rem',
+          },
+          calendarHeaderControl: {
+            display: 'none',
+          },
+        }}
       />
+      ;
       <Contact />
       <Contents contents={contents3} />
       <GiftAccount />
