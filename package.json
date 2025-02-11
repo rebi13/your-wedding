@@ -48,6 +48,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/eslint-plugin-jsx-a11y": "^6",
     "@types/jest": "^29.5.12",
+    "@types/navermaps": "^3.7.8",
     "@types/node": "^20.14.8",
     "@types/react": "18.3.3",
     "babel-loader": "^9.1.3",
