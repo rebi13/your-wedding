@@ -10,7 +10,7 @@ import { GuestBooks } from '@/components/GuestBooks';
 import { Timer } from '@/components/Timer';
 import { WeddingDate } from '@/components/WeddingDate';
 
-const title1 = '언제나 변함없이 ⭐️';
+const title1 = '저희, 결혼합니다.';
 const contents1 = [
   '봄의 따스한 바람이 우리의 시작을 알렸고',
   '여름의 뜨거운 햇살이 우리의 마음을 더욱 깊게 물들였습니다.',
