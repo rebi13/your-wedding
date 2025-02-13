@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Button, Flex } from '@mantine/core';
+import { Flex } from '@mantine/core';
 
 // 네이버 객체를 TypeScript에서 인식할 수 있도록 선언
 declare global {
@@ -10,22 +10,31 @@ declare global {
   }
 }
 
+// marker에 표시할 contet 내용
+// const contentString = [
+//   '<div style="padding: 1rem;">',
+//   '   <h3>그랜드오스티엄</h3>',
+//   '   <p>인천 미추홀구 매소홀로 618</p><br /> ',
+//   '</div>',
+// ].join('');
+
 export const Contact = () => {
   const mapElement = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<any>(null);
-  const [centerMarker, setCenterMarker] = useState<any>(null);
+  const [_map, setMap] = useState<any>(null);
+  const [_centerMarker, setCenterMarker] = useState<any>(null);
+  // const [infoWindow, setInfoWindow] = useState<any>(null);
 
   useEffect(() => {
     const initMap = () => {
-      if (!window.naver || !window.naver.maps || !mapElement.current) return;
+      if (!window.naver || !window.naver.maps || !mapElement.current) {
+        return;
+      }
 
-      // "x": "126.6907208",
-      //       "y": "37.4352191",
-
-      const initialCenter = new window.naver.maps.LatLng(37.4352191, 126.6907208);
+      const initialCenter = new window.naver.maps.LatLng(37.4353079, 126.6918286);
       const mapOptions = {
         center: initialCenter,
-        zoom: 14,
+        zoom: 15,
+        zoomControl: true,
       };
 
       const mapInstance = new window.naver.maps.Map(mapElement.current, mapOptions);
@@ -40,11 +49,23 @@ export const Contact = () => {
 
       setCenterMarker(marker);
 
-      // 지도 이동 이벤트 리스너 추가 (지도 이동 시 마커 위치 업데이트)
-      window.naver.maps.Event.addListener(mapInstance, 'center_changed', () => {
-        const newCenter = mapInstance.getCenter();
-        marker.setPosition(newCenter);
-      });
+      // const infowindow = new window.naver.maps.InfoWindow({
+      //   content: contentString,
+      //   maxWidth: 200,
+      //   backgroundColor: '#eee',
+      //   anchorColor: '#eee',
+      // });
+
+      // setInfoWindow(infowindow);
+
+      // // 마커 클릭 시 인포윈도우 열기/닫기
+      // window.naver.maps.Event.addListener(marker, 'click', () => {
+      //   if (infowindow.getMap()) {
+      //     infowindow.close();
+      //   } else {
+      //     infowindow.open(mapInstance, marker);
+      //   }
+      // });
     };
 
     if (window.naver && window.naver.maps) {
@@ -58,21 +79,17 @@ export const Contact = () => {
     }
   }, []);
 
-  // 현재 중심 좌표 가져오기 버튼
-  const getCurrentCenter = () => {
-    if (map) {
-      const center = map.getCenter();
-      alert(`현재 중심 좌표: ${center.lat()}, ${center.lng()}`);
-    }
-  };
+  // useEffect(() => {
+  //   // map과 marker가 존재할 때만 InfoWindow를 열도록 수정
+  //   if (map && centerMarker && infoWindow) {
+  //     infoWindow.open(map, centerMarker);
+  //   }
+  // }, [map, centerMarker, infoWindow]);
 
   return (
     <Flex w="100%" justify="center" direction="column" align="center">
       <h2>오시는 길 - 네이버 지도</h2>
-      <Button onClick={getCurrentCenter} mt="10px">
-        현재 중심 좌표 확인
-      </Button>
-      <div ref={mapElement} style={{ width: '100%', height: '400px', marginTop: '10px' }} />
+      <Flex w="90%" h="25rem" ref={mapElement} />
     </Flex>
   );
 };
