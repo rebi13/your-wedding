@@ -6,7 +6,7 @@ import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 
 dayjs.extend(duration);
 
-const baseDate = dayjs('2023-12-24T00:00:00'); // 기준 시간 (2023년 4월 3일)
+const baseDate = dayjs('2023-12-25T00:00:00'); // 기준 시간 (2023년 12월 25일)
 
 export const Timer = () => {
   const [timeElapsed, setTimeElapsed] = useState('');
