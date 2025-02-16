@@ -2,8 +2,14 @@
 
 import { IconDotsVertical, IconEdit, IconTrash } from '@tabler/icons-react';
 import { ActionIcon, Card, Flex, Menu, Text } from '@mantine/core';
+import { GuestBookDto } from '@/hooks/useGuestBookController';
 
-export const GuestBookCard = () => {
+interface GuestBookCardProps {
+  guestBook: GuestBookDto;
+}
+
+export const GuestBookCard = ({ guestBook }: GuestBookCardProps) => {
+  const { id, created_at, name, content } = guestBook;
   return (
     <Card
       shadow="sm"
@@ -16,8 +22,8 @@ export const GuestBookCard = () => {
     >
       <Flex justify="space-between">
         <Flex gap="sm" align="center">
-          <Text fz="lg">은비</Text>
-          <Text fz="xs">2025.02.06 03:22</Text>
+          <Text fz="lg">{name}</Text>
+          <Text fz="xs">{created_at}</Text>
         </Flex>
         <Menu shadow="md" width={80}>
           <Menu.Target>
@@ -27,12 +33,35 @@ export const GuestBookCard = () => {
           </Menu.Target>
 
           <Menu.Dropdown>
-            <Menu.Item leftSection={<IconEdit size={14} />}>수정</Menu.Item>
-            <Menu.Item leftSection={<IconTrash size={14} />}>삭제</Menu.Item>
+            <Menu.Item
+              leftSection={
+                <IconEdit
+                  onClick={() => {
+                    console.log(id);
+                  }}
+                  size={14}
+                />
+              }
+            >
+              수정
+            </Menu.Item>
+            <Menu.Item
+              leftSection={
+                <IconTrash
+                  onClick={() => {
+                    console.log(id);
+                  }}
+                  size={14}
+                />
+              }
+            >
+              삭제
+            </Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </Flex>
-      <Text lineClamp={3}>결혼 너무너무 축하해 행복하게 잘 살아!! 🥹🎉🎉🎉🎉</Text>
+      <Text lineClamp={3}>{content}</Text>
+      {/* <Text lineClamp={3}>결혼 너무너무 축하해 행복하게 잘 살아!! 🥹🎉🎉🎉🎉</Text> */}
     </Card>
   );
 };
