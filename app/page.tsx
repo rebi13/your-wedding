@@ -1,7 +1,7 @@
 'use client';
 
 import { Flex, Image } from '@mantine/core';
-import { Contact } from '@/components/Contact';
+// import { Contact } from '@/components/Contact';
 import { Contents } from '@/components/Contents';
 import { Footer } from '@/components/Footer';
 import { Gallery } from '@/components/Gallery';
@@ -51,7 +51,7 @@ export default function HomePage() {
       <Contents contents={contents2} />
       <Gallery />
       <WeddingDate />
-      <Contact />
+      {/* <Contact /> */}
       <Contents contents={contents3} />
       <GiftAccount />
       <GuestBooks />

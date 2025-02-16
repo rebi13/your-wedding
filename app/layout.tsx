@@ -5,7 +5,7 @@ import '@mantine/dates/styles.css';
 
 import React from 'react';
 import { Metadata } from 'next';
-import Script from 'next/script';
+// import Script from 'next/script';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import Template from '@/app/template'; // Import 방식 변경
 
@@ -41,14 +41,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Script
+        {/* <Script
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_MAP_CLIENT_ID}`}
         />
         <Script
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_MAP_CLIENT_ID}=geocoder`}
-        />
+        /> */}
         <Template>{children}</Template>
       </body>
     </html>
