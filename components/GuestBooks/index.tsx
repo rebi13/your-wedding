@@ -11,6 +11,7 @@ import { useModal } from '@/hooks/useModal';
 export const GuestBooks = () => {
   const { guestBookList } = useGuestBookController();
   const { openModal } = useModal();
+  console.log(guestBookList, 'gueestBookList');
   return (
     <FramerMotionWrapper>
       <Flex direction="column" p="md" gap="md" w="100%" align="center">

@@ -2,8 +2,13 @@
 
 import { Button, Flex, PasswordInput, Textarea, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { notifications } from '@mantine/notifications';
+import useGuestBookController from '@/hooks/useGuestBookController';
+import { useModal } from '@/hooks/useModal';
 
 export const GuestBookForm = () => {
+  const { closeModal } = useModal();
+  const { onCreateGuestBook } = useGuestBookController();
   const form = useForm({
     initialValues: {
       name: '',
@@ -11,6 +16,54 @@ export const GuestBookForm = () => {
       password: '',
     },
   });
+
+  const validation = () => {
+    const { name, content, password } = form.values;
+    if (name.length < 2) {
+      notifications.show({
+        title: '성함 입력',
+        message: '2글자 이상 성함을 입력해 주세요.',
+        color: 'yellow',
+      });
+      return;
+    }
+
+    if (content.length < 1) {
+      notifications.show({
+        title: '내용 입력',
+        message: '내용을 입력해 주세요.',
+        color: 'yellow',
+      });
+      return;
+    }
+
+    if (password.length < 4) {
+      notifications.show({
+        title: '비밀번호 입력',
+        message: '4글자 이상 비밀번호를 입력해 주세요.',
+        color: 'yellow',
+      });
+      return;
+    }
+
+    return true;
+  };
+
+  const handleCreateGuestBook = async () => {
+    if (!validation()) {
+      return;
+    }
+
+    await onCreateGuestBook(form.values);
+
+    notifications.show({
+      title: '방명록 작성 완료',
+      message: '따뜻한 마음이 작성되었습니다.',
+      color: 'blue',
+    });
+
+    closeModal(form.values);
+  };
 
   return (
     <Flex w="80vw" h="100%" direction="column" gap="md">
@@ -33,7 +86,13 @@ export const GuestBookForm = () => {
         placeholder="비밀번호를 입력해 주세요."
         {...form.getInputProps('password')}
       />
-      <Button>작성</Button>
+      <Button
+        onClick={() => {
+          handleCreateGuestBook();
+        }}
+      >
+        작성
+      </Button>
     </Flex>
   );
 };
