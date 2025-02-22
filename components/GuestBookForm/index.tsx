@@ -8,7 +8,7 @@ import { useModal } from '@/hooks/useModal';
 
 export const GuestBookForm = () => {
   const { closeModal } = useModal();
-  const { onCreateGuestBook } = useGuestBookController();
+  const { createGuestBook } = useGuestBookController();
   const form = useForm({
     initialValues: {
       name: '',
@@ -54,7 +54,7 @@ export const GuestBookForm = () => {
       return;
     }
 
-    await onCreateGuestBook(form.values);
+    await createGuestBook(form.values);
 
     notifications.show({
       title: '방명록 작성 완료',
