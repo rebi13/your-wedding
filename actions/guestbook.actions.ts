@@ -15,7 +15,6 @@ export const getGuestBookList = async () => {
     .eq('deleted_YN', false)
     .order('created_at', { ascending: false });
 
-  console.log('📌 최신 방명록 리스트:', result.data);
   return result.data;
 };
 
@@ -42,7 +41,6 @@ export type GuestBookInsertDto = Database['public']['Tables']['GuestBook']['Inse
 
 // GuestBook 작성하기
 export const createGuestBook = async ({ name, content, password }: GuestBookInsertDto) => {
-  console.log('createGuestbook', name, content, password);
   const supabase = await createServerSideClient();
   const result = await supabase
     .from('GuestBook')
@@ -52,7 +50,7 @@ export const createGuestBook = async ({ name, content, password }: GuestBookInse
       password: await hashPassword(password),
     })
     .select();
-  console.log(result);
+
   return result.data;
 };
 
@@ -108,16 +106,3 @@ export const deleteGuestBookSoft = async (id: number) => {
 
   return result.data;
 };
-
-const testSupabaseQuery = async () => {
-  const supabase = await createServerSideClient();
-  const result = await supabase
-    .from('GuestBook')
-    .select('id, name, created_at')
-    .eq('deleted_YN', false)
-    .order('created_at', { ascending: false });
-
-  console.log('🧐 Supabase 정렬된 데이터:', result.data);
-};
-
-testSupabaseQuery();
