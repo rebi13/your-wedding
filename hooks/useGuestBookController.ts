@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   createGuestBook,
   deleteGuestBookSoft,
@@ -31,10 +31,12 @@ const useGuestBookController = () => {
   const guestBookList = guestBookPages?.pages.flatMap((page) => page.data) ?? [];
 
   // ✅ 단일 방명록 조회
-  const getGuestBook = async (id: number) => {
-    return queryClient.fetchQuery({
+  // ✅ 단일 방명록 조회 (React Query 사용)
+  const getGuestBook = (id: number) => {
+    return useQuery({
       queryKey: ['guestBook', id],
       queryFn: () => getGuestBookById(id),
+      enabled: !!id, // id가 있을 때만 실행
     });
   };
 
