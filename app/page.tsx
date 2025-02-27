@@ -1,6 +1,7 @@
 'use client';
 
 import { Flex, Image } from '@mantine/core';
+import { AudioPlayer } from '@/components/AudioPlayer';
 // import { Contact } from '@/components/Contact';
 import { Contents } from '@/components/Contents';
 import { Footer } from '@/components/Footer';
@@ -44,6 +45,7 @@ const contents3 = [
 export default function HomePage() {
   return (
     <Flex w="100%" direction="column" gap="md" h="100%">
+      <AudioPlayer src="/assets/velos.mp3" />
       <Flex direction="column">
         <Image src="/assets/wedding_bouquet.png" />
       </Flex>
