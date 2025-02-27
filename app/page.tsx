@@ -7,7 +7,7 @@ import { Footer } from '@/components/Footer';
 import { Gallery } from '@/components/Gallery';
 import { GiftAccount } from '@/components/GiftAccount';
 import { GuestBooks } from '@/components/GuestBooks';
-import { Timer } from '@/components/Timer';
+// import { Timer } from '@/components/Timer';
 import { WeddingDate } from '@/components/WeddingDate';
 
 const title1 = '저희, 결혼합니다.';
@@ -55,7 +55,7 @@ export default function HomePage() {
       <Contents contents={contents3} />
       <GiftAccount />
       <GuestBooks />
-      <Timer />
+      {/* <Timer /> */}
       <Footer />
     </Flex>
   );
