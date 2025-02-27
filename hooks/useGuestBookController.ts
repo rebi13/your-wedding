@@ -1,5 +1,11 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { createGuestBook, getGuestBookById, getGuestBookList } from '@/actions/guestbook.actions';
+import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  createGuestBook,
+  deleteGuestBookSoft,
+  getGuestBookById,
+  getGuestBookList,
+  updateGuestBook,
+} from '@/actions/guestbook.actions';
 import { Database } from '@/types/supabase';
 
 export type GuestBookDto = Database['public']['Tables']['GuestBook']['Row'];
@@ -7,13 +13,24 @@ export type GuestBookDto = Database['public']['Tables']['GuestBook']['Row'];
 const useGuestBookController = () => {
   const queryClient = useQueryClient();
 
-  // ✅ 전체 방명록 리스트 조회 (자동 캐싱)
-  const { data: guestBookList, isLoading: isGuestBookListLoading } = useQuery({
+  // ✅ 방명록 리스트 가져오기 (3개씩 무한 로드)
+  const {
+    data: guestBookPages,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading: isGuestBookListLoading,
+  } = useInfiniteQuery({
     queryKey: ['guestBookList'],
-    queryFn: getGuestBookList,
+    queryFn: ({ pageParam = 0 }) => getGuestBookList({ pageParam }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => (!lastPage.isLastPage ? lastPage.nextPage : undefined),
   });
 
-  // ✅ 단건 방명록 조회 (ID를 동적으로 받아올 수 있음)
+  // ✅ 데이터 평탄화
+  const guestBookList = guestBookPages?.pages.flatMap((page) => page.data) ?? [];
+
+  // ✅ 단일 방명록 조회
   const getGuestBook = async (id: number) => {
     return queryClient.fetchQuery({
       queryKey: ['guestBook', id],
@@ -21,9 +38,36 @@ const useGuestBookController = () => {
     });
   };
 
-  // ✅ 방명록 작성 (성공 후 리스트를 갱신)
+  // ✅ 방명록 작성
   const { mutate: createGuestBookMutation, isPending: isCreatingGuestBook } = useMutation({
     mutationFn: createGuestBook,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['guestBookList'] }); // 리스트 자동 갱신
+    },
+  });
+
+  // ✅ 방명록 수정
+  const { mutate: updateGuestBookMutation, isPending: isUpdatingGuestBook } = useMutation({
+    mutationFn: ({
+      id,
+      name,
+      content,
+      password,
+    }: {
+      id: number;
+      name: string;
+      content: string;
+      password: string;
+    }) => updateGuestBook(id, name, content, password),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ['guestBookList'] }); // 전체 목록 갱신
+      queryClient.invalidateQueries({ queryKey: ['guestBook', variables.id] }); // 수정된 항목만 갱신
+    },
+  });
+
+  // ✅ 방명록 삭제 (Soft Delete)
+  const { mutate: deleteGuestBookMutation, isPending: isDeletingGuestBook } = useMutation({
+    mutationFn: (id: number) => deleteGuestBookSoft(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['guestBookList'] }); // 리스트 자동 갱신
     },
@@ -32,9 +76,16 @@ const useGuestBookController = () => {
   return {
     isGuestBookListLoading,
     isCreatingGuestBook,
+    isUpdatingGuestBook,
+    isDeletingGuestBook,
     guestBookList,
     getGuestBook,
+    fetchNextPage, // 더보기 버튼과 연결
+    hasNextPage,
+    isFetchingNextPage,
     createGuestBook: createGuestBookMutation,
+    updateGuestBook: updateGuestBookMutation,
+    deleteGuestBook: deleteGuestBookMutation,
   };
 };
 

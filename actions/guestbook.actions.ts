@@ -7,15 +7,23 @@ import { compareHashPassword, hashPassword } from '@/utils/password';
 // 서버에서만 작동되는 모듈임을 명시
 
 // GuestBook List 가져오기
-export const getGuestBookList = async () => {
+export const getGuestBookList = async ({ pageParam = 0 }) => {
+  const limit = 3; // 한 번에 가져올 데이터 개수
+  const offset = pageParam * limit; // 페이지네이션을 위한 offset
+
   const supabase = await createServerSideClient();
-  const result = await supabase
+  const { data, error } = await supabase
     .from('GuestBook')
     .select('*', { head: false }) // ✅ 캐싱 문제 해결
     .eq('deleted_YN', false)
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false })
+    .range(offset, offset + limit - 1); // 3개씩 가져오기
 
-  return result.data;
+  if (error) {
+    throw error;
+  }
+
+  return { data, nextPage: pageParam + 1, isLastPage: data.length < limit };
 };
 
 // GuestBook 가져오기 + by Id

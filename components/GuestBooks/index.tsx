@@ -9,7 +9,7 @@ import useGuestBookController from '@/hooks/useGuestBookController';
 import { useModal } from '@/hooks/useModal';
 
 export const GuestBooks = () => {
-  const { guestBookList } = useGuestBookController();
+  const { guestBookList, hasNextPage, fetchNextPage } = useGuestBookController();
   const { openModal } = useModal();
 
   return (
@@ -23,9 +23,17 @@ export const GuestBooks = () => {
         ) : (
           <Text>방명록이 없습니다.</Text>
         )}
-        <Button w="100%" variant="subtle" rightSection={<IconArrowDown />} c="dark">
-          더보기
-        </Button>
+        {hasNextPage && (
+          <Button
+            w="100%"
+            variant="subtle"
+            rightSection={<IconArrowDown />}
+            c="dark"
+            onClick={() => fetchNextPage()}
+          >
+            더보기
+          </Button>
+        )}
         <Flex w="100%" justify="flex-end">
           <Button
             color="yellow"
