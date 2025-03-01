@@ -24,7 +24,7 @@ export const Gallery = () => {
             return (
               <Flex
                 key={image.id}
-                onClick={() => openModal(<Image src="/assets/wedding_bouquet.png" />, null, '')}
+                onClick={() => openModal(<Image src={getImageUrl(image.name)} />, null, '')}
               >
                 <Image src={getImageUrl(image.name)} />
               </Flex>
