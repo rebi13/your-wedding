@@ -22,6 +22,9 @@ type Greeting = {
     groom: HostPerson;
     bride: HostPerson;
   };
+  eventDay: string;
+  eventKor: string;
+  eventEng: string;
   eventDetail: string;
 };
 
