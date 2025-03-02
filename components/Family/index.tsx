@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex, Image, Text } from '@mantine/core';
+import { Divider, Flex, Image, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 // import data from '@/data.json';
 import useTotalController from '@/hooks/useTotalController';
@@ -30,6 +30,7 @@ export const Family = () => {
             </Text>
           </Flex>
         </Flex>
+        <Divider />
         <Flex direction="column">
           <Flex justify="space-between">
             <Text size="lg">{brideParents}</Text>
