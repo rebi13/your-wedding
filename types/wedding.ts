@@ -1,3 +1,8 @@
+type HeaderInfo = {
+  title: string;
+  subTitle: string;
+};
+
 type ParentInfo = {
   relation: string;
   name: string;
@@ -46,6 +51,7 @@ type LocationInfo = {
 };
 
 export type WeddingData = {
+  header: HeaderInfo;
   greeting: Greeting;
   hostInfo: HostInfo[];
   mapInfo: MapInfo;
