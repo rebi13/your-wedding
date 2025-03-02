@@ -15,7 +15,7 @@ export const Gallery = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" p="md" gap="md" align="center">
+      <Flex direction="column" p="sm" gap="md" align="center">
         <Text size="2rem" ta="center">
           갤러리
         </Text>
@@ -25,9 +25,19 @@ export const Gallery = () => {
             return (
               <Flex
                 key={image.id}
-                onClick={() => openModal(<Image src={getImageUrl(image.name)} />, null, '')}
+                pos="relative"
+                w="6rem"
+                h="6rem"
+                onClick={() =>
+                  openModal(<Image alt="image" flex={1} src={getImageUrl(image.name)} />, null, '')
+                }
               >
-                <Image src={getImageUrl(image.name)} />
+                <Image
+                  alt="image"
+                  flex={1}
+                  src={getImageUrl(image.name)}
+                  style={{ objectFit: 'cover' }}
+                />
               </Flex>
             );
           })}
