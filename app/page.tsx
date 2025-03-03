@@ -1,8 +1,8 @@
 'use client';
 
-import { Flex, Image } from '@mantine/core';
+import { Divider, Flex, Image } from '@mantine/core';
 import { AudioPlayer } from '@/components/AudioPlayer';
-// import { Contact } from '@/components/Contact';
+import { Contact } from '@/components/Contact';
 import { Contents } from '@/components/Contents';
 import { Family } from '@/components/Family';
 import { Footer } from '@/components/Footer';
@@ -37,7 +37,8 @@ export default function HomePage() {
       <Family />
       <Gallery />
       <WeddingDate />
-      {/* <Contact /> */}
+      <Contact />
+      <Divider />
       <Contents contents={contents3} />
       <GiftAccount />
       <GuestBooks />

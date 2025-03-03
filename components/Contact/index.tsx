@@ -1,7 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Flex } from '@mantine/core';
+import { IconMap } from '@tabler/icons-react';
+import { Anchor, Button, Flex, Image, Modal, Text } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
+import useTotalController from '@/hooks/useTotalController';
+import { getImageUrl } from '@/utils/storage';
 
 // 네이버 객체를 TypeScript에서 인식할 수 있도록 선언
 declare global {
@@ -19,6 +24,10 @@ declare global {
 // ].join('');
 
 export const Contact = () => {
+  const { getTotalDatas } = useTotalController();
+  const { data } = getTotalDatas();
+  const [opened, { open, close }] = useDisclosure(false);
+
   const mapElement = useRef<HTMLDivElement>(null);
   const [_map, setMap] = useState<any>(null);
   const [_centerMarker, setCenterMarker] = useState<any>(null);
@@ -87,9 +96,28 @@ export const Contact = () => {
   // }, [map, centerMarker, infoWindow]);
 
   return (
-    <Flex w="100%" justify="center" direction="column" align="center">
-      <h2>오시는 길 - 네이버 지도</h2>
-      <Flex w="90%" h="25rem" ref={mapElement} />
-    </Flex>
+    <FramerMotionWrapper>
+      <Flex w="100%" justify="center" direction="column" align="center" gap="xs">
+        <Flex w="100%" justify="center" align="center" direction="column" gap="0.2rem">
+          <Text fz="2rem">오시는 길</Text>
+          <Text fz="1.2rem">{data?.mapInfo.address1}</Text>
+          <Text>{data?.mapInfo.address2}</Text>
+          <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor>
+        </Flex>
+        <Flex w="100%" h="25rem" ref={mapElement} />
+        <Modal
+          opened={opened}
+          onClose={close}
+          radius={0}
+          centered
+          transitionProps={{ transition: 'fade', duration: 200 }}
+        >
+          <Image width="100%" h="100%" src={getImageUrl('mapInfo.png')} />
+        </Modal>
+        <Button color="brown" size="lg" variant="outline" leftSection={<IconMap />} onClick={open}>
+          약도 이미지 보기
+        </Button>
+      </Flex>
+    </FramerMotionWrapper>
   );
 };
