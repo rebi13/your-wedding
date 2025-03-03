@@ -22,6 +22,7 @@ type Greeting = {
     groom: HostPerson;
     bride: HostPerson;
   };
+  holidayList: string[];
   eventDay: string;
   eventKor: string;
   eventEng: string;
@@ -43,6 +44,7 @@ type HostInfo = {
 type MapInfo = {
   address1: string;
   address2: string;
+  tel: string;
   naverMap: string;
   lat: number;
   lon: number;
