@@ -38,6 +38,7 @@ type AccountInfo = {
 
 type HostInfo = {
   host: string;
+  emoji: string;
   accountInfo: AccountInfo[];
 };
 
@@ -59,6 +60,7 @@ export type WeddingData = {
   header: HeaderInfo;
   greeting: Greeting;
   hostInfo: HostInfo[];
+  hostMessage: string;
   mapInfo: MapInfo;
   locationInfo: LocationInfo[];
   emojis: string[];
