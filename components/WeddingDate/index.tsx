@@ -1,35 +1,107 @@
 import dayjs from 'dayjs';
-import { Flex, Indicator } from '@mantine/core';
-import { Calendar } from '@mantine/dates';
+import isoWeek from 'dayjs/plugin/isoWeek';
+import weekday from 'dayjs/plugin/weekday';
+import React from 'react';
+import { Flex, Grid, Text } from '@mantine/core';
+import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
+import useTotalController from '@/hooks/useTotalController';
+
+import 'dayjs/locale/ko';
+
+dayjs.extend(weekday);
+dayjs.extend(isoWeek);
 
 export const WeddingDate = () => {
-  return (
-    <Flex w="100%" justify="center">
-      <Calendar
-        maxLevel="month"
-        date={dayjs('2025-08-30').toDate()}
-        static
-        hideOutsideDates
-        monthLabelFormat="YYYY년 MM월"
-        renderDay={(date) => {
-          const isSaturday = date.getDay() === 6; // 6 = 토요일
+  const { getTotalDatas } = useTotalController();
+  const { data } = getTotalDatas();
 
-          return (
-            <Indicator size={6} color="red" offset={-2} disabled={date.getDate() !== 30}>
-              <div style={{ color: isSaturday ? 'blue' : 'inherit' }}>{date.getDate()}</div>
-            </Indicator>
-          );
-        }}
-        styles={{
-          calendarHeaderLevel: {
-            cursor: 'auto',
-            fontSize: '2rem',
-          },
-          calendarHeaderControl: {
-            display: 'none',
-          },
-        }}
-      />
-    </Flex>
+  const targetDate = dayjs(data?.greeting.eventDay);
+  const year = targetDate.year();
+  const month = targetDate.month(); // 0 (1월) ~ 11 (12월)
+  const firstDayOfMonth = dayjs(`${year}-${month + 1}-01`);
+  const lastDayOfMonth = firstDayOfMonth.endOf('month');
+
+  const daysInMonth = lastDayOfMonth.date();
+  const firstDayOfWeek = firstDayOfMonth.day(); // 0(일) ~ 6(토)
+
+  // 빈 칸을 먼저 채우고, 날짜 추가
+  const days = [
+    ...Array(firstDayOfWeek).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ];
+
+  return (
+    <FramerMotionWrapper>
+      <Flex direction="column" w="100%" justify="center" align="center" bg="#F8F8F8" p="md">
+        <Text fz="2rem">WEDDING DAY</Text>
+        <Text fz="1rem" mt="md">
+          {data?.greeting.eventKor}
+        </Text>
+        <Text fz="1rem" mb="md">
+          {data?.greeting.eventEng}
+        </Text>
+        {/* 요일 헤더 */}
+        <Grid columns={7} gutter="0" w="100%">
+          {['일', '월', '화', '수', '목', '금', '토'].map((day, i) => (
+            <Grid.Col key={day} span={1}>
+              <Flex
+                w="2.5rem"
+                h="2.5rem"
+                align="center"
+                justify="center"
+                fw={600}
+                style={{
+                  color: i === 0 ? 'red' : i === 6 ? 'blue' : 'black',
+                }}
+              >
+                {day}
+              </Flex>
+            </Grid.Col>
+          ))}
+        </Grid>
+
+        {/* 날짜 칸 */}
+        <Grid columns={7} gutter="0" w="100%">
+          {days.map((day, i) =>
+            day === null ? (
+              <Grid.Col key={i} span={1}>
+                <Flex w="2.5rem" h="2.5rem" align="center" justify="center">
+                  &nbsp;
+                </Flex>
+              </Grid.Col>
+            ) : (
+              <Grid.Col key={i} span={1}>
+                <Flex
+                  w="2.5rem"
+                  h="2.5rem"
+                  align="center"
+                  justify="center"
+                  bg={day === targetDate.date() ? '#88884C' : 'transparent'}
+                  c={
+                    day === targetDate.date()
+                      ? 'white'
+                      : data?.greeting.holidayList.includes(
+                            `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+                          )
+                        ? 'red'
+                        : i % 7 === 0
+                          ? 'red'
+                          : i % 7 === 6
+                            ? 'blue'
+                            : 'black'
+                  }
+                  fw={day === targetDate.date() ? 700 : 500}
+                  style={{
+                    borderRadius: day === targetDate.date() ? '50%' : '0',
+                  }}
+                >
+                  {day}
+                </Flex>
+              </Grid.Col>
+            )
+          )}
+        </Grid>
+      </Flex>
+    </FramerMotionWrapper>
   );
 };
