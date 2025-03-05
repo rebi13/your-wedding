@@ -16,10 +16,13 @@ dayjs.extend(isoWeek);
 export const WeddingDate = () => {
   const { getTotalDatas } = useTotalController();
   const { data } = getTotalDatas();
-  const targetDate = dayjs(data?.greeting.eventDay);
 
-  const year = targetDate.year();
-  const month = targetDate.month(); // 0 (1월) ~ 11 (12월)
+  // 데이터가 존재할 경우에만 targetDate 생성
+  const targetDate = data?.greeting.eventDay ? dayjs(data.greeting.eventDay) : null;
+
+  // targetDate가 없을 경우 기본 값 설정 (이전 오류 방지)
+  const year = targetDate ? targetDate.year() : dayjs().year();
+  const month = targetDate ? targetDate.month() : dayjs().month();
   const firstDayOfMonth = dayjs(`${year}-${month + 1}-01`);
   const lastDayOfMonth = firstDayOfMonth.endOf('month');
 
@@ -31,8 +34,7 @@ export const WeddingDate = () => {
     ...Array(firstDayOfWeek).fill(null),
     ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
-  console.log('targetDate', targetDate);
-  console.log('targetDate.date()', targetDate.date());
+
   return (
     <FramerMotionWrapper>
       <Flex direction="column" w="100%" justify="center" align="center" bg="#F8F8F8" p="md">
@@ -43,6 +45,7 @@ export const WeddingDate = () => {
         <Text fz="1rem" mb="md">
           {data?.greeting.eventEng}
         </Text>
+
         {/* 요일 헤더 */}
         <Grid columns={7} gutter="0" w="100%">
           {['일', '월', '화', '수', '목', '금', '토'].map((day, i) => (
@@ -79,11 +82,11 @@ export const WeddingDate = () => {
                   h="2.5rem"
                   align="center"
                   justify="center"
-                  bg={day === targetDate.date() ? '#88884C' : 'transparent'}
+                  bg={targetDate && day === targetDate.date() ? '#88884C' : 'transparent'}
                   c={
-                    day === targetDate.date()
+                    targetDate && day === targetDate.date()
                       ? 'white'
-                      : data?.greeting.holidayList.includes(
+                      : data?.greeting.holidayList?.includes(
                             `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
                           )
                         ? 'red'
@@ -93,9 +96,9 @@ export const WeddingDate = () => {
                             ? 'blue'
                             : 'black'
                   }
-                  fw={day === targetDate.date() ? 700 : 500}
+                  fw={targetDate && day === targetDate.date() ? 700 : 500}
                   style={{
-                    borderRadius: day === targetDate.date() ? '50%' : '0',
+                    borderRadius: targetDate && day === targetDate.date() ? '50%' : '0',
                   }}
                 >
                   {day}
