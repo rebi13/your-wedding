@@ -31,7 +31,8 @@ export const WeddingDate = () => {
     ...Array(firstDayOfWeek).fill(null),
     ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
-
+  console.log('targetDate', targetDate);
+  console.log('targetDate.date()', targetDate.date());
   return (
     <FramerMotionWrapper>
       <Flex direction="column" w="100%" justify="center" align="center" bg="#F8F8F8" p="md">
