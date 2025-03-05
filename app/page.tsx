@@ -1,6 +1,7 @@
 'use client';
 
 import { Divider, Flex, Image } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { AudioPlayer } from '@/components/AudioPlayer';
 import { Contact } from '@/components/Contact';
 import { Family } from '@/components/Family';
@@ -15,6 +16,12 @@ import { WeddingDate } from '@/components/WeddingDate';
 import { getImageUrl } from '@/utils/storage';
 
 export default function HomePage() {
+  notifications.show({
+    title: '배경 음악',
+    message: '배경 음악이 준비되어 있습니다.',
+    color: 'pink',
+    autoClose: 1500,
+  });
   return (
     <Flex w="100%" direction="column" gap="md" h="100%">
       <AudioPlayer src="/assets/velos.mp3" />
