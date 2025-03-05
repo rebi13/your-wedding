@@ -1,3 +1,5 @@
+'use client';
+
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekday from 'dayjs/plugin/weekday';
@@ -14,8 +16,8 @@ dayjs.extend(isoWeek);
 export const WeddingDate = () => {
   const { getTotalDatas } = useTotalController();
   const { data } = getTotalDatas();
-
   const targetDate = dayjs(data?.greeting.eventDay);
+
   const year = targetDate.year();
   const month = targetDate.month(); // 0 (1월) ~ 11 (12월)
   const firstDayOfMonth = dayjs(`${year}-${month + 1}-01`);
