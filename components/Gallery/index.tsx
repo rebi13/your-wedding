@@ -55,9 +55,14 @@ export const Gallery = () => {
             classNames={classes}
             height="100%"
             initialSlide={currentImageIndex}
-            onSlideChange={setCurrentImageIndex}
-            nextControlIcon={!isLastSlide ? <IconArrowRight size={16} /> : null}
-            previousControlIcon={!isFirstSlide ? <IconArrowLeft size={16} /> : null}
+            dragFree
+            onSlideChange={(index) => {
+              setTimeout(() => setCurrentImageIndex(index), 300);
+            }}
+            nextControlIcon={<IconArrowRight size={16} />}
+            nextControlProps={{ disabled: isLastSlide }}
+            previousControlIcon={<IconArrowLeft size={16} />}
+            previousControlProps={{ disabled: isFirstSlide }}
           >
             {imageDatas?.map((image) => (
               <Image
