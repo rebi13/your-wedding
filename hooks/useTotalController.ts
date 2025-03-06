@@ -5,28 +5,28 @@ import { WeddingData } from '@/types/wedding';
 
 const useTotalController = () => {
   // ✅ 이미지 조회 (React Query 사용)
-  const getWeddingImages = () => {
-    return useQuery({
-      queryKey: ['images'],
-      queryFn: () => getImages(),
-    });
-  };
+  const weddingImagesQuery = useQuery({
+    queryKey: ['images'],
+    queryFn: getImages,
+  });
 
   // ✅ 페이지에 표시할 텍스트 json 데이터 조회 (React Query 사용)
-  const getTotalDatas = () => {
-    return useQuery({
-      queryKey: ['total'],
-      queryFn: () => getTotalData(),
-      select: (data): WeddingData => {
-        // data를 WeddingData 타입으로 변환
-        return data as WeddingData;
-      },
-    });
-  };
+  const totalDataQuery = useQuery({
+    queryKey: ['total'],
+    queryFn: getTotalData,
+    select: (data): WeddingData => {
+      return data as WeddingData;
+    },
+  });
 
   return {
-    getWeddingImages,
-    getTotalDatas,
+    weddingImages: weddingImagesQuery.data,
+    isWeddingImagesLoading: weddingImagesQuery.isLoading,
+    isWeddingImagesError: weddingImagesQuery.isError,
+
+    totalData: totalDataQuery.data,
+    isTotalDataLoading: totalDataQuery.isLoading,
+    isTotalDataError: totalDataQuery.isError,
   };
 };
 

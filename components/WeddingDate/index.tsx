@@ -14,8 +14,7 @@ dayjs.extend(weekday);
 dayjs.extend(isoWeek);
 
 export const WeddingDate = () => {
-  const { getTotalDatas } = useTotalController();
-  const { data } = getTotalDatas();
+  const { totalData: data } = useTotalController();
 
   // 데이터가 존재할 경우에만 targetDate 생성
   const targetDate = data?.greeting.eventDay ? dayjs(data.greeting.eventDay) : null;

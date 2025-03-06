@@ -5,8 +5,7 @@ import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 import useTotalController from '@/hooks/useTotalController';
 
 export const Invitation = () => {
-  const { getTotalDatas } = useTotalController();
-  const { data } = getTotalDatas();
+  const { totalData: data } = useTotalController();
 
   return (
     <FramerMotionWrapper>

@@ -24,8 +24,7 @@ declare global {
 // ].join('');
 
 export const Contact = () => {
-  const { getTotalDatas } = useTotalController();
-  const { data } = getTotalDatas();
+  const { totalData: data } = useTotalController();
   const [opened, { open, close }] = useDisclosure(false);
 
   const mapElement = useRef<HTMLDivElement>(null);

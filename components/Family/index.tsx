@@ -7,8 +7,7 @@ import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
 
 export const Family = () => {
-  const { getTotalDatas } = useTotalController();
-  const { data } = getTotalDatas();
+  const { totalData: data } = useTotalController();
 
   const groomParents = data?.greeting?.host?.groom.parents.map((d) => d.name).join(' ・ ');
   const brideParents = data?.greeting?.host?.bride.parents.map((d) => d.name).join(' ・ ');

@@ -4,8 +4,7 @@ import { copyToClipboard } from '@/utils/copyData';
 import { FramerMotionWrapper } from '../FramerMotionWrapper';
 
 export const GiftAccount = () => {
-  const { getTotalDatas } = useTotalController();
-  const { data } = getTotalDatas();
+  const { totalData: data } = useTotalController();
 
   return (
     <FramerMotionWrapper>

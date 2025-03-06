@@ -4,8 +4,8 @@ import { Flex, Text } from '@mantine/core';
 import useTotalController from '@/hooks/useTotalController';
 
 export const Header = () => {
-  const { getTotalDatas } = useTotalController();
-  const { data } = getTotalDatas();
+  const { totalData: data } = useTotalController();
+
   return (
     <Flex direction="column" pt="md" px="md" align="center">
       <Text fz="2rem">{data?.header.title}</Text>

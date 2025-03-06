@@ -11,11 +11,10 @@ import { FramerMotionWrapper } from '../FramerMotionWrapper';
 import classes from './Gallery.module.css';
 
 export const Gallery = () => {
-  const { getWeddingImages } = useTotalController();
+  const { weddingImages: imageDatas } = useTotalController();
   const [limit, setLimit] = useState(9);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [opened, { open, close }] = useDisclosure(false);
-  const { data: imageDatas } = getWeddingImages();
 
   const totalImages = imageDatas?.length || 0;
   const isFirstSlide = currentImageIndex === 0;
