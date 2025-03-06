@@ -64,4 +64,5 @@ export type WeddingData = {
   mapInfo: MapInfo;
   locationInfo: LocationInfo[];
   emojis: string[];
+  madeBy: string;
 };
