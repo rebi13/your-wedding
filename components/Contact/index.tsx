@@ -42,7 +42,8 @@ export const Contact = () => {
       const mapOptions = {
         center: initialCenter,
         zoom: 15,
-        zoomControl: true,
+        minZoom: 15, //지도의 최소 줌 레벨
+        zoomControl: false,
       };
 
       const mapInstance = new window.naver.maps.Map(mapElement.current, mapOptions);
