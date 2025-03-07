@@ -44,17 +44,16 @@ export const Gallery = () => {
         <Text>사진을 클릭하시면 전체 화면 보기가 가능합니다.</Text>
 
         <Modal
+          removeScrollProps={{ allowPinchZoom: true }}
           opened={opened}
           onClose={close}
-          fullScreen
           radius={0}
           transitionProps={{ transition: 'fade', duration: 200 }}
         >
           <Carousel
             classNames={classes}
-            height="100%"
             initialSlide={currentImageIndex}
-            dragFree
+            slidesToScroll={1}
             onSlideChange={(index) => {
               setTimeout(() => setCurrentImageIndex(index), 300);
             }}

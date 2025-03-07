@@ -105,13 +105,16 @@ export const Contact = () => {
         </Flex>
         <Flex w="100%" h="25rem" ref={mapElement} />
         <Modal
+          removeScrollProps={{ allowPinchZoom: true }}
           opened={opened}
           onClose={close}
           radius={0}
           centered
           transitionProps={{ transition: 'fade', duration: 200 }}
         >
-          <Image width="100%" h="100%" src={getImageUrl('mapInfo.png')} />
+          <Flex w="100%" h="100%">
+            <Image src={getImageUrl('mapInfo.png')} />
+          </Flex>
         </Modal>
         <Button color="brown" size="lg" variant="outline" leftSection={<IconMap />} onClick={open}>
           약도 이미지 보기
