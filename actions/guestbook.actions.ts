@@ -12,18 +12,28 @@ export const getGuestBookList = async ({ pageParam = 0 }) => {
   const offset = pageParam * limit; // 페이지네이션을 위한 offset
 
   const supabase = await createServerSideClient();
-  const { data, error } = await supabase
+
+  // ✅ 전체 개수 가져오기
+  const { data, error, count } = await supabase
     .from('GuestBook')
-    .select('*', { head: false }) // ✅ 캐싱 문제 해결
+    .select('*', { head: false, count: 'exact' }) // ✅ 전체 개수 계산
     .eq('deleted_YN', false)
     .order('created_at', { ascending: false })
-    .range(offset, offset + limit - 1); // 3개씩 가져오기
+    .range(offset, offset + limit - 1);
 
   if (error) {
     throw error;
   }
 
-  return { data, nextPage: pageParam + 1, isLastPage: data.length < limit };
+  const totalRecords = count ?? 0; // ✅ count가 null이면 0으로 대체
+  const fetchedDataLength = data.length; // 현재 가져온 데이터 개수
+  const isLastPage = offset + fetchedDataLength >= totalRecords; // ✅ 마지막 페이지 여부 확인
+
+  return {
+    data,
+    nextPage: !isLastPage ? pageParam + 1 : undefined, // ✅ 마지막 페이지라면 nextPage 없음
+    isLastPage, // ✅ 마지막 페이지 여부 반환
+  };
 };
 
 // GuestBook 가져오기 + by Id

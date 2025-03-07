@@ -24,7 +24,7 @@ const useGuestBookController = () => {
     queryKey: ['guestBookList'],
     queryFn: ({ pageParam = 0 }) => getGuestBookList({ pageParam }),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) => (!lastPage.isLastPage ? lastPage.nextPage : undefined),
+    getNextPageParam: (lastPage) => lastPage.nextPage, // undefined면 hasNextPage = false
   });
 
   // ✅ 데이터 평탄화
