@@ -32,7 +32,7 @@ export const AudioPlayer = ({ src }: { src: string }) => {
 
       {/* 재생/정지 아이콘 */}
       <ActionIcon size="lg" variant="subtle" onClick={togglePlay} color="brown">
-        {isPlaying ? <IconHeadsetOff size={32} /> : <IconHeadphonesFilled size={32} />}
+        {isPlaying ? <IconHeadphonesFilled size={32} /> : <IconHeadsetOff size={32} />}
       </ActionIcon>
     </Flex>
   );
