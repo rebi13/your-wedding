@@ -32,7 +32,14 @@ export const GiftAccount = () => {
                     >
                       <Flex direction="column">
                         <Text>{account.relation}</Text>
-                        <Text>{account.account}</Text>
+                        <Text
+                          fw={700}
+                          onClick={() =>
+                            copyToClipboard(`${account.account} ${account.bank} ${account.name}`)
+                          }
+                        >
+                          {account.account}
+                        </Text>
                         <Text>
                           {account.bank} {account.name}
                         </Text>
