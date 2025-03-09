@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { Divider, Flex, Loader, Image as MantineImage } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { AudioPlayer } from '@/components/AudioPlayer';
 import { Contact } from '@/components/Contact';
 import { Family } from '@/components/Family';
 import { Footer } from '@/components/Footer';
@@ -56,7 +55,6 @@ export default function HomePage() {
         </Flex>
       ) : (
         <Flex w="100%" direction="column" gap="md" h="100%">
-          <AudioPlayer src="/assets/velos.mp3" />
           <Header />
           <Flex direction="column">
             <MantineImage
