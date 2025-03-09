@@ -16,7 +16,7 @@ export const Family = () => {
     <FramerMotionWrapper>
       <Image src={getImageUrl('middle.png')} />
 
-      <Flex direction="column" w="100%" p="lg" px="4rem" bg="#D7C8C2" gap="md">
+      <Flex direction="column" w="100%" p="lg" px="6rem" bg="#D7C8C2" gap="md">
         <Flex direction="column" gap="xs">
           <Flex justify="space-between">
             <Text size="lg">{groomParents}</Text>
