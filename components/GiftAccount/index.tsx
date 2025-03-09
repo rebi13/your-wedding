@@ -12,8 +12,8 @@ export const GiftAccount = () => {
         <Text ta="center" style={{ whiteSpace: 'pre-line' }}>
           {data?.hostMessage}
         </Text>
-        <Accordion>
-          {data?.hostInfo.map((item) => (
+        {data?.hostInfo.map((item) => (
+          <Accordion key={item.host}>
             <Accordion.Item
               key={item.host}
               value={item.host}
@@ -57,8 +57,8 @@ export const GiftAccount = () => {
                 </Flex>
               </Accordion.Panel>
             </Accordion.Item>
-          ))}
-        </Accordion>
+          </Accordion>
+        ))}
       </Flex>
     </FramerMotionWrapper>
   );
