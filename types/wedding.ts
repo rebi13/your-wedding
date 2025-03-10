@@ -24,6 +24,7 @@ type Greeting = {
   };
   holidayList: string[];
   eventDay: string;
+  eventDayTime: string;
   eventKor: string;
   eventEng: string;
   eventDetail: string;
