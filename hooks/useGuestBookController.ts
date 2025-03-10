@@ -1,5 +1,6 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
+  checkGuestBookPassword,
   createGuestBook,
   deleteGuestBookSoft,
   getGuestBookById,
@@ -39,6 +40,12 @@ const useGuestBookController = () => {
       enabled: !!id, // id가 있을 때만 실행
     });
   };
+
+  const getIsPasswordMatch = () =>
+    useMutation({
+      mutationFn: ({ id, password }: { id: number; password: string }) =>
+        checkGuestBookPassword(id, password),
+    });
 
   // ✅ 방명록 작성
   const { mutate: createGuestBookMutation, isPending: isCreatingGuestBook } = useMutation({
@@ -82,6 +89,7 @@ const useGuestBookController = () => {
     isDeletingGuestBook,
     guestBookList,
     getGuestBook,
+    getIsPasswordMatch,
     fetchNextPage, // 더보기 버튼과 연결
     hasNextPage,
     isFetchingNextPage,
