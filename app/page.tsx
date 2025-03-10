@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Divider, Flex, Loader, Image as MantineImage } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { Contact } from '@/components/Contact';
+import { CountDown } from '@/components/CountDown';
 import { Family } from '@/components/Family';
 import { Footer } from '@/components/Footer';
 import { Gallery } from '@/components/Gallery';
@@ -69,6 +70,7 @@ export default function HomePage() {
           <Family />
           <Gallery />
           <WeddingDate />
+          <CountDown />
           <Contact />
           <Divider my="3rem" />
           <GiftAccount />
