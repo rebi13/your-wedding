@@ -97,6 +97,7 @@ export const updateGuestBook = async (
   password: string
 ) => {
   const supabase = await createServerSideClient();
+
   const result = await supabase
     .from('GuestBook')
     .update({
@@ -106,7 +107,8 @@ export const updateGuestBook = async (
       updated_at: new Date().toISOString(),
     })
     .eq('id', id)
-    .select();
+    .select('*')
+    .single();
 
   return result.data;
 };
