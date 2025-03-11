@@ -11,15 +11,15 @@ import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import Template from '@/app/template'; // Import 방식 변경
 
 export const metadata: Metadata = {
-  title: 'Your Wedding',
+  title: process.env.NEXT_TITLE,
   description: '너의 결혼을 축하하고 축복해',
   icons: {
     icon: '/favicon.svg',
   },
   openGraph: {
-    title: 'Your Wedding: 너의 결혼식',
-    description: '너의 결혼을 축하하고 축복해',
-    siteName: 'Your Wedding',
+    title: process.env.NEXT_OG_TITLE,
+    description: process.env.NEXT_DESC,
+    siteName: 'For Your Wedding',
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_SUPABASE_URL!}/storage/v1/object/public/${process.env.NEXT_PUBLIC_STORAGE_BUCKET!}/thumb.jpeg`,
