@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: process.env.NEXT_OG_TITLE,
-    description: process.env.NEXT_DESC,
+    description: process.env.NEXT_OG_DESC,
     siteName: 'For Your Wedding',
     images: [
       {
