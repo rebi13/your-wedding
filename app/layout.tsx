@@ -12,7 +12,7 @@ import Template from '@/app/template'; // Import 방식 변경
 
 export const metadata: Metadata = {
   title: process.env.NEXT_TITLE,
-  description: '너의 결혼을 축하하고 축복해',
+  description: process.env.NEXT_OG_DESC,
   icons: {
     icon: '/favicon.svg',
   },
