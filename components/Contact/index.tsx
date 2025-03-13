@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { IconMap } from '@tabler/icons-react';
-import { Anchor, Button, Flex, Image, Modal, Text } from '@mantine/core';
+import { Anchor, Button, Flex, Image, Loader, Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 import useTotalController from '@/hooks/useTotalController';
@@ -26,6 +26,7 @@ declare global {
 export const Contact = () => {
   const { totalData: data } = useTotalController();
   const [opened, { open, close }] = useDisclosure(false);
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
   const mapElement = useRef<HTMLDivElement>(null);
   const [_map, setMap] = useState<any>(null);
@@ -115,8 +116,33 @@ export const Contact = () => {
           centered
           transitionProps={{ transition: 'fade', duration: 200 }}
         >
-          <Flex w="100%" h="100%">
-            <Image src={getImageUrl('mapInfo.png')} />
+          <Flex w="100%" h="100%" align="center" justify="center" pos="relative">
+            {/* ✅ 로딩 중일 때 스피너 */}
+            {isImageLoading && (
+              <Flex
+                pos="absolute"
+                top={0}
+                left={0}
+                w="100%"
+                h="100%"
+                align="center"
+                justify="center"
+                bg="white"
+              >
+                <Loader color="pink" size="xl" type="bars" />
+              </Flex>
+            )}
+
+            {/* ✅ 이미지: 로딩 중에도 최소 높이 유지 */}
+            <Image
+              src={getImageUrl('mapInfo.png')}
+              onLoad={() => setIsImageLoading(false)}
+              onError={() => setIsImageLoading(false)}
+              // 핵심 포인트 👇
+              h={isImageLoading ? 400 : 'auto'} // 또는 '100%' 등으로 조절 가능
+              mah={600}
+              style={{ objectFit: 'contain' }}
+            />
           </Flex>
         </Modal>
         <Button color="brown" size="lg" variant="outline" leftSection={<IconMap />} onClick={open}>
