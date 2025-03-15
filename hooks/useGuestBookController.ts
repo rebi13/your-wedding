@@ -31,7 +31,6 @@ const useGuestBookController = () => {
   // ✅ 데이터 평탄화
   const guestBookList = guestBookPages?.pages.flatMap((page) => page.data) ?? [];
 
-  // ✅ 단일 방명록 조회
   // ✅ 단일 방명록 조회 (React Query 사용)
   const getGuestBook = (id: number) => {
     return useQuery({
@@ -77,8 +76,9 @@ const useGuestBookController = () => {
   // ✅ 방명록 삭제 (Soft Delete)
   const { mutate: deleteGuestBookMutation, isPending: isDeletingGuestBook } = useMutation({
     mutationFn: (id: number) => deleteGuestBookSoft(id),
-    onSuccess: () => {
+    onSuccess: (_, id) => {
       queryClient.invalidateQueries({ queryKey: ['guestBookList'] }); // 리스트 자동 갱신
+      queryClient.invalidateQueries({ queryKey: ['guestBook', id] }); // 개별 항목 무효화
     },
   });
 
