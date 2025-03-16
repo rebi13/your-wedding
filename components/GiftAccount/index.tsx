@@ -9,6 +9,9 @@ export const GiftAccount = () => {
   return (
     <FramerMotionWrapper>
       <Flex direction="column" gap="md">
+        <Text fz="2rem" ta="center">
+          마음 전하실 곳
+        </Text>
         <Text ta="center" style={{ whiteSpace: 'pre-line' }}>
           {data?.hostMessage}
         </Text>
