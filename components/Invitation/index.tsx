@@ -16,7 +16,7 @@ export const Invitation = () => {
         <Text fz="1.5rem" c="pink" fw={400}>
           소중한 분들을 초대합니다
         </Text>
-        <Text ta="center" style={{ whiteSpace: 'pre-line', lineHeight: '140%' }}>
+        <Text ta="center" style={{ whiteSpace: 'pre-line', lineHeight: '300%' }}>
           {data?.greeting.message}
         </Text>
       </Flex>
