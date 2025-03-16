@@ -8,7 +8,7 @@ export const GiftAccount = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" gap="md">
+      <Flex direction="column" gap="md" align="center">
         <Text fz="2rem" ta="center">
           마음 전하실 곳
         </Text>
@@ -16,7 +16,7 @@ export const GiftAccount = () => {
           {data?.hostMessage}
         </Text>
         {data?.hostInfo.map((item) => (
-          <Accordion key={item.host}>
+          <Accordion key={item.host} w="90vw" variant="contained">
             <Accordion.Item
               key={item.host}
               value={item.host}
