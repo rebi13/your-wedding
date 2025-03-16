@@ -12,12 +12,12 @@ export const shareLink = async (options: { title: string; text: string; url: str
         color: 'blue',
       });
     } catch (error) {
-      notifications.show({
-        title: '청첩장 공유 실패',
-        message: '청첩장 공유에 실패했습니다.',
-        color: 'red',
-      });
-      throw new Error('청첩장 공유에 실패했습니다.');
+      // notifications.show({
+      //   title: '청첩장 공유 실패',
+      //   message: '청첩장 공유에 실패했습니다.',
+      //   color: 'red',
+      // });
+      // throw new Error('청첩장 공유에 실패했습니다.');
     }
   } else {
     try {
@@ -28,12 +28,12 @@ export const shareLink = async (options: { title: string; text: string; url: str
         color: 'blue',
       });
     } catch (error) {
-      notifications.show({
-        title: '청첩장 복사 실패',
-        message: '청첩장 복사에 실패했습니다.',
-        color: 'red',
-      });
-      throw new Error('청첩장 복사에 실패했습니다.');
+      // notifications.show({
+      //   title: '청첩장 복사 실패',
+      //   message: '청첩장 복사에 실패했습니다.',
+      //   color: 'red',
+      // });
+      // throw new Error('청첩장 복사에 실패했습니다.');
     }
   }
 };
