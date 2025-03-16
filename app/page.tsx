@@ -12,6 +12,7 @@ import { GiftAccount } from '@/components/GiftAccount';
 import { GuestBooks } from '@/components/GuestBooks';
 import { Header } from '@/components/Header';
 import { Invitation } from '@/components/Invitation';
+import { Profile } from '@/components/Profile';
 // import { Timer } from '@/components/Timer';
 import { WeddingDate } from '@/components/WeddingDate';
 import useTotalController from '@/hooks/useTotalController';
@@ -66,15 +67,24 @@ export default function HomePage() {
               }}
             />
           </Flex>
+          <Profile />
+          <Divider my="1rem" style={{ visibility: 'hidden' }} />
           <Invitation />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <Family />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <Gallery />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <WeddingDate />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <CountDown />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <Contact />
-          <Divider my="3rem" />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <GiftAccount />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <GuestBooks />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           {/* <Timer /> */}
           <Footer />
         </Flex>
