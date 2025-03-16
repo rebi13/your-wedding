@@ -8,6 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Box, Group, Stack, Text } from '@mantine/core';
 import useTotalController from '@/hooks/useTotalController';
+import { FramerMotionWrapper } from '../FramerMotionWrapper';
 
 dayjs.extend(duration);
 dayjs.extend(utc);
@@ -79,48 +80,50 @@ export const FlipUnit = ({ value, label }: FlipUnitProps) => {
   }, [value, display]);
 
   return (
-    <Box
-      w="4rem"
-      h="5rem"
-      style={{
-        borderRadius: 16,
-        backgroundColor: '#1a1a1a',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingBottom: 6,
-        position: 'relative',
-      }}
-    >
-      <AnimatePresence mode="popLayout">
-        <motion.div
-          key={value}
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 30, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Text c="white" size="2rem">
-            {value.toString().padStart(2, '0')}
-          </Text>
-        </motion.div>
-      </AnimatePresence>
-
-      <Text
-        size="xs"
-        c="gray.4"
-        mt={6}
+    <FramerMotionWrapper>
+      <Box
+        w="4rem"
+        h="5rem"
         style={{
-          position: 'absolute',
-          bottom: 4,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          borderRadius: 16,
+          backgroundColor: '#1a1a1a',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingBottom: 6,
+          position: 'relative',
         }}
       >
-        {label}
-      </Text>
-    </Box>
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={value}
+            initial={{ y: -30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 30, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Text c="white" size="2rem">
+              {value.toString().padStart(2, '0')}
+            </Text>
+          </motion.div>
+        </AnimatePresence>
+
+        <Text
+          size="xs"
+          c="gray.4"
+          mt={6}
+          style={{
+            position: 'absolute',
+            bottom: 4,
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          {label}
+        </Text>
+      </Box>
+    </FramerMotionWrapper>
   );
 };
