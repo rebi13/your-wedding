@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import NextImage from 'next/image';
 import { Divider, Flex, Loader, Image as MantineImage } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+import { AudioPlayer } from '@/components/AudioPlayer';
 import { Contact } from '@/components/Contact';
 import { CountDown } from '@/components/CountDown';
 import { Family } from '@/components/Family';
@@ -10,7 +12,7 @@ import { Footer } from '@/components/Footer';
 import { Gallery } from '@/components/Gallery';
 import { GiftAccount } from '@/components/GiftAccount';
 import { GuestBooks } from '@/components/GuestBooks';
-import { Header } from '@/components/Header';
+// import { Header } from '@/components/Header';
 import { Invitation } from '@/components/Invitation';
 import { Profile } from '@/components/Profile';
 // import { Timer } from '@/components/Timer';
@@ -57,14 +59,22 @@ export default function HomePage() {
         </Flex>
       ) : (
         <Flex w="100%" direction="column" gap="md" h="100%">
-          <Header />
+          {/* <Header /> */}
           <Flex direction="column">
+            <AudioPlayer src="/assets/velos.mp3" />
             <MantineImage
+              component={NextImage}
+              width={800} // 원하는 비율에 맞게 설정
+              height={1200}
               src={imageUrl}
+              priority // ✅ 이 속성 추가
               style={{
+                width: '100%', // 부모의 가로를 100%로
+                height: 'auto', // 비율 유지
                 opacity: isImageLoaded ? 1 : 0,
                 transition: 'opacity 0.5s ease-in-out',
               }}
+              alt=""
             />
           </Flex>
           <Profile />
