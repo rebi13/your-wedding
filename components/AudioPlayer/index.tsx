@@ -26,7 +26,7 @@ export const AudioPlayer = ({ src }: { src: string }) => {
   };
 
   return (
-    <Flex w="100%" pos="absolute" justify="flex-end" p="xs">
+    <Flex w="100%" pos="absolute" justify="flex-end" p="md">
       {/* 오디오 요소 (반복 재생 활성화) */}
       <audio ref={audioRef} src={src} loop />
 
