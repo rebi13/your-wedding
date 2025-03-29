@@ -96,7 +96,7 @@ export default function HomePage() {
           <GuestBooks />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           {/* <Timer /> */}
-          <Footer />
+          <Footer thumbImageUrl={imageUrl} />
         </Flex>
       )}
     </>

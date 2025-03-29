@@ -30,6 +30,12 @@ export const metadata: Metadata = {
   },
 };
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" {...mantineHtmlProps}>
@@ -47,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_MAP_CLIENT_ID}=geocoder`}
         />
+        <Script strategy="afterInteractive" src="https://developers.kakao.com/sdk/js/kakao.js" />
         <Template>{children}</Template>
       </body>
     </html>

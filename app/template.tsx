@@ -8,6 +8,7 @@ import { theme } from '@/theme';
 
 import 'dayjs/locale/ko';
 
+import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalLoading } from '@/components/GlobalLoading';
 import { GlobalLoadingProvider } from '@/context/GlobalLoadingContext';
@@ -15,6 +16,12 @@ import { GlobalLoadingProvider } from '@/context/GlobalLoadingContext';
 const queryClient = new QueryClient();
 
 export default function Template({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init(process.env.NEXT_PUBLIC_JAVASCRIPT_KEY);
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <MantineProvider theme={theme}>
