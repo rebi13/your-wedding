@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import NextImage from 'next/image';
 import { IconArrowDown, IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
 import { Carousel } from '@mantine/carousel';
-import { Button, Flex, Image, Modal, SimpleGrid, Text } from '@mantine/core';
+import { Button, Flex, Image as MantineImage, Modal, SimpleGrid, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
@@ -63,12 +64,15 @@ export const Gallery = () => {
             previousControlProps={{ disabled: isFirstSlide }}
           >
             {imageDatas?.map((image) => (
-              <Image
+              <MantineImage
+                component={NextImage}
+                width={800} // 원하는 비율에 맞게 설정
+                height={1200}
                 key={image.id}
                 alt="image"
                 flex={1}
                 src={getImageUrl(image.name)}
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', height: 'auto' }}
               />
             ))}
           </Carousel>
@@ -83,11 +87,14 @@ export const Gallery = () => {
               h="6rem"
               onClick={() => openModalCarousel(index)}
             >
-              <Image
+              <MantineImage
+                component={NextImage}
+                width={800} // 원하는 비율에 맞게 설정
+                height={1200}
                 alt="image"
                 flex={1}
                 src={getImageUrl(image.name)}
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', height: 'auto' }}
               />
             </Flex>
           ))}
