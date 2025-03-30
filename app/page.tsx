@@ -83,17 +83,17 @@ export default function HomePage() {
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <Family />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <Gallery />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <WeddingDate />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <CountDown />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <Contact />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          <Gallery />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <GiftAccount />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <GuestBooks />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          <CountDown />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           {/* <Timer /> */}
           <Footer thumbImageUrl={imageUrl} />
