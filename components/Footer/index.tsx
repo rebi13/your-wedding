@@ -52,7 +52,7 @@ export const Footer = ({ thumbImageUrl }: FooterProps) => {
       content: {
         title: process.env.NEXT_PUBLIC_OG_TITLE,
         description: process.env.NEXT_PUBLIC_OG_DESC,
-        imageUrl: `thumbImageUrl?v=${Date.now()}`,
+        imageUrl: `${thumbImageUrl}?v=${Date.now()}`,
         link: {
           mobileWebUrl: window.location.href,
           webUrl: window.location.href,
