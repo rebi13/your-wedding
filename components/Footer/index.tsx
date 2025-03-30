@@ -77,20 +77,17 @@ export const Footer = ({ thumbImageUrl }: FooterProps) => {
       <Flex w="100%" gap="xs">
         <Button
           w="100%"
+          h="3rem"
           color="yellow"
           leftSection={<IconBrandKakoTalk />}
           onClick={() => handleKakaoShare()}
         >
-          카카오톡 공유하기
+          카카오톡 공유
         </Button>
-        <Button w="100%" leftSection={<IconLink />} onClick={() => handleShare()}>
-          링크 공유하기
+        <Button w="100%" h="3rem" leftSection={<IconLink />} onClick={() => handleShare()}>
+          링크 공유
         </Button>
       </Flex>
-      {/* <Button onClick={() => handleShare()}>링크 공유하기</Button>
-      <Button color="orange" variant="subtle" onClick={handleKakaoShare}>
-        카카오톡으로 공유하기
-      </Button> */}
     </Flex>
   );
 };
