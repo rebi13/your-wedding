@@ -39,8 +39,8 @@ export const CountDown = () => {
 
     return {
       label: isFuture
-        ? `${TARGET_TIME.format('YYYY년 M월 D일')}까지 남은 시간`
-        : `${TARGET_TIME.format('YYYY년 M월 D일')}부터 지난 시간`,
+        ? `${TARGET_TIME.format('YYYY년 M월 D일')} 결혼식까지 남은 시간`
+        : `${TARGET_TIME.format('YYYY년 M월 D일')} 결혼식으로부터 지난 시간`,
       time: {
         days: Math.floor(d.asDays()),
         hours: d.hours(),
