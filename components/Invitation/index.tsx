@@ -10,13 +10,14 @@ export const Invitation = () => {
   return (
     <FramerMotionWrapper>
       <Flex direction="column" p="md" align="center" gap="sm">
-        <Text fz="1rem" c="pink" fw={300}>
+        <Text fz="1.2rem" c="pink" fw={300}>
           Invitation
         </Text>
         <Text fz="1.5rem" c="pink" fw={400}>
           소중한 분들을 초대합니다
         </Text>
-        <Text ta="center" style={{ whiteSpace: 'pre-line', lineHeight: '300%' }}>
+        <br />
+        <Text ta="center" style={{ whiteSpace: 'pre-line', lineHeight: '200%' }}>
           {data?.greeting.message}
         </Text>
       </Flex>
