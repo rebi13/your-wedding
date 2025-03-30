@@ -62,6 +62,7 @@ export type WeddingData = {
   greeting: Greeting;
   hostInfo: HostInfo[];
   hostMessage: string;
+  NoWreathMessage: string;
   mapInfo: MapInfo;
   locationInfo: LocationInfo[];
   emojis: string[];

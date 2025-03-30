@@ -15,6 +15,9 @@ export const GiftAccount = () => {
         <Text ta="center" style={{ whiteSpace: 'pre-line' }}>
           {data?.hostMessage}
         </Text>
+        <Text ta="center" size="sm" c="dimmed" style={{ whiteSpace: 'pre-line' }}>
+          {data?.NoWreathMessage}
+        </Text>
         {data?.hostInfo.map((item) => (
           <Accordion key={item.host} w="90vw" variant="contained">
             <Accordion.Item
