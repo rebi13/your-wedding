@@ -73,7 +73,7 @@ export const Footer = ({ thumbImageUrl }: FooterProps) => {
   return (
     <Flex direction="column" p="md" gap="xs" w="100%" align="center" mb="md">
       <Text>For Your Wedding</Text>
-      <Text fw="bold">{data?.madeBy}</Text>
+      <Text fw="bold">청첩장 {data?.madeBy}</Text>
       <Flex w="100%" gap="xs">
         <Button
           w="100%"
