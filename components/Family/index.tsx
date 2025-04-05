@@ -14,11 +14,14 @@ export const Family = () => {
   const [groomDad, groomMom] = data?.greeting?.host?.groom.parents ?? [];
   const [brideDad, brideMom] = data?.greeting?.host?.bride.parents ?? [];
 
+  console.log('data', data);
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" w="100%" p="lg" px="4rem" bg="#D7C8C2" gap="md">
+      <Flex direction="column" w="100%" p="lg" px="3rem" bg="#EDE0DA" gap="md">
         <Flex direction="column" gap="xs">
           <Flex justify="space-between" align="center">
+            <Text fz="1.2rem">{data?.greeting?.host.groom.host}</Text>
+
             <Flex align="center" gap="xs">
               <Flex direction="column">
                 <Text fw="bold" size="lg">
@@ -30,7 +33,7 @@ export const Family = () => {
               </Flex>
               <Text>의</Text>
             </Flex>
-            <Flex align="center" gap="xs">
+            <Flex w="5.5rem" align="center" gap="xs" justify="flex-end">
               <Text>{data?.greeting.host.groom.relation}</Text>
               <Text fw="bold" size="lg">
                 {data?.greeting.host.groom.name}
@@ -41,6 +44,7 @@ export const Family = () => {
         <Divider />
         <Flex direction="column" gap="xs">
           <Flex justify="space-between" align="center">
+            <Text fz="1.2rem">{data?.greeting?.host.bride.host}</Text>
             <Flex align="center" gap="xs">
               <Flex direction="column">
                 <Text fw="bold" size="lg">
@@ -52,7 +56,7 @@ export const Family = () => {
               </Flex>
               <Text>의</Text>
             </Flex>
-            <Flex align="center" gap="xs">
+            <Flex w="5.5rem" align="center" gap="xs" justify="flex-end">
               <Text>{data?.greeting.host.bride.relation}</Text>
               <Text fw="bold" size="lg">
                 {data?.greeting.host.bride.name}
