@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { IconMap } from '@tabler/icons-react';
+import { IconCar, IconMap } from '@tabler/icons-react';
 import { Anchor, Button, Flex, Image, Loader, Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
@@ -25,8 +25,13 @@ declare global {
 
 export const Contact = () => {
   const { totalData: data } = useTotalController();
+  // 약도 이미지
   const [opened, { open, close }] = useDisclosure(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
+
+  // 주차 안내 이미지
+  const [pOpened, { open: pOpen, close: pClose }] = useDisclosure(false);
+  const [pIsImageLoading, setPIsImageLoading] = useState(true);
 
   const mapElement = useRef<HTMLDivElement>(null);
   const [_map, setMap] = useState<any>(null);
@@ -102,7 +107,9 @@ export const Contact = () => {
     <FramerMotionWrapper>
       <Flex w="100%" justify="center" direction="column" align="center" gap="xs">
         <Flex w="100%" justify="center" align="center" direction="column" gap="0.2rem">
-          <Text fz="2rem">오시는 길</Text>
+          <Text fz="1.2rem" fw="bold">
+            LOCATION
+          </Text>
           <Text fz="1.2rem">{data?.mapInfo.address1}</Text>
           <Text>{data?.mapInfo.address2}</Text>
           <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor>
@@ -145,8 +152,64 @@ export const Contact = () => {
             />
           </Flex>
         </Modal>
-        <Button color="brown" size="lg" variant="outline" leftSection={<IconMap />} onClick={open}>
+
+        <Modal
+          removeScrollProps={{ allowPinchZoom: true }}
+          opened={pOpened}
+          onClose={pClose}
+          radius={0}
+          centered
+          transitionProps={{ transition: 'fade', duration: 200 }}
+        >
+          <Flex w="100%" h="100%" align="center" justify="center" pos="relative">
+            {/* ✅ 로딩 중일 때 스피너 */}
+            {pIsImageLoading && (
+              <Flex
+                pos="absolute"
+                top={0}
+                left={0}
+                w="100%"
+                h="100%"
+                align="center"
+                justify="center"
+                bg="white"
+              >
+                <Loader color="pink" size="xl" type="bars" />
+              </Flex>
+            )}
+
+            {/* ✅ 이미지: 로딩 중에도 최소 높이 유지 */}
+            <Image
+              src={getImageUrl('parking.png')}
+              onLoad={() => setPIsImageLoading(false)}
+              onError={() => setPIsImageLoading(false)}
+              // 핵심 포인트 👇
+              h={pIsImageLoading ? 400 : 'auto'} // 또는 '100%' 등으로 조절 가능
+              mah={600}
+              style={{ objectFit: 'contain' }}
+            />
+          </Flex>
+        </Modal>
+
+        <Button
+          w="90%"
+          color="brown"
+          size="lg"
+          variant="outline"
+          leftSection={<IconMap />}
+          onClick={open}
+        >
           약도 이미지 보기
+        </Button>
+        <Button
+          w="90%"
+          color="brown"
+          size="lg"
+          variant="outline"
+          leftSection={<IconCar />}
+          onClick={pOpen}
+        >
+          주차장 안내
         </Button>
       </Flex>
     </FramerMotionWrapper>
