@@ -1,10 +1,9 @@
 'use client';
 
-import { Divider, Flex, Image, Text } from '@mantine/core';
+import { Divider, Flex, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 // import data from '@/data.json';
 import useTotalController from '@/hooks/useTotalController';
-import { getImageUrl } from '@/utils/storage';
 
 export const Family = () => {
   const { totalData: data } = useTotalController();
@@ -17,8 +16,6 @@ export const Family = () => {
 
   return (
     <FramerMotionWrapper>
-      <Image src={getImageUrl('middle.png')} />
-
       <Flex direction="column" w="100%" p="lg" px="4rem" bg="#D7C8C2" gap="md">
         <Flex direction="column" gap="xs">
           <Flex justify="space-between" align="center">
