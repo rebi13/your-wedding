@@ -16,7 +16,7 @@ import { GuestBooks } from '@/components/GuestBooks';
 import { Invitation } from '@/components/Invitation';
 import { Profile } from '@/components/Profile';
 // import { Timer } from '@/components/Timer';
-import { WeddingDate } from '@/components/WeddingDate';
+// import { WeddingDate } from '@/components/WeddingDate';
 import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
 
@@ -82,12 +82,12 @@ export default function HomePage() {
           <Invitation />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <Family />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <WeddingDate />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <Contact />
+          {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
+          {/* <WeddingDate /> */}
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <Gallery />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          <Contact />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <GiftAccount />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
