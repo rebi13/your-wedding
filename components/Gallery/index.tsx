@@ -39,10 +39,12 @@ export const Gallery = () => {
   return (
     <FramerMotionWrapper>
       <Flex direction="column" p="sm" gap="md" align="center">
-        <Text size="2rem" ta="center">
-          갤러리
+        <Text fz="1.2rem" fw="bold">
+          GALLERY
         </Text>
-        <Text>사진을 클릭하시면 전체 화면 보기가 가능합니다.</Text>
+        <Text fz="sm" c="dimmed">
+          사진을 클릭하시면 전체 화면 보기가 가능합니다.
+        </Text>
 
         <Modal
           removeScrollProps={{ allowPinchZoom: true }}
@@ -83,8 +85,8 @@ export const Gallery = () => {
             <Flex
               key={image.id}
               pos="relative"
-              w="6rem"
-              h="6rem"
+              // w="6rem"
+              // h="6rem"
               onClick={() => openModalCarousel(index)}
             >
               <MantineImage
