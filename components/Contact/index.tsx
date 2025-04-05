@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import NextImage from 'next/image';
 import { IconCar, IconMap } from '@tabler/icons-react';
 import { Anchor, Button, Flex, Image, Loader, Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -142,6 +143,10 @@ export const Contact = () => {
 
             {/* ✅ 이미지: 로딩 중에도 최소 높이 유지 */}
             <Image
+              component={NextImage}
+              width={800} // 원하는 비율에 맞게 설정
+              height={1200}
+              priority
               src={getImageUrl('mapInfo.png')}
               onLoad={() => setIsImageLoading(false)}
               onError={() => setIsImageLoading(false)}
@@ -149,6 +154,7 @@ export const Contact = () => {
               h={isImageLoading ? 400 : 'auto'} // 또는 '100%' 등으로 조절 가능
               mah={600}
               style={{ objectFit: 'contain' }}
+              alt=""
             />
           </Flex>
         </Modal>
@@ -180,6 +186,10 @@ export const Contact = () => {
 
             {/* ✅ 이미지: 로딩 중에도 최소 높이 유지 */}
             <Image
+              component={NextImage}
+              width={800} // 원하는 비율에 맞게 설정
+              height={1200}
+              priority
               src={getImageUrl('parking.png')}
               onLoad={() => setPIsImageLoading(false)}
               onError={() => setPIsImageLoading(false)}
@@ -187,6 +197,7 @@ export const Contact = () => {
               h={pIsImageLoading ? 400 : 'auto'} // 또는 '100%' 등으로 조절 가능
               mah={600}
               style={{ objectFit: 'contain' }}
+              alt=""
             />
           </Flex>
         </Modal>
