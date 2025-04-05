@@ -32,7 +32,7 @@ export const Family = () => {
               </Flex>
               <Text>의</Text>
             </Flex>
-            <Flex w="5.5rem" align="center" gap="xs" justify="flex-end">
+            <Flex w="6rem" align="center" gap="xs" justify="flex-end">
               <Text>{data?.greeting.host.groom.relation}</Text>
               <Text fw="bold" size="lg">
                 {data?.greeting.host.groom.name}
@@ -55,7 +55,7 @@ export const Family = () => {
               </Flex>
               <Text>의</Text>
             </Flex>
-            <Flex w="5.5rem" align="center" gap="xs" justify="flex-end">
+            <Flex w="6rem" align="center" gap="xs" justify="flex-end">
               <Text>{data?.greeting.host.bride.relation}</Text>
               <Text fw="bold" size="lg">
                 {data?.greeting.host.bride.name}
