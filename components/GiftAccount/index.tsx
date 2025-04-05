@@ -8,25 +8,23 @@ export const GiftAccount = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" gap="md" align="center">
-        <Text fz="2rem" ta="center">
+      <Flex direction="column" gap="md" align="center" bg="#EDE0DA" p="lg">
+        <Text fz="1rem" fw="bold">
           마음 전하실 곳
         </Text>
-        <Text ta="center" style={{ whiteSpace: 'pre-line' }}>
+        <Text fz="sm" ta="center" style={{ whiteSpace: 'pre-line' }}>
           {data?.hostMessage}
         </Text>
-        <Text ta="center" size="sm" c="dimmed" style={{ whiteSpace: 'pre-line' }}>
+        <Text fz="sm" ta="center" c="dimmed" style={{ whiteSpace: 'pre-line' }}>
           {data?.NoWreathMessage}
         </Text>
         {data?.hostInfo.map((item) => (
-          <Accordion key={item.host} w="90vw" variant="contained">
-            <Accordion.Item
-              key={item.host}
-              value={item.host}
-              style={{ borderTop: '1px solid var(--item-border-color)' }}
-            >
-              <Accordion.Control icon={item.emoji}>{item.host}</Accordion.Control>
-              <Accordion.Panel>
+          <Accordion key={item.host} w="90%" variant="contained" bg="#D7C8C2">
+            <Accordion.Item key={item.host} value={item.host}>
+              <Accordion.Control icon={item.emoji} bg="#D7C8C2">
+                {item.host}
+              </Accordion.Control>
+              <Accordion.Panel bg="#D7C8C2">
                 <Flex direction="column" gap="md">
                   {item.accountInfo.map((account) => (
                     <Flex
@@ -51,7 +49,7 @@ export const GiftAccount = () => {
                         </Text>
                       </Flex>
                       <Button
-                        bg="orange"
+                        bg="brown"
                         onClick={() =>
                           copyToClipboard(`${account.account} ${account.bank} ${account.name}`)
                         }
