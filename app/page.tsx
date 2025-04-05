@@ -58,7 +58,7 @@ export default function HomePage() {
           <Loader color="pink" size="xl" type="bars" />
         </Flex>
       ) : (
-        <Flex w="100%" direction="column" gap="md" h="100%">
+        <Flex w="100%" direction="column" h="100%">
           {/* <Header /> */}
           <Flex direction="column">
             <AudioPlayer src="/assets/velos.mp3" />
@@ -80,7 +80,7 @@ export default function HomePage() {
           <Profile />
           <Divider my="1rem" style={{ visibility: 'hidden' }} />
           <Invitation />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
           <Family />
           {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
           {/* <WeddingDate /> */}
