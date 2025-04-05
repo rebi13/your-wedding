@@ -27,7 +27,7 @@ export const GuestBooks = () => {
   return (
     <FramerMotionWrapper>
       <Flex direction="column" p="md" gap="md" w="100%" align="center">
-        <Text fz="2rem">방명록</Text>
+        <Text fz="1.2rem">GUEST BOOK</Text>
         {guestBookList && guestBookList.length > 0 ? (
           guestBookList.map((guestBook) => (
             <GuestBookCard key={guestBook.id} guestBook={guestBook} />
@@ -46,14 +46,13 @@ export const GuestBooks = () => {
             더보기
           </Button>
         )}
-        <Flex w="100%" justify="flex-end">
-          <Button
-            color="yellow"
-            onClick={() => openModal(<GuestBookForm />, null, '방명록 작성', true)}
-          >
-            작성
-          </Button>
-        </Flex>
+        <Button
+          w="100%"
+          color="brown"
+          onClick={() => openModal(<GuestBookForm />, null, '방명록 작성', true)}
+        >
+          축하 메시지 남기기
+        </Button>
       </Flex>
     </FramerMotionWrapper>
   );
