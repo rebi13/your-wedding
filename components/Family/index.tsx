@@ -14,7 +14,6 @@ export const Family = () => {
   const [groomDad, groomMom] = data?.greeting?.host?.groom.parents ?? [];
   const [brideDad, brideMom] = data?.greeting?.host?.bride.parents ?? [];
 
-  console.log('data', data);
   return (
     <FramerMotionWrapper>
       <Flex direction="column" w="100%" p="lg" px="3rem" bg="#EDE0DA" gap="md">
