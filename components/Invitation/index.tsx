@@ -9,13 +9,11 @@ export const Invitation = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" p="md" align="center" gap="sm">
-        <Text fz="1.2rem" c="pink" fw={300}>
-          Invitation
+      <Flex direction="column" p="md" align="center" gap="sm" bg="#D7C8C2">
+        <Text fz="1.2rem" fw="bold">
+          INVITATION
         </Text>
-        <Text fz="1.5rem" c="pink" fw={400}>
-          소중한 분들을 초대합니다
-        </Text>
+        <Text fz="1.5rem">소중한 분들을 초대합니다</Text>
         <br />
         <Text ta="center" style={{ whiteSpace: 'pre-line', lineHeight: '200%' }}>
           {data?.greeting.message}
