@@ -35,7 +35,7 @@ export const GuestBookCard = ({ guestBook }: GuestBookCardProps) => {
           <Text fz="lg">{name}</Text>
           <Text fz="xs">{dayjs(created_at).format('YYYY-MM-DD HH:mm:ss')}</Text>
         </Flex>
-        <Menu shadow="md" width={80}>
+        <Menu shadow="md" width={100}>
           <Menu.Target>
             <ActionIcon variant="subtle" color="dark" size="sm">
               <IconDotsVertical />
