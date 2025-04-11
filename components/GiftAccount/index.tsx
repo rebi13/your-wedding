@@ -20,8 +20,16 @@ export const GiftAccount = () => {
         </Text>
         {data?.hostInfo.map((item) => (
           <Accordion key={item.host} w="90%" variant="contained" bg="#D7C8C2">
-            <Accordion.Item key={item.host} value={item.host}>
-              <Accordion.Control icon={item.emoji} bg="#D7C8C2">
+            <Accordion.Item
+              key={item.host}
+              value={item.host}
+              style={{ border: 'none', borderRadius: 0 }}
+            >
+              <Accordion.Control
+                icon={item.emoji}
+                bg="#D7C8C2"
+                style={{ border: 'none', borderRadius: 0 }}
+              >
                 {item.host}
               </Accordion.Control>
               <Accordion.Panel bg="#D7C8C2">
