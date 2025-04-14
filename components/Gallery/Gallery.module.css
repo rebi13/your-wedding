@@ -4,9 +4,3 @@
     cursor: default;
   }
 }
-
-.modalContentMobile {
-  width: 90vw;
-  max-width: 800px;
-  padding: 0;
-}

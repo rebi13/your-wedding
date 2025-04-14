@@ -65,43 +65,50 @@ export const Gallery = () => {
           onClose={close}
           radius={0}
           transitionProps={{ transition: 'fade', duration: 200 }}
-          classNames={{
-            content: 'modalContentMobile',
+          styles={{
+            body: {
+              width: '100%',
+              height: '100%',
+            },
           }}
         >
           {showCarousel && (
-            <Carousel
-              classNames={classes}
-              initialSlide={currentImageIndex}
-              slidesToScroll={1}
-              slideSize="100%"
-              align="center"
-              onSlideChange={(index) => {
-                setTimeout(() => setCurrentImageIndex(index), 300);
-              }}
-              nextControlIcon={<IconArrowRight size={16} />}
-              nextControlProps={{ disabled: isLastSlide }}
-              previousControlIcon={<IconArrowLeft size={16} />}
-              previousControlProps={{ disabled: isFirstSlide }}
-              styles={{
-                root: {
-                  width: '100%',
-                  maxWidth: '800px',
-                },
-              }}
-            >
-              {imageDatas?.map((image) => (
-                <MantineImage
-                  // component={NextImage} 이미지 최적화 제거하니까 잘 됨... 흠..
-                  key={image.id}
-                  width={800}
-                  height={1200}
-                  alt="image"
-                  src={getImageUrl(image.name)}
-                  style={{ objectFit: 'cover', width: '100%', height: 'auto', maxHeight: '90vh' }}
-                />
-              ))}
-            </Carousel>
+            <Flex h="30rem">
+              <Carousel
+                classNames={classes}
+                initialSlide={currentImageIndex}
+                slidesToScroll={1}
+                slideSize="100%"
+                align="center"
+                onSlideChange={(index) => {
+                  setTimeout(() => setCurrentImageIndex(index), 300);
+                }}
+                nextControlIcon={<IconArrowRight size={16} />}
+                nextControlProps={{ disabled: isLastSlide }}
+                previousControlIcon={<IconArrowLeft size={16} />}
+                previousControlProps={{ disabled: isFirstSlide }}
+                height="100%"
+                style={{ flex: 1 }}
+                styles={{
+                  root: {
+                    width: '100%',
+                    height: '100%',
+                  },
+                }}
+              >
+                {imageDatas?.map((image) => (
+                  <MantineImage
+                    component={NextImage}
+                    key={image.id}
+                    width={800}
+                    height={1200}
+                    alt="image"
+                    src={getImageUrl(image.name)}
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                ))}
+              </Carousel>
+            </Flex>
           )}
         </Modal>
 
