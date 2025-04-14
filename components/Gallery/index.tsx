@@ -65,6 +65,9 @@ export const Gallery = () => {
           onClose={close}
           radius={0}
           transitionProps={{ transition: 'fade', duration: 200 }}
+          classNames={{
+            content: 'modalContentMobile',
+          }}
         >
           {showCarousel && (
             <Carousel
@@ -89,13 +92,13 @@ export const Gallery = () => {
             >
               {imageDatas?.map((image) => (
                 <MantineImage
-                  component={NextImage}
+                  // component={NextImage} 이미지 최적화 제거하니까 잘 됨... 흠..
                   key={image.id}
                   width={800}
                   height={1200}
                   alt="image"
                   src={getImageUrl(image.name)}
-                  style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                  style={{ objectFit: 'cover', width: '100%', height: 'auto', maxHeight: '90vh' }}
                 />
               ))}
             </Carousel>
