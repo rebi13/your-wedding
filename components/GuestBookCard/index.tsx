@@ -22,10 +22,10 @@ export const GuestBookCard = ({ guestBook }: GuestBookCardProps) => {
 
   return (
     <Card
-      shadow="sm"
+      shadow="md"
       padding="md"
       radius="md"
-      bg="#D7C8C2"
+      bg="#FFFFFF"
       mih="10rem"
       w="100%"
       style={{ gap: '1rem' }}

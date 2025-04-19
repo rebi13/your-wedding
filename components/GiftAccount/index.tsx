@@ -8,7 +8,7 @@ export const GiftAccount = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" gap="md" align="center" bg="#EDE0DA" p="lg">
+      <Flex direction="column" gap="md" align="center" bg="#F9F9FB" p="lg">
         <Text fz="1rem" fw="bold">
           마음 전하실 곳
         </Text>
@@ -19,7 +19,7 @@ export const GiftAccount = () => {
           {data?.NoWreathMessage}
         </Text>
         {data?.hostInfo.map((item) => (
-          <Accordion key={item.host} w="90%" variant="contained" bg="#D7C8C2">
+          <Accordion key={item.host} w="90%" variant="contained" bg="#FFFFFF">
             <Accordion.Item
               key={item.host}
               value={item.host}
@@ -27,12 +27,12 @@ export const GiftAccount = () => {
             >
               <Accordion.Control
                 icon={item.emoji}
-                bg="#D7C8C2"
+                bg="#FFFFFF"
                 style={{ border: 'none', borderRadius: 0 }}
               >
                 {item.host}
               </Accordion.Control>
-              <Accordion.Panel bg="#D7C8C2">
+              <Accordion.Panel bg="#FFFFFF">
                 <Flex direction="column" gap="md">
                   {item.accountInfo.map((account) => (
                     <Flex
@@ -40,7 +40,7 @@ export const GiftAccount = () => {
                       justify="space-between"
                       p="sm"
                       align="center"
-                      style={{ border: '1px solid #D7C8C2' }}
+                      style={{ border: '1px solid gray', borderRadius: '1rem' }}
                     >
                       <Flex direction="column">
                         <Text>{account.relation}</Text>
@@ -57,7 +57,7 @@ export const GiftAccount = () => {
                         </Text>
                       </Flex>
                       <Button
-                        bg="brown"
+                        bg="gray"
                         onClick={() =>
                           copyToClipboard(`${account.account} ${account.bank} ${account.name}`)
                         }

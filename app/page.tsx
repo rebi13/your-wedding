@@ -45,7 +45,7 @@ export default function HomePage() {
       notifications.show({
         title: '배경 음악',
         message: '배경 음악이 준비되어 있습니다.',
-        color: 'pink',
+        color: 'yellow',
         autoClose: 1500,
       });
     }
@@ -55,7 +55,7 @@ export default function HomePage() {
     <>
       {isLoading ? (
         <Flex w="100%" h="100vh" align="center" justify="center">
-          <Loader color="pink" size="xl" type="bars" />
+          <Loader color="yellow" size="xl" type="bars" />
         </Flex>
       ) : (
         <Flex w="100%" direction="column" h="100%">
@@ -90,7 +90,6 @@ export default function HomePage() {
           <Contact />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <GiftAccount />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <GuestBooks />
           <Divider my="3rem" style={{ visibility: 'hidden' }} />
           <CountDown />

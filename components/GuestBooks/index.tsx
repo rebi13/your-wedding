@@ -26,7 +26,7 @@ export const GuestBooks = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" p="md" gap="md" w="100%" align="center">
+      <Flex direction="column" p="md" gap="md" w="100%" align="center" bg="#F7F8F9">
         <Text fz="1.2rem">GUEST BOOK</Text>
         {guestBookList && guestBookList.length > 0 ? (
           guestBookList.map((guestBook) => (
@@ -48,7 +48,7 @@ export const GuestBooks = () => {
         )}
         <Button
           w="100%"
-          color="brown"
+          color="dark"
           onClick={() => openModal(<GuestBookForm />, null, '방명록 작성', true)}
         >
           축하 메시지 남기기

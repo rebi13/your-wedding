@@ -129,7 +129,7 @@ export const GuestBookForm = ({ id }: GusetBookFormProps) => {
             {...form.getInputProps('password')}
           />
           <Button
-            color="brown"
+            color="dark"
             onClick={() => {
               id ? handleUpdateguestBook() : handleCreateGuestBook();
             }}

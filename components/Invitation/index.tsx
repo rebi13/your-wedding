@@ -9,7 +9,7 @@ export const Invitation = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" p="md" align="center" gap="sm" bg="#D7C8C2">
+      <Flex direction="column" p="md" align="center" gap="sm" bg="#F4F4F4">
         <Text fz="1.2rem" fw="bold">
           INVITATION
         </Text>

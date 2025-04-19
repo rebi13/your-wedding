@@ -204,7 +204,7 @@ export const Contact = () => {
 
         <Button
           w="90%"
-          color="brown"
+          color="gray"
           size="lg"
           variant="outline"
           leftSection={<IconMap />}
@@ -214,7 +214,7 @@ export const Contact = () => {
         </Button>
         <Button
           w="90%"
-          color="brown"
+          color="gray"
           size="lg"
           variant="outline"
           leftSection={<IconCar />}

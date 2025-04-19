@@ -31,7 +31,7 @@ export const AudioPlayer = ({ src }: { src: string }) => {
       <audio ref={audioRef} src={src} loop />
 
       {/* 재생/정지 아이콘 */}
-      <ActionIcon size="lg" variant="subtle" onClick={togglePlay} color="brown">
+      <ActionIcon size="xl" variant="outline" onClick={togglePlay} color="dark">
         {isPlaying ? <IconHeadphonesFilled size={32} /> : <IconHeadsetOff size={32} />}
       </ActionIcon>
     </Flex>

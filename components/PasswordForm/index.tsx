@@ -40,7 +40,7 @@ export const PasswordForm = ({ id }: PasswordFormProps) => {
         error={data !== undefined && !data && <Text span>비밀번호가 일치하지 않습니다.</Text>}
       />
       <Button
-        color="brown"
+        color="dark"
         onClick={() => {
           onSubmit();
         }}

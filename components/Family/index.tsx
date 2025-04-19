@@ -16,7 +16,7 @@ export const Family = () => {
 
   return (
     <FramerMotionWrapper>
-      <Flex direction="column" w="100%" p="lg" px="3rem" bg="#EDE0DA" gap="md">
+      <Flex direction="column" w="100%" p="lg" px="3rem" bg="#F9F9FB" gap="md">
         <Flex direction="column" gap="xs">
           <Flex justify="space-between" align="center">
             <Text fz="1.2rem">{data?.greeting?.host.groom.host}</Text>
