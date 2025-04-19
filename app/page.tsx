@@ -21,10 +21,10 @@ import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
 
 export default function HomePage() {
-  const { isWeddingImagesLoading, isTotalDataLoading } = useTotalController();
+  const { isImagesLoading, isTotalDataLoading } = useTotalController();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  const isLoading = isWeddingImagesLoading || isTotalDataLoading || !isImageLoaded;
+  const isLoading = isImagesLoading || isTotalDataLoading || !isImageLoaded;
   const imageUrl = getImageUrl('thumb.jpeg');
 
   // ✅ 브라우저 캐시된 이미지 로드 상태 확인

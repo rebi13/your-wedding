@@ -1,11 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import { getImages } from '@/actions/image.actions';
+import { getGalleryImages, getImages } from '@/actions/image.actions';
 import { getTotalData } from '@/actions/total.actions';
 import { WeddingData } from '@/types/wedding';
 
 const useTotalController = () => {
-  // ✅ 이미지 조회 (React Query 사용)
+  // ✅ 갤러리 이미지 조회 (React Query 사용)
   const weddingImagesQuery = useQuery({
+    queryKey: ['weddingImages'],
+    queryFn: getGalleryImages,
+  });
+
+  // ✅ 이미지 조회 (React Query 사용)
+  const imagesQuery = useQuery({
     queryKey: ['images'],
     queryFn: getImages,
   });
@@ -23,6 +29,9 @@ const useTotalController = () => {
     weddingImages: weddingImagesQuery.data,
     isWeddingImagesLoading: weddingImagesQuery.isLoading,
     isWeddingImagesError: weddingImagesQuery.isError,
+    images: imagesQuery.data,
+    isImagesLoading: imagesQuery.isLoading,
+    isImagesError: imagesQuery.isError,
 
     totalData: totalDataQuery.data,
     isTotalDataLoading: totalDataQuery.isLoading,

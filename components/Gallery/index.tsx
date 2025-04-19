@@ -12,13 +12,13 @@ import { FramerMotionWrapper } from '../FramerMotionWrapper';
 import classes from './Gallery.module.css';
 
 export const Gallery = () => {
-  const { weddingImages: imageDatas } = useTotalController();
+  const { weddingImages: weddingImageDatas } = useTotalController();
   const [limit, setLimit] = useState(9);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [opened, { open, close }] = useDisclosure(false);
   const [showCarousel, setShowCarousel] = useState(false); // 🔹 Carousel 렌더 여부 제어용
 
-  const totalImages = imageDatas?.length || 0;
+  const totalImages = weddingImageDatas?.length || 0;
   const isFirstSlide = currentImageIndex === 0;
   const isLastSlide = currentImageIndex === totalImages - 1;
 
@@ -96,14 +96,14 @@ export const Gallery = () => {
                   },
                 }}
               >
-                {imageDatas?.map((image) => (
+                {weddingImageDatas?.map((image) => (
                   <MantineImage
                     component={NextImage}
                     key={image.id}
                     width={800}
                     height={1200}
                     alt="image"
-                    src={getImageUrl(image.name)}
+                    src={getImageUrl(`gallery/${image.name}`)}
                     style={{ width: '100%', height: '100%' }}
                   />
                 ))}
@@ -113,21 +113,21 @@ export const Gallery = () => {
         </Modal>
 
         <SimpleGrid cols={3}>
-          {imageDatas?.slice(0, limit).map((image, index) => (
+          {weddingImageDatas?.slice(0, limit).map((image, index) => (
             <Flex key={image.id} pos="relative" onClick={() => openModalCarousel(index)}>
               <MantineImage
                 component={NextImage}
                 width={800}
                 height={1200}
                 alt="image"
-                src={getImageUrl(image.name)}
+                src={getImageUrl(`gallery/${image.name}`)}
                 style={{ objectFit: 'cover', height: 'auto', width: '100%' }}
               />
             </Flex>
           ))}
         </SimpleGrid>
 
-        {imageDatas && imageDatas.length > limit && (
+        {weddingImageDatas && weddingImageDatas.length > limit && (
           <Button
             variant="subtle"
             rightSection={<IconArrowDown />}
