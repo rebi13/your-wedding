@@ -1,14 +1,15 @@
-import '@/app/global.css';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/carousel/styles.css';
+import '@/app/global.css';
 
 import React from 'react';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import Template from '@/app/template'; // Import 방식 변경
+import { GyeonggiCheonnyeon } from '@/fonts/gyeonggiFont';
 
 export const metadata: Metadata = {
   title: process.env.NEXT_TITLE,
@@ -38,7 +39,7 @@ declare global {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko" {...mantineHtmlProps}>
+    <html lang="ko" {...mantineHtmlProps} className={GyeonggiCheonnyeon.className}>
       <head>
         <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
