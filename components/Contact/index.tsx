@@ -51,8 +51,8 @@ export const Contact = () => {
         zoom: 15,
         minZoom: 15, //지도의 최소 줌 레벨
         maxZoom: 15,
-        zoomControl: false,
-        draggable: false,
+        // zoomControl: false,
+        // draggable: false,
       };
 
       const mapInstance = new window.naver.maps.Map(mapElement.current, mapOptions);
