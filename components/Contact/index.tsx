@@ -49,8 +49,8 @@ export const Contact = () => {
       const mapOptions = {
         center: initialCenter,
         zoom: 15,
-        minZoom: 15, //지도의 최소 줌 레벨
-        maxZoom: 15,
+        // minZoom: 15, //지도의 최소 줌 레벨
+        // maxZoom: 15,
         // zoomControl: false,
         // draggable: false,
       };
