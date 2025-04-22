@@ -94,32 +94,25 @@ export const Gallery = () => {
                     width: '100%',
                     height: '100%',
                   },
+                  slide: {
+                    width: '100% !important',
+                    maxWidth: '480px',
+                  },
                 }}
               >
                 {weddingImageDatas?.map((image) => (
-                  <Image
-                    key={image.id}
-                    src={getImageUrl(`gallery/${image.name}`)}
-                    // src={imageUrl} // Supabase 이미지 URL
-                    alt="신랑 신부 웨딩 사진"
-                    width={480}
-                    height={720}
-                    priority
-                    sizes="100vw"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                    }}
-                  />
-                  // <MantineImage
-                  //   component={NextImage}
-                  //   key={image.id}
-                  //   width={480}
-                  //   height={720}
-                  //   alt="image"
-                  //   src={getImageUrl(`gallery/${image.name}`)}
-                  //   style={{ width: '100%', height: '100%' }}
-                  // />
+                  <Carousel.Slide key={image.id}>
+                    {/* ✅ 슬라이드마다 한 개씩 */}
+                    <Image
+                      src={getImageUrl(`gallery/${image.name}`)}
+                      alt="신랑 신부 웨딩 사진"
+                      width={480}
+                      height={720}
+                      priority
+                      sizes="100vw"
+                      style={{ width: '100%', height: 'auto' }}
+                    />
+                  </Carousel.Slide>
                 ))}
               </Carousel>
             </Flex>
