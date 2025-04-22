@@ -16,5 +16,12 @@ export default withBundleAnalyzer({
   },
   images: {
     domains: [SUPABASE_DOMAIN],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: SUPABASE_DOMAIN,
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
   },
 });
