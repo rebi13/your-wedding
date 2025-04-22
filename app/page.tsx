@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import NextImage from 'next/image';
-import { Divider, Flex, Loader, Image as MantineImage } from '@mantine/core';
+import Image from 'next/image';
+import { Divider, Flex, Loader } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { AudioPlayer } from '@/components/AudioPlayer';
 import { Contact } from '@/components/Contact';
@@ -62,19 +62,25 @@ export default function HomePage() {
           {/* <Header /> */}
           <Flex direction="column">
             <AudioPlayer src="/assets/velos.mp3" />
-            <MantineImage
-              component={NextImage}
-              width={800} // 원하는 비율에 맞게 설정
-              height={1200}
+            <Image
               src={imageUrl}
-              priority // ✅ 이 속성 추가
+              alt="신랑 신부 웨딩 사진"
+              width={640}
+              height={960}
+              sizes="100vw"
               style={{
-                width: '100%', // 부모의 가로를 100%로
-                height: 'auto', // 비율 유지
-                opacity: isImageLoaded ? 1 : 0,
-                transition: 'opacity 0.5s ease-in-out',
+                width: '100%',
+                height: 'auto',
               }}
-              alt=""
+              priority
+              // fill
+              // sizes="100vw"
+              // style={{
+              //   objectFit: 'contain',
+              //   opacity: isImageLoaded ? 1 : 0,
+              //   transition: 'opacity 0.5s ease-in-out',
+              // }}
+              // priority
             />
           </Flex>
           <Profile />
