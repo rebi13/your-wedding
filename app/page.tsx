@@ -63,24 +63,16 @@ export default function HomePage() {
           <Flex direction="column">
             <AudioPlayer src="/assets/velos.mp3" />
             <Image
-              src={imageUrl}
+              src={imageUrl} // Supabase 이미지 URL
               alt="신랑 신부 웨딩 사진"
               width={640}
               height={960}
+              priority
               sizes="100vw"
               style={{
                 width: '100%',
                 height: 'auto',
               }}
-              priority
-              // fill
-              // sizes="100vw"
-              // style={{
-              //   objectFit: 'contain',
-              //   opacity: isImageLoaded ? 1 : 0,
-              //   transition: 'opacity 0.5s ease-in-out',
-              // }}
-              // priority
             />
           </Flex>
           <Profile />
