@@ -65,8 +65,8 @@ export default function HomePage() {
             <Image
               src={imageUrl} // Supabase 이미지 URL
               alt="신랑 신부 웨딩 사진"
-              width={640}
-              height={960}
+              width={480}
+              height={720}
               priority
               sizes="100vw"
               style={{

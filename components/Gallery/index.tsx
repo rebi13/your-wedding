@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import NextImage from 'next/image';
+import Image from 'next/image';
 import { IconArrowDown, IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
 import { Carousel } from '@mantine/carousel';
-import { Button, Flex, Image as MantineImage, Modal, SimpleGrid, Text } from '@mantine/core';
+import { Button, Flex, Modal, SimpleGrid, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
@@ -97,15 +97,29 @@ export const Gallery = () => {
                 }}
               >
                 {weddingImageDatas?.map((image) => (
-                  <MantineImage
-                    component={NextImage}
+                  <Image
                     key={image.id}
-                    width={800}
-                    height={1200}
-                    alt="image"
                     src={getImageUrl(`gallery/${image.name}`)}
-                    style={{ width: '100%', height: '100%' }}
+                    // src={imageUrl} // Supabase 이미지 URL
+                    alt="신랑 신부 웨딩 사진"
+                    width={480}
+                    height={720}
+                    priority
+                    sizes="100vw"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }}
                   />
+                  // <MantineImage
+                  //   component={NextImage}
+                  //   key={image.id}
+                  //   width={480}
+                  //   height={720}
+                  //   alt="image"
+                  //   src={getImageUrl(`gallery/${image.name}`)}
+                  //   style={{ width: '100%', height: '100%' }}
+                  // />
                 ))}
               </Carousel>
             </Flex>
@@ -115,14 +129,27 @@ export const Gallery = () => {
         <SimpleGrid cols={3}>
           {weddingImageDatas?.slice(0, limit).map((image, index) => (
             <Flex key={image.id} pos="relative" onClick={() => openModalCarousel(index)}>
-              <MantineImage
+              <Image
+                src={getImageUrl(`gallery/${image.name}`)}
+                // src={imageUrl} // Supabase 이미지 URL
+                alt="신랑 신부 웨딩 사진"
+                width={480}
+                height={720}
+                priority
+                sizes="100vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+              {/* <MantineImage
                 component={NextImage}
-                width={800}
-                height={1200}
+                width={480}
+                height={720}
                 alt="image"
                 src={getImageUrl(`gallery/${image.name}`)}
                 style={{ objectFit: 'cover', height: 'auto', width: '100%' }}
-              />
+              /> */}
             </Flex>
           ))}
         </SimpleGrid>
