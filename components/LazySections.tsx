@@ -49,7 +49,7 @@ export const Gallery = () => {
   });
 
   return (
-    <section ref={ref} style={{ minHeight: '50vh' }}>
+    <section ref={ref}>
       <FramerMotionWrapper preload inView={inView}>
         <GallerySection />
       </FramerMotionWrapper>
