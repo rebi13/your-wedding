@@ -47,7 +47,7 @@ export const GiftAccount = () => {
 export const GuestBooks = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  return <section ref={ref}>{inView && <GuestBooksSection />}</section>;
+  return <section ref={ref}>{inView && <GuestBooksSection inView={inView} />}</section>;
 };
 
 export const Contact = () => {
@@ -57,7 +57,11 @@ export const Contact = () => {
 };
 
 export const Footer = ({ thumbImageUrl }: FooterProps) => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0,
+    rootMargin: '100px 0px', // 🔥 미리 감지
+  });
 
   return <section ref={ref}>{inView && <FooterSection thumbImageUrl={thumbImageUrl} />}</section>;
 };

@@ -9,7 +9,11 @@ import { useGlobalLoading } from '@/context/GlobalLoadingContext';
 import useGuestBookController from '@/hooks/useGuestBookController';
 import { useModal } from '@/hooks/useModal';
 
-export const GuestBooks = () => {
+interface GuestBooksProps {
+  inView: boolean;
+}
+
+export const GuestBooks = ({ inView }: GuestBooksProps) => {
   const { guestBookList, hasNextPage, fetchNextPage } = useGuestBookController();
   const { openModal } = useModal();
 
@@ -23,6 +27,10 @@ export const GuestBooks = () => {
       stopLoading(); // 로딩 종료
     }
   };
+
+  if (!inView) {
+    return null;
+  } // 🔥 inView가 true 되어야 카드들을 보여줌
 
   return (
     <FramerMotionWrapper>
