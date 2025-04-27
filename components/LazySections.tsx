@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import { FooterProps } from '@/components/Footer';
 
 // ⭐ dynamic imports
 const CountDownSection = dynamic(() =>
@@ -17,14 +16,13 @@ const GuestBooksSection = dynamic(() =>
   import('@/components/GuestBooks').then((mod) => mod.GuestBooks)
 );
 const ContactSection = dynamic(() => import('@/components/Contact').then((mod) => mod.Contact));
-const FooterSection = dynamic(() => import('@/components/Footer').then((mod) => mod.Footer));
 
 // ⭐ Wrapper 컴포넌트들
 export const CountDown = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '300px 0px', // 🔥 미리 감지
+    rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
   return <section ref={ref}>{inView && <CountDownSection />}</section>;
@@ -34,7 +32,7 @@ export const Family = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '300px 0px', // 🔥 미리 감지
+    rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
   return <section ref={ref}>{inView && <FamilySection />}</section>;
@@ -44,7 +42,7 @@ export const Gallery = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '300px 0px', // 🔥 미리 감지
+    rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
   return <section ref={ref}>{inView && <GallerySection />}</section>;
@@ -54,7 +52,7 @@ export const GiftAccount = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '300px 0px', // 🔥 미리 감지
+    rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
   return <section ref={ref}>{inView && <GiftAccountSection />}</section>;
@@ -64,7 +62,7 @@ export const GuestBooks = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '300px 0px', // 🔥 미리 감지
+    rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
   return <section ref={ref}>{inView && <GuestBooksSection inView={inView} />}</section>;
@@ -74,18 +72,8 @@ export const Contact = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-    rootMargin: '300px 0px', // 🔥 미리 감지
+    rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
   return <section ref={ref}>{inView && <ContactSection />}</section>;
-};
-
-export const Footer = ({ thumbImageUrl }: FooterProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0,
-    rootMargin: '300px 0px', // 🔥 미리 감지
-  });
-
-  return <section ref={ref}>{inView && <FooterSection thumbImageUrl={thumbImageUrl} />}</section>;
 };
