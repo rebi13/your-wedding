@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import { FooterProps } from '@/components/Footer';
-import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 
 // ⭐ dynamic imports
 const CountDownSection = dynamic(() =>
@@ -22,43 +21,43 @@ const FooterSection = dynamic(() => import('@/components/Footer').then((mod) => 
 
 // ⭐ Wrapper 컴포넌트들
 export const CountDown = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return <section ref={ref}>{inView && <CountDownSection />}</section>;
 };
 
 export const Family = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return <section ref={ref}>{inView && <FamilySection />}</section>;
 };
 
 export const Gallery = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return <section ref={ref}>{inView && <GallerySection />}</section>;
 };
 
 export const GiftAccount = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return <section ref={ref}>{inView && <GiftAccountSection />}</section>;
 };
 
 export const GuestBooks = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return <section ref={ref}>{inView && <GuestBooksSection />}</section>;
 };
 
 export const Contact = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return <section ref={ref}>{inView && <ContactSection />}</section>;
 };
 
 export const Footer = ({ thumbImageUrl }: FooterProps) => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return <section ref={ref}>{inView && <FooterSection thumbImageUrl={thumbImageUrl} />}</section>;
 };
