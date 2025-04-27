@@ -74,7 +74,13 @@ export const GuestBooks = () => {
     rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
-  return <section ref={ref}>{inView && <GuestBooksSection inView={inView} />}</section>;
+  return (
+    <section ref={ref}>
+      <FramerMotionWrapper preload inView={inView}>
+        <GuestBooksSection />
+      </FramerMotionWrapper>
+    </section>
+  );
 };
 
 export const Contact = () => {
