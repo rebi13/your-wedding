@@ -5,13 +5,13 @@ import Image from 'next/image';
 import { Divider, Flex, Loader } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { AudioPlayer } from '@/components/AudioPlayer';
-import { Footer } from '@/components/Footer';
 // import { Header } from '@/components/Header';
 import { Invitation } from '@/components/Invitation';
 import {
   Contact,
   CountDown,
   Family,
+  Footer,
   Gallery,
   GiftAccount,
   GuestBooks,

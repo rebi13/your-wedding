@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
+import { FooterProps } from '@/components/Footer';
 
 // ⭐ dynamic imports
 const CountDownSection = dynamic(() =>
@@ -16,6 +17,7 @@ const GuestBooksSection = dynamic(() =>
   import('@/components/GuestBooks').then((mod) => mod.GuestBooks)
 );
 const ContactSection = dynamic(() => import('@/components/Contact').then((mod) => mod.Contact));
+const FooterSection = dynamic(() => import('@/components/Footer').then((mod) => mod.Footer));
 
 // ⭐ Wrapper 컴포넌트들
 export const CountDown = () => {
@@ -76,4 +78,14 @@ export const Contact = () => {
   });
 
   return <section ref={ref}>{inView && <ContactSection />}</section>;
+};
+
+export const Footer = ({ thumbImageUrl }: FooterProps) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0,
+    rootMargin: '500px 0px', // 🔥 미리 감지
+  });
+
+  return <section ref={ref}>{inView && <FooterSection thumbImageUrl={thumbImageUrl} />}</section>;
 };
