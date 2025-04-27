@@ -1,19 +1,21 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import { Divider, Flex, Loader } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { AudioPlayer } from '@/components/AudioPlayer';
-import { Contact } from '@/components/Contact';
-import { CountDown } from '@/components/CountDown';
-import { Family } from '@/components/Family';
-import { Footer } from '@/components/Footer';
-import { Gallery } from '@/components/Gallery';
-import { GiftAccount } from '@/components/GiftAccount';
-import { GuestBooks } from '@/components/GuestBooks';
 // import { Header } from '@/components/Header';
 import { Invitation } from '@/components/Invitation';
+import {
+  Contact,
+  CountDown,
+  Family,
+  Footer,
+  Gallery,
+  GiftAccount,
+  GuestBooks,
+} from '@/components/LazySections';
 import { Profile } from '@/components/Profile';
 // import { Timer } from '@/components/Timer';
 // import { WeddingDate } from '@/components/WeddingDate';
@@ -22,23 +24,23 @@ import { getImageUrl } from '@/utils/storage';
 
 export default function HomePage() {
   const { isImagesLoading, isTotalDataLoading } = useTotalController();
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  // const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  const isLoading = isImagesLoading || isTotalDataLoading || !isImageLoaded;
+  const isLoading = isImagesLoading || isTotalDataLoading; // || !isImageLoaded;
   const imageUrl = getImageUrl('thumb.jpeg');
 
   // ✅ 브라우저 캐시된 이미지 로드 상태 확인
-  useEffect(() => {
-    const img = new window.Image(); // ✅ 'Image' 대신 'window.Image' 사용
-    img.src = imageUrl;
+  // useEffect(() => {
+  //   const img = new window.Image(); // ✅ 'Image' 대신 'window.Image' 사용
+  //   img.src = imageUrl;
 
-    if (img.complete) {
-      setIsImageLoaded(true); // 캐시에 존재하는 경우 즉시 로드 완료
-    } else {
-      img.onload = () => setIsImageLoaded(true); // 정상적으로 로드된 경우
-      img.onerror = () => setIsImageLoaded(true); // 로딩 실패 시에도 처리
-    }
-  }, [imageUrl]);
+  //   if (img.complete) {
+  //     setIsImageLoaded(true); // 캐시에 존재하는 경우 즉시 로드 완료
+  //   } else {
+  //     img.onload = () => setIsImageLoaded(true); // 정상적으로 로드된 경우
+  //     img.onerror = () => setIsImageLoaded(true); // 로딩 실패 시에도 처리
+  //   }
+  // }, [imageUrl]);
 
   useEffect(() => {
     if (!isLoading) {

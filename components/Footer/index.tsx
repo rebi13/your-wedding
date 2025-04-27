@@ -6,7 +6,7 @@ import { Button, Flex, Text } from '@mantine/core';
 import useTotalController from '@/hooks/useTotalController';
 import { shareLink } from '@/utils/shareLink';
 
-interface FooterProps {
+export interface FooterProps {
   thumbImageUrl: string;
 }
 
