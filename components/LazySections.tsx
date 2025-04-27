@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import { FooterProps } from '@/components/Footer';
+import { FramerMotionWrapper } from './FramerMotionWrapper';
 
 // ⭐ dynamic imports
 const CountDownSection = dynamic(() =>
@@ -47,7 +48,13 @@ export const Gallery = () => {
     rootMargin: '500px 0px', // 🔥 미리 감지
   });
 
-  return <section ref={ref}>{inView && <GallerySection />}</section>;
+  return (
+    <section ref={ref} style={{ minHeight: '50vh' }}>
+      <FramerMotionWrapper preload inView={inView}>
+        <GallerySection />
+      </FramerMotionWrapper>
+    </section>
+  );
 };
 
 export const GiftAccount = () => {
