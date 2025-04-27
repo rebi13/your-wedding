@@ -61,7 +61,7 @@ export default function HomePage() {
         <Flex w="100%" direction="column" h="100%">
           {/* <Header /> */}
           <Flex direction="column">
-            <AudioPlayer src="/assets/velos.mp3" />
+            <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
             <Image
               src={imageUrl} // Supabase 이미지 URL
               alt="신랑 신부 웨딩 사진"
