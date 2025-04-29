@@ -58,7 +58,6 @@ export const Gallery = () => {
       </Text>
 
       <Modal
-        removeScrollProps={{ allowPinchZoom: true }}
         opened={opened}
         onClose={close}
         radius={0}
