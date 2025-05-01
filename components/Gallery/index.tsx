@@ -145,7 +145,13 @@ export const Gallery = () => {
       </SimpleGrid>
 
       {weddingImageDatas && weddingImageDatas.length > limit && (
-        <Button variant="subtle" rightSection={<IconArrowDown />} c="dark" onClick={handleLoadMore}>
+        <Button
+          w="100%"
+          variant="subtle"
+          rightSection={<IconArrowDown />}
+          c="dark"
+          onClick={handleLoadMore}
+        >
           더보기
         </Button>
       )}
