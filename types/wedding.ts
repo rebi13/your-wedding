@@ -50,6 +50,7 @@ type MapInfo = {
   naverMap: string;
   lat: number;
   lon: number;
+  parking: string;
 };
 
 type LocationInfo = {

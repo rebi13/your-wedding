@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import NextImage from 'next/image';
-import { Anchor, Flex, Image, Text } from '@mantine/core';
+import { Anchor, Flex, Image, Mark, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
@@ -114,6 +114,10 @@ export const Contact = () => {
           <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor>
         </Flex>
         <Flex w="100%" h="25rem" ref={mapElement} />
+        <Text fw="bold">주차 안내</Text>
+        <Text ta="center" fz="0.9rem" style={{ whiteSpace: 'pre-line' }}>
+          <Mark>{data?.mapInfo.parking}</Mark>
+        </Text>
         <Image
           component={NextImage}
           width={800} // 원하는 비율에 맞게 설정
