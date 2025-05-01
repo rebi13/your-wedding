@@ -3,7 +3,7 @@
 
 import { useRef, useState } from 'react';
 import { IconHeadphonesFilled, IconHeadsetOff } from '@tabler/icons-react';
-import { ActionIcon, Flex } from '@mantine/core';
+import { ActionIcon, Affix } from '@mantine/core';
 
 export const AudioPlayer = ({ src }: { src: string }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -26,14 +26,14 @@ export const AudioPlayer = ({ src }: { src: string }) => {
   };
 
   return (
-    <Flex w="100%" pos="absolute" justify="flex-end" p="md">
+    <Affix position={{ top: 10, right: 10 }}>
       {/* 오디오 요소 (반복 재생 활성화) */}
       <audio ref={audioRef} src={src} loop />
 
       {/* 재생/정지 아이콘 */}
-      <ActionIcon size="xl" variant="outline" onClick={togglePlay} color="dark">
+      <ActionIcon size="xl" onClick={togglePlay} color="dark">
         {isPlaying ? <IconHeadphonesFilled size={32} /> : <IconHeadsetOff size={32} />}
       </ActionIcon>
-    </Flex>
+    </Affix>
   );
 };
