@@ -11,4 +11,5 @@ body {
   background-color: #ffffff !important; /* 원하는 배경색 */
   display: flex;
   flex-direction: column;
+  touch-action: pan-x pan-y;
 }

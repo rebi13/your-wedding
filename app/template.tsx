@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalLoading } from '@/components/GlobalLoading';
 import { GlobalLoadingProvider } from '@/context/GlobalLoadingContext';
+import { usePreventZoomGesture } from '@/hooks/usePreventZoomGesture';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
       window.Kakao.init(process.env.NEXT_PUBLIC_JAVASCRIPT_KEY);
     }
   }, []);
+
+  usePreventZoomGesture();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -38,6 +41,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 mx="auto"
                 direction="column"
                 align="center"
+                style={{
+                  overflowY: 'auto', // ✅ 내부 스크롤 허용
+                  WebkitOverflowScrolling: 'touch', // ✅ iOS 부드러운 스크롤
+                }}
               >
                 {children}
               </Flex>
