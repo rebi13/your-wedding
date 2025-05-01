@@ -2,9 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import NextImage from 'next/image';
-import { IconCar, IconMap } from '@tabler/icons-react';
-import { Anchor, Button, Flex, Image, Loader, Modal, Text } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Anchor, Flex, Image, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
@@ -27,12 +25,12 @@ declare global {
 export const Contact = () => {
   const { totalData: data } = useTotalController();
   // 약도 이미지
-  const [opened, { open, close }] = useDisclosure(false);
-  const [isImageLoading, setIsImageLoading] = useState(true);
+  // const [opened, { open, close }] = useDisclosure(false);
+  // const [isImageLoading, setIsImageLoading] = useState(true);
 
   // 주차 안내 이미지
-  const [pOpened, { open: pOpen, close: pClose }] = useDisclosure(false);
-  const [pIsImageLoading, setPIsImageLoading] = useState(true);
+  // const [pOpened, { open: pOpen, close: pClose }] = useDisclosure(false);
+  // const [pIsImageLoading, setPIsImageLoading] = useState(true);
 
   const mapElement = useRef<HTMLDivElement>(null);
   const [_map, setMap] = useState<any>(null);
@@ -116,7 +114,19 @@ export const Contact = () => {
           <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor>
         </Flex>
         <Flex w="100%" h="25rem" ref={mapElement} />
-        <Modal
+        <Image
+          component={NextImage}
+          width={800} // 원하는 비율에 맞게 설정
+          height={1200}
+          priority
+          src={getImageUrl('mapInfo.png')}
+          // 핵심 포인트 👇
+          h={400} // 또는 '100%' 등으로 조절 가능
+          mah={600}
+          style={{ objectFit: 'contain' }}
+          alt=""
+        />
+        {/* <Modal
           removeScrollProps={{ allowPinchZoom: true }}
           opened={opened}
           onClose={close}
@@ -125,7 +135,6 @@ export const Contact = () => {
           transitionProps={{ transition: 'fade', duration: 200 }}
         >
           <Flex w="100%" h="100%" align="center" justify="center" pos="relative">
-            {/* ✅ 로딩 중일 때 스피너 */}
             {isImageLoading && (
               <Flex
                 pos="absolute"
@@ -141,7 +150,6 @@ export const Contact = () => {
               </Flex>
             )}
 
-            {/* ✅ 이미지: 로딩 중에도 최소 높이 유지 */}
             <Image
               component={NextImage}
               width={800} // 원하는 비율에 맞게 설정
@@ -157,9 +165,9 @@ export const Contact = () => {
               alt=""
             />
           </Flex>
-        </Modal>
+        </Modal> */}
 
-        <Modal
+        {/* <Modal
           removeScrollProps={{ allowPinchZoom: true }}
           opened={pOpened}
           onClose={pClose}
@@ -168,7 +176,6 @@ export const Contact = () => {
           transitionProps={{ transition: 'fade', duration: 200 }}
         >
           <Flex w="100%" h="100%" align="center" justify="center" pos="relative">
-            {/* ✅ 로딩 중일 때 스피너 */}
             {pIsImageLoading && (
               <Flex
                 pos="absolute"
@@ -184,7 +191,6 @@ export const Contact = () => {
               </Flex>
             )}
 
-            {/* ✅ 이미지: 로딩 중에도 최소 높이 유지 */}
             <Image
               component={NextImage}
               width={800} // 원하는 비율에 맞게 설정
@@ -200,9 +206,9 @@ export const Contact = () => {
               alt=""
             />
           </Flex>
-        </Modal>
+        </Modal> */}
 
-        <Button
+        {/* <Button
           w="90%"
           color="gray"
           size="lg"
@@ -221,7 +227,7 @@ export const Contact = () => {
           onClick={pOpen}
         >
           주차장 안내
-        </Button>
+        </Button> */}
       </Flex>
     </FramerMotionWrapper>
   );
