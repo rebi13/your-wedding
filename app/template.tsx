@@ -41,10 +41,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 mx="auto"
                 direction="column"
                 align="center"
-                style={{
-                  overflowY: 'auto', // ✅ 내부 스크롤 허용
-                  WebkitOverflowScrolling: 'touch', // ✅ iOS 부드러운 스크롤
-                }}
+                // style={{
+                //   overflowY: 'auto', // ✅ 내부 스크롤 허용
+                //   WebkitOverflowScrolling: 'touch', // ✅ iOS 부드러운 스크롤
+                // }}
               >
                 {children}
               </Flex>

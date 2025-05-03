@@ -1,11 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import NextImage from 'next/image';
-import { Anchor, Flex, Image, Mark, Text } from '@mantine/core';
+import { Anchor, Flex, Mark, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 import useTotalController from '@/hooks/useTotalController';
-import { getImageUrl } from '@/utils/storage';
 
 // 네이버 객체를 TypeScript에서 인식할 수 있도록 선언
 declare global {
@@ -15,12 +13,12 @@ declare global {
 }
 
 // marker에 표시할 contet 내용
-// const contentString = [
-//   '<div style="padding: 1rem;">',
-//   '   <h3>그랜드오스티엄</h3>',
-//   '   <p>인천 미추홀구 매소홀로 618</p><br /> ',
-//   '</div>',
-// ].join('');
+const contentString = [
+  '<div style="padding:0;">',
+  '   <h3>그랜드오스티엄</h3>',
+  // '   <p>인천 미추홀구 매소홀로 618</p><br /> ',
+  '</div>',
+].join('');
 
 export const Contact = () => {
   const { totalData: data } = useTotalController();
@@ -33,9 +31,9 @@ export const Contact = () => {
   // const [pIsImageLoading, setPIsImageLoading] = useState(true);
 
   const mapElement = useRef<HTMLDivElement>(null);
-  const [_map, setMap] = useState<any>(null);
-  const [_centerMarker, setCenterMarker] = useState<any>(null);
-  // const [infoWindow, setInfoWindow] = useState<any>(null);
+  const [map, setMap] = useState<any>(null);
+  const [centerMarker, setCenterMarker] = useState<any>(null);
+  const [infoWindow, setInfoWindow] = useState<any>(null);
 
   useEffect(() => {
     const initMap = () => {
@@ -65,23 +63,23 @@ export const Contact = () => {
 
       setCenterMarker(marker);
 
-      // const infowindow = new window.naver.maps.InfoWindow({
-      //   content: contentString,
-      //   maxWidth: 200,
-      //   backgroundColor: '#eee',
-      //   anchorColor: '#eee',
-      // });
+      const infowindow = new window.naver.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 200,
+        backgroundColor: '#eee',
+        anchorColor: '#eee',
+      });
 
-      // setInfoWindow(infowindow);
+      setInfoWindow(infowindow);
 
-      // // 마커 클릭 시 인포윈도우 열기/닫기
-      // window.naver.maps.Event.addListener(marker, 'click', () => {
-      //   if (infowindow.getMap()) {
-      //     infowindow.close();
-      //   } else {
-      //     infowindow.open(mapInstance, marker);
-      //   }
-      // });
+      // 마커 클릭 시 인포윈도우 열기/닫기
+      window.naver.maps.Event.addListener(marker, 'click', () => {
+        if (infowindow.getMap()) {
+          infowindow.close();
+        } else {
+          infowindow.open(mapInstance, marker);
+        }
+      });
     };
 
     if (window.naver && window.naver.maps) {
@@ -95,12 +93,12 @@ export const Contact = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   // map과 marker가 존재할 때만 InfoWindow를 열도록 수정
-  //   if (map && centerMarker && infoWindow) {
-  //     infoWindow.open(map, centerMarker);
-  //   }
-  // }, [map, centerMarker, infoWindow]);
+  useEffect(() => {
+    // map과 marker가 존재할 때만 InfoWindow를 열도록 수정
+    if (map && centerMarker && infoWindow) {
+      infoWindow.open(map, centerMarker);
+    }
+  }, [map, centerMarker, infoWindow]);
 
   return (
     <FramerMotionWrapper>
@@ -113,12 +111,12 @@ export const Contact = () => {
           <Text>{data?.mapInfo.address2}</Text>
           <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor>
         </Flex>
-        <Flex w="100%" h="25rem" ref={mapElement} />
+        <Flex w="100%" h="12rem" ref={mapElement} />
         <Text fw="bold">주차 안내</Text>
         <Text ta="center" fz="0.9rem" style={{ whiteSpace: 'pre-line' }}>
           <Mark>{data?.mapInfo.parking}</Mark>
         </Text>
-        <Image
+        {/* <Image
           component={NextImage}
           width={800} // 원하는 비율에 맞게 설정
           height={1200}
@@ -129,7 +127,7 @@ export const Contact = () => {
           mah={600}
           style={{ objectFit: 'contain' }}
           alt=""
-        />
+        /> */}
         {/* <Modal
           removeScrollProps={{ allowPinchZoom: true }}
           opened={opened}

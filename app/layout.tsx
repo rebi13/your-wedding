@@ -48,7 +48,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
       </head>
-      <body style={{ overflow: 'hidden', touchAction: 'none', overscrollBehavior: 'none' }}>
+      <body>
+        {/*  style={{ overflow: 'hidden', touchAction: 'none', overscrollBehavior: 'none' }}*/}
         <Script
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_MAP_CLIENT_ID}`}
