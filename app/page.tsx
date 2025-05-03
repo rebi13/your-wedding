@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { Divider, Flex, Loader, LoadingOverlay } from '@mantine/core';
+import { Divider, Flex, Loader } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { AudioPlayer } from '@/components/AudioPlayer';
 // import { Header } from '@/components/Header';
@@ -54,7 +54,7 @@ export default function HomePage() {
   }, [isLoading]);
 
   return (
-    <Flex w="100%" direction="column" h="100%">
+    <Flex w="100%" direction="column" h="100%" pos="relative">
       {/* ✅ LCP 이미지 먼저 렌더 */}
       <Image
         src={imageUrl}
@@ -66,8 +66,27 @@ export default function HomePage() {
         style={{ width: '100%', height: 'auto', display: 'block' }}
       />
 
+      {/* ✅ 시각적 안내만 주는 오버레이 (zIndex 낮게) */}
+      {isLoading && (
+        <Flex
+          pos="absolute"
+          top={0}
+          left={0}
+          w="100%"
+          h="100%"
+          bg="rgba(255, 255, 255, 0.4)"
+          justify="center"
+          align="center"
+          style={{
+            zIndex: 1,
+          }}
+        >
+          <Loader color="yellow" size="xl" type="bars" />
+        </Flex>
+      )}
+
       {/* ✅ 로딩 중일 때 반투명 오버레이 */}
-      <LoadingOverlay
+      {/* <LoadingOverlay
         visible={isLoading}
         zIndex={10}
         overlayProps={{
@@ -77,26 +96,13 @@ export default function HomePage() {
         loaderProps={{
           children: <Loader color="yellow" size="xl" type="bars" />,
         }}
-      />
-      <Flex w="100%" direction="column">
-        {/* <Image
-            src={imageUrl}
-            alt="신랑 신부 웨딩 사진"
-            width={480}
-            height={720}
-            priority
-            sizes="(max-width: 768px) 100vw, 480px"
-            style={{
-              width: '100%',
-              height: 'auto',
-            }}
-          /> */}
-        <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
-      </Flex>
-      <Profile />
-      <Divider my="1rem" style={{ visibility: 'hidden' }} />
+      /> */}
       {!isLoading && (
         <>
+          <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
+          <Profile />
+          <Divider my="1rem" style={{ visibility: 'hidden' }} />
+
           <Invitation />
 
           {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
