@@ -7,26 +7,8 @@ import { Carousel } from '@mantine/carousel';
 import { Button, Flex, Modal, SimpleGrid, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import useTotalController from '@/hooks/useTotalController';
-// import { getImageUrl } from '@/utils/storage';
+import { getImageUrl } from '@/utils/storage';
 import classes from './Gallery.module.css';
-
-const imageNames = [
-  '1001.webp',
-  '1002.webp',
-  '1003.webp',
-  '1004.webp',
-  '1005.webp',
-  '1006.webp',
-  '1007.webp',
-  '1008.webp',
-  '1009.webp',
-  '1010.webp',
-  '1011.webp',
-  '1012.webp',
-  '1013.webp',
-  '1014.webp',
-  '1015.webp',
-];
 
 export const Gallery = () => {
   const { weddingImages: weddingImageDatas } = useTotalController();
@@ -115,22 +97,9 @@ export const Gallery = () => {
                 },
               }}
             >
-              {imageNames.map((name) => (
-                <Carousel.Slide key={name}>
-                  {/* ✅ 슬라이드마다 한 개씩 */}
-                  <Image
-                    src={`/images/gallery/${name}`}
-                    alt="신랑 신부 웨딩 사진"
-                    width={480}
-                    height={720}
-                    sizes="(max-width: 768px) 100vw, 480px"
-                    style={{ width: '100%', height: 'auto' }}
-                  />
-                </Carousel.Slide>
-              ))}
-
-              {/* {weddingImageDatas?.map((image) => (
+              {weddingImageDatas?.map((image) => (
                 <Carousel.Slide key={image.id}>
+                  {/* ✅ 슬라이드마다 한 개씩 */}
                   <Image
                     src={getImageUrl(`gallery/${image.name}`)}
                     alt="신랑 신부 웨딩 사진"
@@ -140,31 +109,26 @@ export const Gallery = () => {
                     style={{ width: '100%', height: 'auto' }}
                   />
                 </Carousel.Slide>
-              ))} */}
+              ))}
             </Carousel>
           </Flex>
         )}
       </Modal>
 
       <SimpleGrid cols={3}>
-        {imageNames?.slice(0, limit).map((name, index) => (
-          <Flex key={name} pos="relative" onClick={() => openModalCarousel(index)}>
+        {weddingImageDatas?.slice(0, limit).map((image, index) => (
+          <Flex key={image.id} pos="relative" onClick={() => openModalCarousel(index)}>
             <Image
-              src={`/images/gallery/${name}`}
+              src={getImageUrl(`gallery/${image.name}`)}
+              // src={imageUrl} // Supabase 이미지 URL
               alt="신랑 신부 웨딩 사진"
               width={480}
               height={720}
               sizes="(max-width: 768px) 100vw, 480px"
-              style={{ width: '100%', height: 'auto' }}
-              // src={getImageUrl(`gallery/${image.name}`)}
-              // src={imageUrl} // Supabase 이미지 URL
-              // width={480}
-              // height={720}
-              // sizes="(max-width: 768px) 100vw, 480px"
-              // style={{
-              //   width: '100%',
-              //   height: 'auto',
-              // }}
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
             {/* <MantineImage
                 component={NextImage}
