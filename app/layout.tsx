@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'For Your Wedding',
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SUPABASE_URL!}/storage/v1/object/public/${process.env.NEXT_PUBLIC_STORAGE_BUCKET!}/thumb.jpeg`,
+        url: `${process.env.NEXT_PUBLIC_SUPABASE_URL!}/storage/v1/object/public/${process.env.NEXT_PUBLIC_STORAGE_BUCKET!}/opengraph.jpg`,
         width: 800,
         height: 400,
       },
