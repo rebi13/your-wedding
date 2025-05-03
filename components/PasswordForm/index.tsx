@@ -36,6 +36,7 @@ export const PasswordForm = ({ id }: PasswordFormProps) => {
     <Flex w="80vw" direction="column" gap="sm">
       <PasswordInput
         placeholder="비밀번호를 입력하세요."
+        size="lg"
         {...form.getInputProps('password')}
         error={data !== undefined && !data && <Text span>비밀번호가 일치하지 않습니다.</Text>}
       />
