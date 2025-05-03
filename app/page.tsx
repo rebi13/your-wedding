@@ -54,15 +54,32 @@ export default function HomePage() {
   }, [isLoading]);
 
   return (
-    <>
+    <Flex w="100%" direction="column" h="100%">
+      {/* ✅ LCP 이미지 먼저 렌더 */}
+      <Image
+        src={imageUrl}
+        alt="신랑 신부 웨딩 사진"
+        width={768}
+        height={1152}
+        priority
+        sizes="(max-width: 768px) 100vw, 768px"
+        style={{ width: '100%', height: 'auto', display: 'block' }}
+      />
+
+      {/* ✅ 로딩 중일 때 반투명 오버레이 */}
       <LoadingOverlay
         visible={isLoading}
-        loaderProps={{ children: <Loader color="yellow" size="xl" type="bars" /> }}
+        zIndex={10}
+        overlayProps={{
+          backgroundOpacity: 0.3,
+          blur: 2,
+        }}
+        loaderProps={{
+          children: <Loader color="yellow" size="xl" type="bars" />,
+        }}
       />
-      <Flex w="100%" direction="column" h="100%">
-        {/* <Header /> */}
-        <Flex w="100%" direction="column">
-          <Image
+      <Flex w="100%" direction="column">
+        {/* <Image
             src={imageUrl}
             alt="신랑 신부 웨딩 사진"
             width={480}
@@ -73,34 +90,33 @@ export default function HomePage() {
               width: '100%',
               height: 'auto',
             }}
-          />
-          <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
-        </Flex>
-        <Profile />
-        <Divider my="1rem" style={{ visibility: 'hidden' }} />
-        {!isLoading && (
-          <>
-            <Invitation />
-
-            {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
-            <Family />
-            {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
-            {/* <WeddingDate /> */}
-            <Divider my="3rem" style={{ visibility: 'hidden' }} />
-            <Gallery />
-            <Divider my="3rem" style={{ visibility: 'hidden' }} />
-            <Contact />
-            <Divider my="3rem" style={{ visibility: 'hidden' }} />
-            <GiftAccount />
-            <GuestBooks />
-            <Divider my="3rem" style={{ visibility: 'hidden' }} />
-            <CountDown />
-            <Divider my="3rem" style={{ visibility: 'hidden' }} />
-            {/* <Timer /> */}
-            <Footer thumbImageUrl={imageUrl} />
-          </>
-        )}
+          /> */}
+        <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
       </Flex>
-    </>
+      <Profile />
+      <Divider my="1rem" style={{ visibility: 'hidden' }} />
+      {!isLoading && (
+        <>
+          <Invitation />
+
+          {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
+          <Family />
+          {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
+          {/* <WeddingDate /> */}
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          <Gallery />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          <Contact />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          <GiftAccount />
+          <GuestBooks />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          <CountDown />
+          <Divider my="3rem" style={{ visibility: 'hidden' }} />
+          {/* <Timer /> */}
+          <Footer thumbImageUrl={imageUrl} />
+        </>
+      )}
+    </Flex>
   );
 }
