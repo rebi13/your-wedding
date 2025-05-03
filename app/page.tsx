@@ -27,8 +27,8 @@ export default function HomePage() {
   // const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const isLoading = isImagesLoading || isTotalDataLoading; // || !isImageLoaded;
-  const imageUrl = getImageUrl('thumb.webp');
-
+  // const imageUrl = getImageUrl('thumb.webp');
+  const imageUrl = encodeURIComponent(getImageUrl('thumb.webp'));
   // ✅ 브라우저 캐시된 이미지 로드 상태 확인
   // useEffect(() => {
   //   const img = new window.Image(); // ✅ 'Image' 대신 'window.Image' 사용
@@ -65,7 +65,7 @@ export default function HomePage() {
           <Flex direction="column">
             <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
             <Image
-              src={imageUrl} // Supabase 이미지 URL
+              src={`/api/image-proxy?src=${imageUrl}`}
               alt="신랑 신부 웨딩 사진"
               width={480}
               height={720}
