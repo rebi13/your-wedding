@@ -96,6 +96,8 @@ export const GuestBookForm = ({ id }: GusetBookFormProps) => {
       message: '따뜻한 마음이 수정되었습니다.',
       color: 'blue',
     });
+
+    closeModal(form.values);
   };
 
   return (
