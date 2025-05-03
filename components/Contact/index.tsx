@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Anchor, Flex, Mark, Text } from '@mantine/core';
+import { IconMap } from '@tabler/icons-react';
+import { Anchor, Button, Flex, Mark, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 import useTotalController from '@/hooks/useTotalController';
 
@@ -13,27 +14,37 @@ declare global {
 }
 
 // marker에 표시할 contet 내용
-const contentString = [
-  '<div style="padding:0;">',
-  '   <h3>그랜드오스티엄</h3>',
-  // '   <p>인천 미추홀구 매소홀로 618</p><br /> ',
-  '</div>',
-].join('');
+// const contentString = [
+//   '<div style="padding:0;">',
+//   '   <h3>그랜드오스티엄</h3>',
+//   '   <p>인천 미추홀구 매소홀로 618</p><br /> ',
+//   '</div>',
+// ].join('');
+
+const openNaverMapApp = () => {
+  const lat = 37.4353079;
+  const lng = 126.6918286;
+  const name = encodeURIComponent('그랜드오스티엄');
+  const appLink = `nmap://place?lat=${lat}&lng=${lng}&name=${name}`;
+
+  // 앱이 없을 경우 웹으로 fallback
+  const webFallback = `https://map.naver.com/v5/search/${name}?c=${lng},${lat},15,0,0,0,dh`;
+
+  // 모바일일 경우 딥링크 시도 후 fallback
+  window.location.href = appLink;
+
+  setTimeout(() => {
+    window.location.href = webFallback;
+  }, 1500); // 앱이 없을 경우 fallback 시간
+};
 
 export const Contact = () => {
   const { totalData: data } = useTotalController();
-  // 약도 이미지
-  // const [opened, { open, close }] = useDisclosure(false);
-  // const [isImageLoading, setIsImageLoading] = useState(true);
-
-  // 주차 안내 이미지
-  // const [pOpened, { open: pOpen, close: pClose }] = useDisclosure(false);
-  // const [pIsImageLoading, setPIsImageLoading] = useState(true);
 
   const mapElement = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<any>(null);
-  const [centerMarker, setCenterMarker] = useState<any>(null);
-  const [infoWindow, setInfoWindow] = useState<any>(null);
+  const [_map, setMap] = useState<any>(null);
+  const [_centerMarker, setCenterMarker] = useState<any>(null);
+  // const [infoWindow, setInfoWindow] = useState<any>(null);
 
   useEffect(() => {
     const initMap = () => {
@@ -63,23 +74,22 @@ export const Contact = () => {
 
       setCenterMarker(marker);
 
-      const infowindow = new window.naver.maps.InfoWindow({
-        content: contentString,
-        maxWidth: 200,
-        backgroundColor: '#eee',
-        anchorColor: '#eee',
-      });
+      // const infowindow = new window.naver.maps.InfoWindow({
+      //   content: '그랜드오스티엄',
+      //   backgroundColor: '#FFFFFF',
+      //   anchorColor: '#FFFFFF',
+      // });
 
-      setInfoWindow(infowindow);
+      // setInfoWindow(infowindow);
 
       // 마커 클릭 시 인포윈도우 열기/닫기
-      window.naver.maps.Event.addListener(marker, 'click', () => {
-        if (infowindow.getMap()) {
-          infowindow.close();
-        } else {
-          infowindow.open(mapInstance, marker);
-        }
-      });
+      // window.naver.maps.Event.addListener(marker, 'click', () => {
+      //   if (infowindow.getMap()) {
+      //     infowindow.close();
+      //   } else {
+      //     infowindow.open(mapInstance, marker);
+      //   }
+      // });
     };
 
     if (window.naver && window.naver.maps) {
@@ -93,12 +103,12 @@ export const Contact = () => {
     }
   }, []);
 
-  useEffect(() => {
-    // map과 marker가 존재할 때만 InfoWindow를 열도록 수정
-    if (map && centerMarker && infoWindow) {
-      infoWindow.open(map, centerMarker);
-    }
-  }, [map, centerMarker, infoWindow]);
+  // useEffect(() => {
+  //   // map과 marker가 존재할 때만 InfoWindow를 열도록 수정
+  //   if (map && centerMarker && infoWindow) {
+  //     infoWindow.open(map, centerMarker);
+  //   }
+  // }, [map, centerMarker, infoWindow]);
 
   return (
     <FramerMotionWrapper>
@@ -111,125 +121,16 @@ export const Contact = () => {
           <Text>{data?.mapInfo.address2}</Text>
           <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor>
         </Flex>
-        <Flex w="100%" h="12rem" ref={mapElement} />
-        <Text fw="bold">주차 안내</Text>
-        <Text ta="center" fz="0.9rem" style={{ whiteSpace: 'pre-line' }}>
+        <Flex w="95%" h="12rem" ref={mapElement} />
+        <Button variant="outline" leftSection={<IconMap />} color="green" onClick={openNaverMapApp}>
+          네이버 지도
+        </Button>
+        <Text w="100%" px="sm" pt="sm" fw="bold">
+          주차 안내
+        </Text>
+        <Text w="100%" px="sm" ta="start" fz="0.9rem" style={{ whiteSpace: 'pre-line' }}>
           <Mark>{data?.mapInfo.parking}</Mark>
         </Text>
-        {/* <Image
-          component={NextImage}
-          width={800} // 원하는 비율에 맞게 설정
-          height={1200}
-          priority
-          src={getImageUrl('mapInfo.png')}
-          // 핵심 포인트 👇
-          h={400} // 또는 '100%' 등으로 조절 가능
-          mah={600}
-          style={{ objectFit: 'contain' }}
-          alt=""
-        /> */}
-        {/* <Modal
-          removeScrollProps={{ allowPinchZoom: true }}
-          opened={opened}
-          onClose={close}
-          radius={0}
-          centered
-          transitionProps={{ transition: 'fade', duration: 200 }}
-        >
-          <Flex w="100%" h="100%" align="center" justify="center" pos="relative">
-            {isImageLoading && (
-              <Flex
-                pos="absolute"
-                top={0}
-                left={0}
-                w="100%"
-                h="100%"
-                align="center"
-                justify="center"
-                bg="white"
-              >
-                <Loader color="pink" size="xl" type="bars" />
-              </Flex>
-            )}
-
-            <Image
-              component={NextImage}
-              width={800} // 원하는 비율에 맞게 설정
-              height={1200}
-              priority
-              src={getImageUrl('mapInfo.png')}
-              onLoad={() => setIsImageLoading(false)}
-              onError={() => setIsImageLoading(false)}
-              // 핵심 포인트 👇
-              h={isImageLoading ? 400 : 'auto'} // 또는 '100%' 등으로 조절 가능
-              mah={600}
-              style={{ objectFit: 'contain' }}
-              alt=""
-            />
-          </Flex>
-        </Modal> */}
-
-        {/* <Modal
-          removeScrollProps={{ allowPinchZoom: true }}
-          opened={pOpened}
-          onClose={pClose}
-          radius={0}
-          centered
-          transitionProps={{ transition: 'fade', duration: 200 }}
-        >
-          <Flex w="100%" h="100%" align="center" justify="center" pos="relative">
-            {pIsImageLoading && (
-              <Flex
-                pos="absolute"
-                top={0}
-                left={0}
-                w="100%"
-                h="100%"
-                align="center"
-                justify="center"
-                bg="white"
-              >
-                <Loader color="pink" size="xl" type="bars" />
-              </Flex>
-            )}
-
-            <Image
-              component={NextImage}
-              width={800} // 원하는 비율에 맞게 설정
-              height={1200}
-              priority
-              src={getImageUrl('parking.png')}
-              onLoad={() => setPIsImageLoading(false)}
-              onError={() => setPIsImageLoading(false)}
-              // 핵심 포인트 👇
-              h={pIsImageLoading ? 400 : 'auto'} // 또는 '100%' 등으로 조절 가능
-              mah={600}
-              style={{ objectFit: 'contain' }}
-              alt=""
-            />
-          </Flex>
-        </Modal> */}
-
-        {/* <Button
-          w="90%"
-          color="gray"
-          size="lg"
-          variant="outline"
-          leftSection={<IconMap />}
-          onClick={open}
-        >
-          약도 이미지 보기
-        </Button>
-        <Button
-          w="90%"
-          color="gray"
-          size="lg"
-          variant="outline"
-          leftSection={<IconCar />}
-          onClick={pOpen}
-        >
-          주차장 안내
-        </Button> */}
       </Flex>
     </FramerMotionWrapper>
   );
