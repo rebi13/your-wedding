@@ -13,7 +13,6 @@ export const FramerMotionWrapper = ({
   preload = false,
   inView = true, // preload 모드일 때 기본은 보이게
 }: FramerMotionWrapperProps) => {
-  return <div>{children}</div>;
   if (preload) {
     // 🔥 preload 모드: 미리 mount, visible 제어
     return (

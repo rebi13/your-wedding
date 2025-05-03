@@ -57,7 +57,8 @@ export default function HomePage() {
     <Flex w="100%" direction="column" h="100%" pos="relative">
       {/* ✅ LCP 이미지 먼저 렌더 */}
       <Image
-        src={imageUrl}
+        src="/images/thumb.webp"
+        // src={imageUrl}
         alt="신랑 신부 웨딩 사진"
         width={768}
         height={1152}
