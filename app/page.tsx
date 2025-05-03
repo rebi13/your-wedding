@@ -23,12 +23,12 @@ import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
 
 export default function HomePage() {
-  const { isImagesLoading, isTotalDataLoading } = useTotalController();
+  const { isTotalDataLoading } = useTotalController();
   // const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  const isLoading = isImagesLoading || isTotalDataLoading; // || !isImageLoaded;
+  const isLoading = isTotalDataLoading; // || !isImageLoaded;
   // const imageUrl = getImageUrl('thumb.webp');
-  const imageUrl = encodeURIComponent(getImageUrl('thumb.webp'));
+  const imageUrl = getImageUrl('thumb.webp');
   // ✅ 브라우저 캐시된 이미지 로드 상태 확인
   // useEffect(() => {
   //   const img = new window.Image(); // ✅ 'Image' 대신 'window.Image' 사용
@@ -55,6 +55,21 @@ export default function HomePage() {
 
   return (
     <>
+      <Flex w="100%" direction="column">
+        <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
+        <Image
+          src={imageUrl}
+          alt="신랑 신부 웨딩 사진"
+          width={480}
+          height={720}
+          priority
+          sizes="(max-width: 768px) 100vw, 480px"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+        />
+      </Flex>
       {isLoading ? (
         <Flex w="100%" h="100vh" align="center" justify="center">
           <Loader color="yellow" size="xl" type="bars" />
@@ -62,20 +77,7 @@ export default function HomePage() {
       ) : (
         <Flex w="100%" direction="column" h="100%">
           {/* <Header /> */}
-          <Flex direction="column">
-            <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
-            <Image
-              src={`/api/image-proxy?src=${imageUrl}`}
-              alt="신랑 신부 웨딩 사진"
-              width={480}
-              height={720}
-              priority
-              style={{
-                width: '100%',
-                height: 'auto',
-              }}
-            />
-          </Flex>
+
           <Profile />
           <Divider my="1rem" style={{ visibility: 'hidden' }} />
           <Invitation />
