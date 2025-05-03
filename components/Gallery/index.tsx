@@ -105,8 +105,7 @@ export const Gallery = () => {
                     alt="신랑 신부 웨딩 사진"
                     width={480}
                     height={720}
-                    priority
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 100vw, 480px"
                     style={{ width: '100%', height: 'auto' }}
                   />
                 </Carousel.Slide>
@@ -125,8 +124,7 @@ export const Gallery = () => {
               alt="신랑 신부 웨딩 사진"
               width={480}
               height={720}
-              priority
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 480px"
               style={{
                 width: '100%',
                 height: 'auto',
