@@ -78,9 +78,10 @@ export default function HomePage() {
         </Flex>
         <Profile />
         <Divider my="1rem" style={{ visibility: 'hidden' }} />
-        <Invitation />
         {!isLoading && (
           <>
+            <Invitation />
+
             {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
             <Family />
             {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
