@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { Divider, Flex, Loader } from '@mantine/core';
+import { Divider, Flex, Loader, LoadingOverlay } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { AudioPlayer } from '@/components/AudioPlayer';
 // import { Header } from '@/components/Header';
@@ -23,10 +23,10 @@ import useTotalController from '@/hooks/useTotalController';
 import { getImageUrl } from '@/utils/storage';
 
 export default function HomePage() {
-  const { isTotalDataLoading } = useTotalController();
+  const { isImagesLoading, isTotalDataLoading } = useTotalController();
   // const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  const isLoading = isTotalDataLoading; // || !isImageLoaded;
+  const isLoading = isImagesLoading || isTotalDataLoading; // || !isImageLoaded;
   // const imageUrl = getImageUrl('thumb.webp');
   const imageUrl = getImageUrl('thumb.webp');
   // ✅ 브라우저 캐시된 이미지 로드 상태 확인
@@ -55,50 +55,51 @@ export default function HomePage() {
 
   return (
     <>
-      <Flex w="100%" direction="column">
-        <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
-        <Image
-          src={imageUrl}
-          alt="신랑 신부 웨딩 사진"
-          width={480}
-          height={720}
-          priority
-          sizes="(max-width: 768px) 100vw, 480px"
-          style={{
-            width: '100%',
-            height: 'auto',
-          }}
-        />
+      <LoadingOverlay
+        visible={isLoading}
+        loaderProps={{ children: <Loader color="yellow" size="xl" type="bars" /> }}
+      />
+      <Flex w="100%" direction="column" h="100%">
+        {/* <Header /> */}
+        <Flex w="100%" direction="column">
+          <Image
+            src={imageUrl}
+            alt="신랑 신부 웨딩 사진"
+            width={480}
+            height={720}
+            priority
+            sizes="(max-width: 768px) 100vw, 480px"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }}
+          />
+          <AudioPlayer src="/assets/CocktailHour-AaronKenny.mp3" />
+        </Flex>
+        <Profile />
+        <Divider my="1rem" style={{ visibility: 'hidden' }} />
+        <Invitation />
+        {!isLoading && (
+          <>
+            {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
+            <Family />
+            {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
+            {/* <WeddingDate /> */}
+            <Divider my="3rem" style={{ visibility: 'hidden' }} />
+            <Gallery />
+            <Divider my="3rem" style={{ visibility: 'hidden' }} />
+            <Contact />
+            <Divider my="3rem" style={{ visibility: 'hidden' }} />
+            <GiftAccount />
+            <GuestBooks />
+            <Divider my="3rem" style={{ visibility: 'hidden' }} />
+            <CountDown />
+            <Divider my="3rem" style={{ visibility: 'hidden' }} />
+            {/* <Timer /> */}
+            <Footer thumbImageUrl={imageUrl} />
+          </>
+        )}
       </Flex>
-      {isLoading ? (
-        <Flex w="100%" h="100vh" align="center" justify="center">
-          <Loader color="yellow" size="xl" type="bars" />
-        </Flex>
-      ) : (
-        <Flex w="100%" direction="column" h="100%">
-          {/* <Header /> */}
-
-          <Profile />
-          <Divider my="1rem" style={{ visibility: 'hidden' }} />
-          <Invitation />
-          {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
-          <Family />
-          {/* <Divider my="3rem" style={{ visibility: 'hidden' }} /> */}
-          {/* <WeddingDate /> */}
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <Gallery />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <Contact />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <GiftAccount />
-          <GuestBooks />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          <CountDown />
-          <Divider my="3rem" style={{ visibility: 'hidden' }} />
-          {/* <Timer /> */}
-          <Footer thumbImageUrl={imageUrl} />
-        </Flex>
-      )}
     </>
   );
 }
