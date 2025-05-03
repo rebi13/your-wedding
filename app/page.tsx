@@ -5,24 +5,17 @@ import Image from 'next/image';
 import { Divider, Flex, Loader, LoadingOverlay } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { AudioPlayer } from '@/components/AudioPlayer';
-import { Contact } from '@/components/Contact';
-import { CountDown } from '@/components/CountDown';
-import { Family } from '@/components/Family';
-import { Footer } from '@/components/Footer';
-import { Gallery } from '@/components/Gallery';
-import { GiftAccount } from '@/components/GiftAccount';
-import { GuestBooks } from '@/components/GuestBooks';
 // import { Header } from '@/components/Header';
 import { Invitation } from '@/components/Invitation';
-// import {
-//   Contact,
-//   CountDown,
-//   Family,
-//   Footer,
-//   Gallery,
-//   GiftAccount,
-//   GuestBooks,
-// } from '@/components/LazySections';
+import {
+  Contact,
+  CountDown,
+  Family,
+  Footer,
+  Gallery,
+  GiftAccount,
+  GuestBooks,
+} from '@/components/LazySections';
 import { Profile } from '@/components/Profile';
 // import { Timer } from '@/components/Timer';
 // import { WeddingDate } from '@/components/WeddingDate';

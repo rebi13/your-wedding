@@ -24,7 +24,7 @@ const FooterSection = dynamic(() => import('@/components/Footer').then((mod) => 
 export const CountDown = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.15,
     rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
@@ -34,7 +34,7 @@ export const CountDown = () => {
 export const Family = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.15,
     rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
@@ -44,7 +44,7 @@ export const Family = () => {
 export const Gallery = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.15,
     rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
@@ -60,7 +60,7 @@ export const Gallery = () => {
 export const GiftAccount = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.15,
     rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
@@ -70,7 +70,7 @@ export const GiftAccount = () => {
 export const GuestBooks = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.15,
     rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
@@ -86,7 +86,7 @@ export const GuestBooks = () => {
 export const Contact = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.15,
     rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
@@ -96,7 +96,7 @@ export const Contact = () => {
 export const Footer = ({ thumbImageUrl }: FooterProps) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0,
+    threshold: 0.15,
     rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
