@@ -70,7 +70,6 @@ export default function HomePage() {
               width={480}
               height={720}
               priority
-              sizes="(max-width: 768px) 100vw, 480px"
               style={{
                 width: '100%',
                 height: 'auto',

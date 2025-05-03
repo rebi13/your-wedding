@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     siteName: 'For Your Wedding',
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SUPABASE_URL!}/storage/v1/object/public/${process.env.NEXT_PUBLIC_STORAGE_BUCKET!}/opengraph.jpg?v=2`,
+        url: `https://${process.env.NEXT_PUBLIC_STORAGE_BUCKET}.vercel.app/images/opengraph.jpg`,
+        // url: `${process.env.NEXT_PUBLIC_SUPABASE_URL!}/storage/v1/object/public/${process.env.NEXT_PUBLIC_STORAGE_BUCKET!}/opengraph.jpg?v=2`,
         width: 800,
         height: 400,
       },
