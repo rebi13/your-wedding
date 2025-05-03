@@ -25,7 +25,7 @@ export default withBundleAnalyzer({
       {
         protocol: 'https',
         hostname: SUPABASE_DOMAIN,
-        pathname: '/storage/v1/render/image/public/**',
+        pathname: '/storage/v1/object/public/image/**',
       },
     ],
   },
