@@ -27,7 +27,7 @@ export default function HomePage() {
   // const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const isLoading = isImagesLoading || isTotalDataLoading; // || !isImageLoaded;
-  const imageUrl = getImageUrl('thumb.jpg', 480);
+  const imageUrl = getImageUrl('thumb.jpeg');
 
   // ✅ 브라우저 캐시된 이미지 로드 상태 확인
   // useEffect(() => {
