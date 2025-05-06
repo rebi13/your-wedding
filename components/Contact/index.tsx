@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { IconMap } from '@tabler/icons-react';
-import { Anchor, Button, Flex, Mark, Text } from '@mantine/core';
+import { Button, Flex, Mark, Text } from '@mantine/core';
 import { FramerMotionWrapper } from '@/components/FramerMotionWrapper';
 import useTotalController from '@/hooks/useTotalController';
 
@@ -119,7 +119,8 @@ export const Contact = () => {
           </Text>
           <Text fz="1.2rem">{data?.mapInfo.address1}</Text>
           <Text>{data?.mapInfo.address2}</Text>
-          <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor>
+          <br />
+          {/* <Anchor href={`tel:${data?.mapInfo.tel}`}>{data?.mapInfo.tel}</Anchor> */}
         </Flex>
         <Flex w="95%" h="12rem" ref={mapElement} />
         <Button variant="outline" leftSection={<IconMap />} color="green" onClick={openNaverMapApp}>
