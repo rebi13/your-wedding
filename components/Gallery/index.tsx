@@ -57,63 +57,70 @@ export const Gallery = () => {
         사진을 클릭하시면 전체 화면 보기가 가능합니다.
       </Text>
 
-      <Modal
+      <Modal.Root
         opened={opened}
         onClose={close}
         radius={0}
         transitionProps={{ transition: 'fade', duration: 200 }}
         styles={{
           body: {
+            padding: 0,
             width: '100%',
-            height: '100%',
           },
         }}
+        fullScreen
       >
-        {showCarousel && (
-          <Flex h="30rem">
-            <Carousel
-              classNames={classes}
-              initialSlide={currentImageIndex}
-              slidesToScroll={1}
-              slideSize="100%"
-              align="center"
-              onSlideChange={(index) => {
-                setTimeout(() => setCurrentImageIndex(index), 300);
-              }}
-              nextControlIcon={<IconArrowRight size={16} />}
-              nextControlProps={{ disabled: isLastSlide }}
-              previousControlIcon={<IconArrowLeft size={16} />}
-              previousControlProps={{ disabled: isFirstSlide }}
-              height="100%"
-              style={{ flex: 1 }}
-              styles={{
-                root: {
-                  width: '100%',
-                  height: '100%',
-                },
-                slide: {
-                  width: '100% !important',
-                  maxWidth: '480px',
-                },
-              }}
-            >
-              {weddingImageDatas?.map((image) => (
-                <Carousel.Slide key={image.id}>
-                  {/* ✅ 슬라이드마다 한 개씩 */}
-                  <Image
-                    src={getImageUrl(`gallery/${image.name}`)}
-                    alt="신랑 신부 웨딩 사진"
-                    width={480}
-                    height={720}
-                    sizes="(max-width: 768px) 100vw, 480px"
-                    style={{ width: '100%', height: 'auto' }}
-                  />
-                </Carousel.Slide>
-              ))}
-            </Carousel>
+        <Modal.Overlay />
+        <Modal.Content bg="black">
+          <Flex direction="column" w="100%" h="100%" justify="center">
+            <Modal.Header pos="absolute" bg="black" w="100%">
+              {/* <Modal.Title c="white"></Modal.Title> */}
+              <Modal.CloseButton size="xl" />
+            </Modal.Header>
+            <Modal.Body>
+              {showCarousel && (
+                <Carousel
+                  classNames={classes}
+                  initialSlide={currentImageIndex}
+                  slidesToScroll={1}
+                  slideSize="100%"
+                  align="center"
+                  onSlideChange={(index) => {
+                    setTimeout(() => setCurrentImageIndex(index), 300);
+                  }}
+                  nextControlIcon={<IconArrowRight size={16} />}
+                  nextControlProps={{ disabled: isLastSlide }}
+                  previousControlIcon={<IconArrowLeft size={16} />}
+                  previousControlProps={{ disabled: isFirstSlide }}
+                  style={{ flex: 1 }}
+                  styles={{
+                    root: {
+                      width: '100%',
+                    },
+                    slide: {
+                      width: '100% !important',
+                      maxWidth: '480px',
+                    },
+                  }}
+                >
+                  {weddingImageDatas?.map((image) => (
+                    <Carousel.Slide key={image.id}>
+                      {/* ✅ 슬라이드마다 한 개씩 */}
+                      <Image
+                        src={getImageUrl(`gallery/${image.name}`)}
+                        alt="신랑 신부 웨딩 사진"
+                        width={480}
+                        height={720}
+                        sizes="(max-width: 768px) 100vw, 480px"
+                      />
+                    </Carousel.Slide>
+                  ))}
+                </Carousel>
+              )}
+            </Modal.Body>
           </Flex>
-        )}
-      </Modal>
+        </Modal.Content>
+      </Modal.Root>
 
       <SimpleGrid cols={3}>
         {weddingImageDatas?.slice(0, limit).map((image, index) => (
