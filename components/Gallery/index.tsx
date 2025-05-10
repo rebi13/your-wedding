@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { IconArrowDown, IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
+import {
+  IconArrowDown,
+  // IconArrowLeft,
+  // IconArrowRight,
+  IconChevronLeft,
+  IconChevronRight,
+} from '@tabler/icons-react';
 import { Carousel } from '@mantine/carousel';
 import { Button, Flex, Modal, SimpleGrid, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -80,17 +86,20 @@ export const Gallery = () => {
             <Modal.Body>
               {showCarousel && (
                 <Carousel
+                  w="100%"
                   classNames={classes}
                   initialSlide={currentImageIndex}
                   slidesToScroll={1}
-                  slideSize="100%"
+                  slideSize="90%"
                   align="center"
+                  slideGap="xl"
+                  controlsOffset="0"
                   onSlideChange={(index) => {
                     setTimeout(() => setCurrentImageIndex(index), 300);
                   }}
-                  nextControlIcon={<IconArrowRight size={16} />}
+                  nextControlIcon={<IconChevronRight size={36} />}
                   nextControlProps={{ disabled: isLastSlide }}
-                  previousControlIcon={<IconArrowLeft size={16} />}
+                  previousControlIcon={<IconChevronLeft size={36} />}
                   previousControlProps={{ disabled: isFirstSlide }}
                   style={{ flex: 1 }}
                   styles={{
@@ -99,20 +108,21 @@ export const Gallery = () => {
                     },
                     slide: {
                       width: '100% !important',
-                      maxWidth: '480px',
                     },
                   }}
                 >
                   {weddingImageDatas?.map((image) => (
-                    <Carousel.Slide key={image.id}>
-                      {/* ✅ 슬라이드마다 한 개씩 */}
-                      <Image
-                        src={getImageUrl(`gallery/${image.name}`)}
-                        alt="신랑 신부 웨딩 사진"
-                        width={480}
-                        height={720}
-                        sizes="(max-width: 768px) 100vw, 480px"
-                      />
+                    <Carousel.Slide key={image.id} w="100%">
+                      <Flex w="100%" justify="center">
+                        {/* ✅ 슬라이드마다 한 개씩 */}
+                        <Image
+                          src={getImageUrl(`gallery/${image.name}`)}
+                          alt="신랑 신부 웨딩 사진"
+                          width={360}
+                          height={540}
+                          sizes="(max-width: 768px) 100vw, 480px"
+                        />
+                      </Flex>
                     </Carousel.Slide>
                   ))}
                 </Carousel>
