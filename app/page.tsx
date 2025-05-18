@@ -28,7 +28,7 @@ export default function HomePage() {
 
   const isLoading = isImagesLoading || isTotalDataLoading; // || !isImageLoaded;
   // const imageUrl = getImageUrl('thumb.webp');
-  const imageUrl = getImageUrl('thumb.webp');
+  const imageUrl = getImageUrl('thumb.jpeg');
   // ✅ 브라우저 캐시된 이미지 로드 상태 확인
   // useEffect(() => {
   //   const img = new window.Image(); // ✅ 'Image' 대신 'window.Image' 사용
