@@ -51,6 +51,7 @@ type MapInfo = {
   lat: number;
   lon: number;
   parking: string;
+  subway: string;
 };
 
 type LocationInfo = {

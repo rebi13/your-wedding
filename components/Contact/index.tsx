@@ -127,6 +127,12 @@ export const Contact = () => {
           네이버 지도
         </Button>
         <Text w="100%" px="sm" pt="sm" fw="bold">
+          대중교통 안내
+        </Text>
+        <Text w="100%" px="sm" ta="start" fz="0.9rem" style={{ whiteSpace: 'pre-line' }}>
+          <Mark>{data?.mapInfo.subway}</Mark>
+        </Text>
+        <Text w="100%" px="sm" pt="sm" fw="bold">
           주차 안내
         </Text>
         <Text w="100%" px="sm" ta="start" fz="0.9rem" style={{ whiteSpace: 'pre-line' }}>
