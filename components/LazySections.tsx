@@ -1,9 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
 import dynamic from 'next/dynamic';
-// import { useInView } from 'react-intersection-observer';
-import { useIntersection } from '@mantine/hooks';
+import { useInView } from 'react-intersection-observer';
 import { FooterProps } from '@/components/Footer';
 import { FramerMotionWrapper } from './FramerMotionWrapper';
 
@@ -24,145 +22,83 @@ const FooterSection = dynamic(() => import('@/components/Footer').then((mod) => 
 
 // ⭐ Wrapper 컴포넌트들
 export const CountDown = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { ref, entry } = useIntersection({
-    root: containerRef.current,
+  const { ref, inView } = useInView({
+    triggerOnce: true,
     threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
   });
 
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.15,
-  //   rootMargin: '600px 0px', // 🔥 미리 감지
-  // });
-
-  return (
-    <section ref={containerRef}>
-      <section ref={ref}>{entry?.isIntersecting && <CountDownSection />}</section>
-    </section>
-  );
+  return <section ref={ref}>{inView && <CountDownSection />}</section>;
 };
 
 export const Family = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { ref, entry } = useIntersection({
-    root: containerRef.current,
+  const { ref, inView } = useInView({
+    triggerOnce: true,
     threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
   });
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.15,
-  //   rootMargin: '600px 0px', // 🔥 미리 감지
-  // });
 
-  return (
-    <section ref={containerRef}>
-      <section ref={ref}>{entry?.isIntersecting && <FamilySection />}</section>
-    </section>
-  );
+  return <section ref={ref}>{inView && <FamilySection />}</section>;
 };
 
 export const Gallery = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { ref, entry } = useIntersection({
-    root: containerRef.current,
+  const { ref, inView } = useInView({
+    triggerOnce: true,
     threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
   });
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.15,
-  //   rootMargin: '600px 0px', // 🔥 미리 감지
-  // });
 
   return (
-    <section ref={containerRef}>
-      <section ref={ref}>
-        <FramerMotionWrapper preload inView={entry?.isIntersecting}>
-          <GallerySection />
-        </FramerMotionWrapper>
-      </section>
+    <section ref={ref}>
+      <FramerMotionWrapper preload inView={inView}>
+        <GallerySection />
+      </FramerMotionWrapper>
     </section>
   );
 };
 
 export const GiftAccount = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { ref, entry } = useIntersection({
-    root: containerRef.current,
+  const { ref, inView } = useInView({
+    triggerOnce: true,
     threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
   });
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.15,
-  //   rootMargin: '600px 0px', // 🔥 미리 감지
-  // });
 
-  return (
-    <section ref={containerRef}>
-      <section ref={ref}>{entry?.isIntersecting && <GiftAccountSection />}</section>
-    </section>
-  );
+  return <section ref={ref}>{inView && <GiftAccountSection />}</section>;
 };
 
 export const GuestBooks = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { ref, entry } = useIntersection({
-    root: containerRef.current,
+  const { ref, inView } = useInView({
+    triggerOnce: true,
     threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
   });
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.15,
-  //   rootMargin: '600px 0px', // 🔥 미리 감지
-  // });
 
   return (
-    <section ref={containerRef}>
-      <section ref={ref}>
-        <FramerMotionWrapper preload inView={entry?.isIntersecting}>
-          <GuestBooksSection />
-        </FramerMotionWrapper>
-      </section>
+    <section ref={ref}>
+      <FramerMotionWrapper preload inView={inView}>
+        <GuestBooksSection />
+      </FramerMotionWrapper>
     </section>
   );
 };
 
 export const Contact = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { ref, entry } = useIntersection({
-    root: containerRef.current,
+  const { ref, inView } = useInView({
+    triggerOnce: true,
     threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
   });
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.15,
-  //   rootMargin: '600px 0px', // 🔥 미리 감지
-  // });
 
-  return (
-    <section ref={containerRef}>
-      <section ref={ref}>{entry?.isIntersecting && <ContactSection />}</section>
-    </section>
-  );
+  return <section ref={ref}>{inView && <ContactSection />}</section>;
 };
 
 export const Footer = ({ thumbImageUrl }: FooterProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { ref, entry } = useIntersection({
-    root: containerRef.current,
+  const { ref, inView } = useInView({
+    triggerOnce: true,
     threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
   });
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 0.15,
-  //   rootMargin: '600px 0px', // 🔥 미리 감지
-  // });
 
-  return (
-    <section ref={containerRef}>
-      <section ref={ref}>
-        {entry?.isIntersecting && <FooterSection thumbImageUrl={thumbImageUrl} />}
-      </section>
-    </section>
-  );
+  return <section ref={ref}>{inView && <FooterSection thumbImageUrl={thumbImageUrl} />}</section>;
 };
