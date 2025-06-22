@@ -70,9 +70,13 @@ export const Contact = () => {
 };
 
 export const Footer = ({ thumbImageUrl }: FooterProps) => {
-  const { ref, inViewport } = useInViewport();
+  const { ref } = useInViewport();
 
   return (
-    <section ref={ref}>{inViewport && <FooterSection thumbImageUrl={thumbImageUrl} />}</section>
+    <section ref={ref}>
+      <FramerMotionWrapper>
+        <FooterSection thumbImageUrl={thumbImageUrl} />
+      </FramerMotionWrapper>
+    </section>
   );
 };
