@@ -50,13 +50,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {/*  style={{ overflow: 'hidden', touchAction: 'none', overscrollBehavior: 'none' }}*/}
-        <Script
+        {/* <Script
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_MAP_CLIENT_ID}`}
         />
         <Script
           strategy="afterInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_MAP_CLIENT_ID}=geocoder`}
+        /> */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_MAP_CLIENT_ID}`}
         />
         <Script strategy="afterInteractive" src="https://developers.kakao.com/sdk/js/kakao.js" />
         <Template>{children}</Template>

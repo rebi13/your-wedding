@@ -53,6 +53,7 @@ export const Contact = () => {
       }
 
       const initialCenter = new window.naver.maps.LatLng(37.4353079, 126.6918286);
+
       const mapOptions = {
         center: initialCenter,
         zoom: 15,
@@ -96,7 +97,7 @@ export const Contact = () => {
       initMap();
     } else {
       const mapScript = document.createElement('script');
-      mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`;
+      mapScript.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId==${process.env.NEXT_MAP_CLIENT_ID}`;
       mapScript.async = true;
       mapScript.onload = initMap;
       document.head.appendChild(mapScript);
