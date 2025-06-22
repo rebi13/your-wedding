@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useInViewport } from '@mantine/hooks';
+import { useInView } from 'react-intersection-observer';
 import { FooterProps } from '@/components/Footer';
 import { FramerMotionWrapper } from './FramerMotionWrapper';
 
@@ -22,23 +22,35 @@ const FooterSection = dynamic(() => import('@/components/Footer').then((mod) => 
 
 // ⭐ Wrapper 컴포넌트들
 export const CountDown = () => {
-  const { ref, inViewport } = useInViewport();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
+  });
 
-  return <section ref={ref}>{inViewport && <CountDownSection />}</section>;
+  return <section ref={ref}>{inView && <CountDownSection />}</section>;
 };
 
 export const Family = () => {
-  const { ref, inViewport } = useInViewport();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
+  });
 
-  return <section ref={ref}>{inViewport && <FamilySection />}</section>;
+  return <section ref={ref}>{inView && <FamilySection />}</section>;
 };
 
 export const Gallery = () => {
-  const { ref, inViewport } = useInViewport();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
+  });
 
   return (
-    <section ref={ref} style={{ minHeight: '45rem' }}>
-      <FramerMotionWrapper preload inView={inViewport}>
+    <section ref={ref}>
+      <FramerMotionWrapper preload inView={inView}>
         <GallerySection />
       </FramerMotionWrapper>
     </section>
@@ -46,21 +58,25 @@ export const Gallery = () => {
 };
 
 export const GiftAccount = () => {
-  const { ref, inViewport } = useInViewport();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
+  });
 
-  return (
-    <section ref={ref} style={{ minHeight: '20rem' }}>
-      {inViewport && <GiftAccountSection />}
-    </section>
-  );
+  return <section ref={ref}>{inView && <GiftAccountSection />}</section>;
 };
 
 export const GuestBooks = () => {
-  const { ref, inViewport } = useInViewport();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
+  });
 
   return (
-    <section ref={ref} style={{ minHeight: '40rem' }}>
-      <FramerMotionWrapper preload inView={inViewport}>
+    <section ref={ref}>
+      <FramerMotionWrapper preload inView={inView}>
         <GuestBooksSection />
       </FramerMotionWrapper>
     </section>
@@ -68,23 +84,21 @@ export const GuestBooks = () => {
 };
 
 export const Contact = () => {
-  const { ref, inViewport } = useInViewport();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
+  });
 
-  return (
-    <section ref={ref} style={{ minHeight: '20rem' }}>
-      {inViewport && <ContactSection />}
-    </section>
-  );
+  return <section ref={ref}>{inView && <ContactSection />}</section>;
 };
 
 export const Footer = ({ thumbImageUrl }: FooterProps) => {
-  const { ref } = useInViewport();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: '600px 0px', // 🔥 미리 감지
+  });
 
-  return (
-    <section ref={ref}>
-      <FramerMotionWrapper>
-        <FooterSection thumbImageUrl={thumbImageUrl} />
-      </FramerMotionWrapper>
-    </section>
-  );
+  return <section ref={ref}>{inView && <FooterSection thumbImageUrl={thumbImageUrl} />}</section>;
 };
