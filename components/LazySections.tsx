@@ -37,7 +37,7 @@ export const Gallery = () => {
   const { ref, inViewport } = useInViewport();
 
   return (
-    <section ref={ref}>
+    <section ref={ref} style={{ minHeight: '45rem' }}>
       <FramerMotionWrapper preload inView={inViewport}>
         <GallerySection />
       </FramerMotionWrapper>
@@ -48,14 +48,18 @@ export const Gallery = () => {
 export const GiftAccount = () => {
   const { ref, inViewport } = useInViewport();
 
-  return <section ref={ref}>{inViewport && <GiftAccountSection />}</section>;
+  return (
+    <section ref={ref} style={{ minHeight: '20rem' }}>
+      {inViewport && <GiftAccountSection />}
+    </section>
+  );
 };
 
 export const GuestBooks = () => {
   const { ref, inViewport } = useInViewport();
 
   return (
-    <section ref={ref}>
+    <section ref={ref} style={{ minHeight: '40rem' }}>
       <FramerMotionWrapper preload inView={inViewport}>
         <GuestBooksSection />
       </FramerMotionWrapper>
@@ -66,7 +70,11 @@ export const GuestBooks = () => {
 export const Contact = () => {
   const { ref, inViewport } = useInViewport();
 
-  return <section ref={ref}>{inViewport && <ContactSection />}</section>;
+  return (
+    <section ref={ref} style={{ minHeight: '20rem' }}>
+      {inViewport && <ContactSection />}
+    </section>
+  );
 };
 
 export const Footer = ({ thumbImageUrl }: FooterProps) => {
