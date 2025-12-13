@@ -1,18 +1,14 @@
 'use client';
 
 import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
+import 'dayjs/locale/ko';
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Box, Group, Stack, Text } from '@mantine/core';
 import useTotalController from '@/hooks/useTotalController';
 import { FramerMotionWrapper } from '../FramerMotionWrapper';
 
-dayjs.extend(duration);
-dayjs.extend(utc);
-dayjs.extend(timezone);
+dayjs.locale('ko');
 
 export const CountDown = () => {
   const { totalData: data } = useTotalController();
@@ -22,30 +18,34 @@ export const CountDown = () => {
     return null;
   }
 
-  const TARGET_TIME = useMemo(() => dayjs.tz(eventTime, 'Asia/Seoul'), [eventTime]);
-  const [now, setNow] = useState(dayjs.tz(new Date(), 'Asia/Seoul'));
+  // eventTime을 dayjs 객체로 파싱 (로컬 시간 기준)
+  const TARGET_TIME = useMemo(() => dayjs(eventTime), [eventTime]);
+  const [now, setNow] = useState(() => dayjs());
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setNow(dayjs.tz(new Date(), 'Asia/Seoul'));
+      setNow(dayjs());
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
   const { label, time } = useMemo(() => {
-    const diff = TARGET_TIME.diff(now);
-    const isFuture = diff >= 0;
-    const d = dayjs.duration(isFuture ? diff : -diff);
-
+    // 밀리초 단위 차이 계산 (현재 - 결혼식)
+    const diffMs = now.diff(TARGET_TIME);
+    
+    // 밀리초를 일/시간/분/초로 변환
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+    
     return {
-      label: isFuture
-        ? `${TARGET_TIME.format('YYYY년 M월 D일')} 결혼식까지 남은 시간`
-        : `${TARGET_TIME.format('YYYY년 M월 D일')} 결혼식으로부터 지난 시간`,
+      label: `${TARGET_TIME.format('YYYY년 M월 D일')} 결혼식으로부터 지난 시간`,
       time: {
-        days: Math.floor(d.asDays()),
-        hours: d.hours(),
-        minutes: d.minutes(),
-        seconds: d.seconds(),
+        days,
+        hours,
+        minutes,
+        seconds,
       },
     };
   }, [now, TARGET_TIME]);
