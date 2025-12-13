@@ -1,8 +1,8 @@
 // hooks/useGuestBookController.test.tsx
 
-import { PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { act, renderHook, waitFor } from '@testing-library/react';
+import { act, render, renderHook, waitFor } from '@testing-library/react';
 import * as actions from '@/actions/guestbook.actions';
 import useGuestBookController from '@/hooks/useGuestBookController';
 
@@ -38,18 +38,10 @@ describe('useGuestBookController', () => {
   });
 
   it('방명록 리스트를 불러온다', async () => {
-    const mockGuestBook = {
-      id: 1,
-      name: '홍길동',
-      content: '안녕하세요',
-      created_at: new Date().toISOString(),
-      password: '1234',
-      deleted_YN: false,
-    };
-
     (actions.getGuestBookList as jest.Mock).mockImplementation(async () => ({
       data: [mockGuestBook],
-      nextPage: null,
+      nextPage: undefined,
+      isLastPage: true,
     }));
 
     const wrapper = createWrapper();
@@ -68,6 +60,7 @@ describe('useGuestBookController', () => {
     const wrapper = createWrapper();
     const { result } = renderHook(() => useGuestBookController(), { wrapper });
 
+    // infiniteQuery가 에러가 나면 guestBookList는 평탄화 결과로 [] 유지
     await waitFor(() => {
       expect(result.current.guestBookList.length).toBe(0);
     });
@@ -77,20 +70,42 @@ describe('useGuestBookController', () => {
     (actions.getGuestBookById as jest.Mock).mockResolvedValue(mockGuestBook);
 
     const wrapper = createWrapper();
-    const { result } = renderHook(() => useGuestBookController().getGuestBook(1), { wrapper });
 
-    await waitFor(() => result.current.data !== undefined);
-    expect(result.current.data?.name).toBe('홍길동');
+    // ✅ getGuestBook(id) 내부에서 useQuery를 호출하므로,
+    // ✅ 반드시 "리액트 컴포넌트 렌더링 과정에서" getGuestBook를 호출하게 만들어야 안정적
+    let latestQuery: any = null;
+
+    function Harness() {
+      const controller = useGuestBookController();
+      const q = controller.getGuestBook(1);
+      latestQuery = q;
+      return null;
+    }
+
+    render(<Harness />, { wrapper });
+
+    await waitFor(() => expect(latestQuery?.isSuccess).toBe(true));
+    expect(latestQuery.data?.name).toBe('홍길동');
   });
 
   it('단일 방명록 조회 실패', async () => {
     (actions.getGuestBookById as jest.Mock).mockRejectedValue(new Error('조회 실패'));
 
     const wrapper = createWrapper();
-    const { result } = renderHook(() => useGuestBookController().getGuestBook(99), { wrapper });
 
-    await waitFor(() => result.current.isError);
-    expect(result.current.error).toBeDefined();
+    let latestQuery: any = null;
+
+    function Harness() {
+      const controller = useGuestBookController();
+      const q = controller.getGuestBook(99);
+      latestQuery = q;
+      return null;
+    }
+
+    render(<Harness />, { wrapper });
+
+    await waitFor(() => expect(latestQuery?.isError).toBe(true));
+    expect(latestQuery.error).toBeDefined();
   });
 
   it('방명록 생성 성공', async () => {
@@ -185,6 +200,7 @@ describe('useGuestBookController', () => {
     (actions.getGuestBookList as jest.Mock).mockResolvedValue({
       data: [mockGuestBook],
       nextPage: undefined,
+      isLastPage: true,
     });
 
     const wrapper = createWrapper();
@@ -198,6 +214,7 @@ describe('useGuestBookController', () => {
     (actions.getGuestBookList as jest.Mock).mockImplementation(async ({ pageParam }) => ({
       data: [mockGuestBook],
       nextPage: pageParam < 1 ? 1 : undefined,
+      isLastPage: pageParam >= 1,
     }));
 
     const wrapper = createWrapper();
