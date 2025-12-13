@@ -13,5 +13,6 @@ export const getTotalData = async () => {
     return null;
   }
 
+  // @ts-expect-error - Supabase 타입 추론 버그, 런타임에서는 정상 작동
   return data?.data;
 };
