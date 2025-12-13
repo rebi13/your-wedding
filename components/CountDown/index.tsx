@@ -1,7 +1,9 @@
 'use client';
 
 import dayjs from 'dayjs';
+
 import 'dayjs/locale/ko';
+
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Box, Group, Stack, Text } from '@mantine/core';
@@ -32,13 +34,13 @@ export const CountDown = () => {
   const { label, time } = useMemo(() => {
     // 밀리초 단위 차이 계산 (현재 - 결혼식)
     const diffMs = now.diff(TARGET_TIME);
-    
+
     // 밀리초를 일/시간/분/초로 변환
     const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
-    
+
     return {
       label: `${TARGET_TIME.format('YYYY년 M월 D일')} 결혼식으로부터 지난 시간`,
       time: {
