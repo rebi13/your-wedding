@@ -29,11 +29,11 @@ const useGuestBookController = () => {
   });
 
   // ✅ 데이터 평탄화
-  const guestBookList = guestBookPages?.pages.flatMap((page) => page.data) ?? [];
+  const guestBookList = (guestBookPages?.pages.flatMap((page) => page.data) ?? []) as GuestBookDto[];
 
   // ✅ 단일 방명록 조회 (React Query 사용)
   const getGuestBook = (id: number) => {
-    return useQuery({
+    return useQuery<GuestBookDto | null>({
       queryKey: ['guestBook', id],
       queryFn: () => getGuestBookById(id),
       enabled: !!id, // id가 있을 때만 실행
