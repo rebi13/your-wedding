@@ -6,6 +6,38 @@ import { compareHashPassword, hashPassword } from '@/utils/password';
 
 // 서버에서만 작동되는 모듈임을 명시
 
+// ✅ 입력값 검증 상수
+const VALIDATION = {
+  NAME_MIN_LENGTH: 2,
+  NAME_MAX_LENGTH: 50,
+  CONTENT_MIN_LENGTH: 1,
+  CONTENT_MAX_LENGTH: 1000,
+  PASSWORD_MIN_LENGTH: 4,
+  PASSWORD_MAX_LENGTH: 100,
+} as const;
+
+// ✅ 입력값 검증 함수
+const validateGuestBookInput = (name: string, content: string, password: string) => {
+  if (!name || name.length < VALIDATION.NAME_MIN_LENGTH) {
+    throw new Error(`이름은 최소 ${VALIDATION.NAME_MIN_LENGTH}자 이상이어야 합니다.`);
+  }
+  if (name.length > VALIDATION.NAME_MAX_LENGTH) {
+    throw new Error(`이름은 최대 ${VALIDATION.NAME_MAX_LENGTH}자까지 가능합니다.`);
+  }
+  if (!content || content.length < VALIDATION.CONTENT_MIN_LENGTH) {
+    throw new Error('내용을 입력해 주세요.');
+  }
+  if (content.length > VALIDATION.CONTENT_MAX_LENGTH) {
+    throw new Error(`내용은 최대 ${VALIDATION.CONTENT_MAX_LENGTH}자까지 가능합니다.`);
+  }
+  if (!password || password.length < VALIDATION.PASSWORD_MIN_LENGTH) {
+    throw new Error(`비밀번호는 최소 ${VALIDATION.PASSWORD_MIN_LENGTH}자 이상이어야 합니다.`);
+  }
+  if (password.length > VALIDATION.PASSWORD_MAX_LENGTH) {
+    throw new Error(`비밀번호는 최대 ${VALIDATION.PASSWORD_MAX_LENGTH}자까지 가능합니다.`);
+  }
+};
+
 // GuestBook List 가져오기
 export const getGuestBookList = async ({ pageParam = 0 }) => {
   const limit = 3; // 한 번에 가져올 데이터 개수
@@ -59,13 +91,16 @@ export type GuestBookInsertDto = Database['public']['Tables']['GuestBook']['Inse
 
 // GuestBook 작성하기
 export const createGuestBook = async ({ name, content, password }: GuestBookInsertDto) => {
+  // ✅ 서버 측 입력값 검증
+  validateGuestBookInput(name, content, password);
+
   const supabase = await createServerSideClient();
   const result = await supabase
     .from('GuestBook')
     // @ts-expect-error - Supabase 타입 추론 버그, 런타임에서는 정상 작동
     .insert({
-      name,
-      content,
+      name: name.trim(),
+      content: content.trim(),
       password: await hashPassword(password),
     })
     .select();
@@ -98,14 +133,21 @@ export const updateGuestBook = async (
   content: string,
   password: string
 ) => {
+  // ✅ 서버 측 입력값 검증
+  validateGuestBookInput(name, content, password);
+
+  if (!id || id <= 0) {
+    throw new Error('유효하지 않은 방명록 ID입니다.');
+  }
+
   const supabase = await createServerSideClient();
 
   const result = await supabase
     .from('GuestBook')
     // @ts-expect-error - Supabase 타입 추론 버그, 런타임에서는 정상 작동
     .update({
-      name,
-      content,
+      name: name.trim(),
+      content: content.trim(),
       password: await hashPassword(password),
       updated_at: new Date().toISOString(),
     })

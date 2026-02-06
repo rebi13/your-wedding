@@ -8,18 +8,24 @@ const useTotalController = () => {
   const weddingImagesQuery = useQuery({
     queryKey: ['weddingImages'],
     queryFn: getGalleryImages,
+    staleTime: 1000 * 60 * 5, // 5분
+    gcTime: 1000 * 60 * 30, // 30분
   });
 
   // ✅ 이미지 조회 (React Query 사용)
   const imagesQuery = useQuery({
     queryKey: ['images'],
     queryFn: getImages,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
   });
 
   // ✅ 페이지에 표시할 텍스트 json 데이터 조회 (React Query 사용)
   const totalDataQuery = useQuery({
     queryKey: ['total'],
     queryFn: getTotalData,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
     select: (data): WeddingData => {
       return data as WeddingData;
     },

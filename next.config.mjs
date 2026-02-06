@@ -9,8 +9,8 @@ const supabaseDomain =
   supabaseUrl && supabaseUrl.trim().length > 0 ? new URL(supabaseUrl).hostname : null;
 
 export default withBundleAnalyzer({
-  reactStrictMode: false,
-  eslint: { ignoreDuringBuilds: true },
+  reactStrictMode: true,
+  eslint: { ignoreDuringBuilds: false },
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },

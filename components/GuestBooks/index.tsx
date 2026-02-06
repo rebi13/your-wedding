@@ -49,7 +49,7 @@ export const GuestBooks = () => {
         <Button
           w="100%"
           color="dark"
-          onClick={() => openModal(<GuestBookForm />, null, '방명록 작성', true)}
+          onClick={() => openModal(<GuestBookForm />, null, '방명록 작성', false)}
         >
           축하 메시지 남기기
         </Button>

@@ -4,18 +4,19 @@ import { useEffect } from 'react';
 import { Button, Flex, Loader, PasswordInput, Textarea, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
-import useGuestBookController from '@/hooks/useGuestBookController';
+import useGuestBookController, { useGuestBook } from '@/hooks/useGuestBookController';
 import { useModal } from '@/hooks/useModal';
 
-interface GusetBookFormProps {
+interface GuestBookFormProps {
   id?: number;
 }
 
-export const GuestBookForm = ({ id }: GusetBookFormProps) => {
+export const GuestBookForm = ({ id }: GuestBookFormProps) => {
   const { closeModal } = useModal();
-  const { createGuestBook, updateGuestBook, getGuestBook } = useGuestBookController();
+  const { createGuestBook, updateGuestBook } = useGuestBookController();
 
-  const { data, isLoading } = getGuestBook(id ?? 0); // id가 없으면 0으로 대체
+  // ✅ 별도 훅으로 분리된 useGuestBook 사용 (Hook 규칙 준수)
+  const { data, isLoading } = useGuestBook(id ?? 0);
 
   const form = useForm({
     initialValues: {
@@ -25,16 +26,18 @@ export const GuestBookForm = ({ id }: GusetBookFormProps) => {
     },
   });
 
+  const { setValues } = form;
+
   // ✅ getGuestBook의 결과를 form에 반영
   useEffect(() => {
     if (data) {
-      form.setValues({
+      setValues({
         name: data.name,
         content: data.content,
         password: '', // 비밀번호는 보통 서버에 저장하지 않거나 보여주지 않으므로 비워둠
       });
     }
-  }, [data]);
+  }, [data, setValues]);
 
   const validation = () => {
     const { name, content, password } = form.values;
@@ -84,7 +87,7 @@ export const GuestBookForm = ({ id }: GusetBookFormProps) => {
     closeModal(form.values);
   };
 
-  const handleUpdateguestBook = async () => {
+  const handleUpdateGuestBook = async () => {
     if (!validation()) {
       return;
     }
@@ -133,7 +136,7 @@ export const GuestBookForm = ({ id }: GusetBookFormProps) => {
           <Button
             color="dark"
             onClick={() => {
-              id ? handleUpdateguestBook() : handleCreateGuestBook();
+              id ? handleUpdateGuestBook() : handleCreateGuestBook();
             }}
           >
             {id ? '수정' : '작성'}

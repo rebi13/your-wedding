@@ -11,6 +11,23 @@ import { Database } from '@/types/supabase';
 
 export type GuestBookDto = Database['public']['Tables']['GuestBook']['Row'];
 
+// ✅ 단일 방명록 조회 훅 (별도 분리하여 Hook 규칙 준수)
+export const useGuestBook = (id: number) => {
+  return useQuery<GuestBookDto | null>({
+    queryKey: ['guestBook', id],
+    queryFn: () => getGuestBookById(id),
+    enabled: !!id, // id가 있을 때만 실행
+  });
+};
+
+// ✅ 비밀번호 검증 훅 (별도 분리하여 Hook 규칙 준수)
+export const usePasswordMatch = () => {
+  return useMutation({
+    mutationFn: ({ id, password }: { id: number; password: string }) =>
+      checkGuestBookPassword(id, password),
+  });
+};
+
 const useGuestBookController = () => {
   const queryClient = useQueryClient();
 
@@ -31,21 +48,6 @@ const useGuestBookController = () => {
   // ✅ 데이터 평탄화
   const guestBookList = (guestBookPages?.pages.flatMap((page) => page.data) ??
     []) as GuestBookDto[];
-
-  // ✅ 단일 방명록 조회 (React Query 사용)
-  const getGuestBook = (id: number) => {
-    return useQuery<GuestBookDto | null>({
-      queryKey: ['guestBook', id],
-      queryFn: () => getGuestBookById(id),
-      enabled: !!id, // id가 있을 때만 실행
-    });
-  };
-
-  const getIsPasswordMatch = () =>
-    useMutation({
-      mutationFn: ({ id, password }: { id: number; password: string }) =>
-        checkGuestBookPassword(id, password),
-    });
 
   // ✅ 방명록 작성
   const { mutate: createGuestBookMutation, isPending: isCreatingGuestBook } = useMutation({
@@ -89,8 +91,6 @@ const useGuestBookController = () => {
     isUpdatingGuestBook,
     isDeletingGuestBook,
     guestBookList,
-    getGuestBook,
-    getIsPasswordMatch,
     fetchNextPage, // 더보기 버튼과 연결
     hasNextPage,
     isFetchingNextPage,

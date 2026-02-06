@@ -8,15 +8,25 @@ import { theme } from '@/theme';
 
 import 'dayjs/locale/ko';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalLoading } from '@/components/GlobalLoading';
 import { GlobalLoadingProvider } from '@/context/GlobalLoadingContext';
 import { usePreventZoomGesture } from '@/hooks/usePreventZoomGesture';
 
-const queryClient = new QueryClient();
-
 export default function Template({ children }: { children: React.ReactNode }) {
+  // QueryClient를 컴포넌트 내부에서 생성하여 SSR 시 사용자 간 데이터 공유 방지
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 1000 * 60 * 5, // 5분
+            gcTime: 1000 * 60 * 30, // 30분
+          },
+        },
+      })
+  );
   useEffect(() => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.NEXT_PUBLIC_JAVASCRIPT_KEY);

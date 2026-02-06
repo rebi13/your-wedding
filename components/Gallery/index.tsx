@@ -1,11 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import {
   IconArrowDown,
-  // IconArrowLeft,
-  // IconArrowRight,
   IconChevronLeft,
   IconChevronRight,
 } from '@tabler/icons-react';
@@ -21,7 +19,7 @@ export const Gallery = () => {
   const [limit, setLimit] = useState(9);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [opened, { open, close }] = useDisclosure(false);
-  const [showCarousel, setShowCarousel] = useState(false); // 🔹 Carousel 렌더 여부 제어용
+  const [showCarousel, setShowCarousel] = useState(false);
 
   const totalImages = weddingImageDatas?.length || 0;
   const isFirstSlide = currentImageIndex === 0;
@@ -32,15 +30,16 @@ export const Gallery = () => {
     open();
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     setLimit((prevLimit) => prevLimit + 9);
-  };
+  }, []);
 
+  // 캐러셀에서 현재 이미지 인덱스가 limit을 초과하면 더 로드
   useEffect(() => {
     if (currentImageIndex >= limit) {
       handleLoadMore();
     }
-  }, [currentImageIndex]);
+  }, [currentImageIndex, limit, handleLoadMore]);
 
   // 🔹 Modal open 후 Carousel 렌더링 딜레이
   useEffect(() => {

@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { Button, Flex, PasswordInput, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import useGuestBookController from '@/hooks/useGuestBookController';
+import { usePasswordMatch } from '@/hooks/useGuestBookController';
 import { useModal } from '@/hooks/useModal';
 
 interface PasswordFormProps {
@@ -18,8 +18,8 @@ export const PasswordForm = ({ id }: PasswordFormProps) => {
   });
 
   const { closeModal } = useModal();
-  const { getIsPasswordMatch } = useGuestBookController();
-  const { mutate, data, isSuccess } = getIsPasswordMatch();
+  // ✅ 별도 훅으로 분리된 usePasswordMatch 사용 (Hook 규칙 준수)
+  const { mutate, data, isSuccess } = usePasswordMatch();
 
   const onSubmit = () => {
     mutate({ id, password: form.values.password });
@@ -30,7 +30,7 @@ export const PasswordForm = ({ id }: PasswordFormProps) => {
     if (isSuccess && !!data) {
       closeModal(id);
     }
-  }, [isSuccess, data, closeModal]);
+  }, [isSuccess, data, closeModal, id]);
 
   return (
     <Flex w="80vw" direction="column" gap="sm">

@@ -4,7 +4,10 @@ import React, { PropsWithChildren } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, render, renderHook, waitFor } from '@testing-library/react';
 import * as actions from '@/actions/guestbook.actions';
-import useGuestBookController from '@/hooks/useGuestBookController';
+import useGuestBookController, {
+  useGuestBook,
+  usePasswordMatch,
+} from '@/hooks/useGuestBookController';
 
 jest.mock('@/actions/guestbook.actions');
 
@@ -71,21 +74,11 @@ describe('useGuestBookController', () => {
 
     const wrapper = createWrapper();
 
-    // ✅ getGuestBook(id) 내부에서 useQuery를 호출하므로,
-    // ✅ 반드시 "리액트 컴포넌트 렌더링 과정에서" getGuestBook를 호출하게 만들어야 안정적
-    let latestQuery: any = null;
+    // ✅ useGuestBook 훅을 직접 테스트 (별도 분리된 훅)
+    const { result } = renderHook(() => useGuestBook(1), { wrapper });
 
-    function Harness() {
-      const controller = useGuestBookController();
-      const q = controller.getGuestBook(1);
-      latestQuery = q;
-      return null;
-    }
-
-    render(<Harness />, { wrapper });
-
-    await waitFor(() => expect(latestQuery?.isSuccess).toBe(true));
-    expect(latestQuery.data?.name).toBe('홍길동');
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data?.name).toBe('홍길동');
   });
 
   it('단일 방명록 조회 실패', async () => {
@@ -93,19 +86,11 @@ describe('useGuestBookController', () => {
 
     const wrapper = createWrapper();
 
-    let latestQuery: any = null;
+    // ✅ useGuestBook 훅을 직접 테스트 (별도 분리된 훅)
+    const { result } = renderHook(() => useGuestBook(99), { wrapper });
 
-    function Harness() {
-      const controller = useGuestBookController();
-      const q = controller.getGuestBook(99);
-      latestQuery = q;
-      return null;
-    }
-
-    render(<Harness />, { wrapper });
-
-    await waitFor(() => expect(latestQuery?.isError).toBe(true));
-    expect(latestQuery.error).toBeDefined();
+    await waitFor(() => expect(result.current.isError).toBe(true));
+    expect(result.current.error).toBeDefined();
   });
 
   it('방명록 생성 성공', async () => {
@@ -175,7 +160,8 @@ describe('useGuestBookController', () => {
     (actions.checkGuestBookPassword as jest.Mock).mockResolvedValue(true);
 
     const wrapper = createWrapper();
-    const { result } = renderHook(() => useGuestBookController().getIsPasswordMatch(), { wrapper });
+    // ✅ usePasswordMatch 훅을 직접 테스트 (별도 분리된 훅)
+    const { result } = renderHook(() => usePasswordMatch(), { wrapper });
 
     await act(async () => {
       const res = await result.current.mutateAsync({ id: 1, password: '1234' });
@@ -189,7 +175,8 @@ describe('useGuestBookController', () => {
     (actions.checkGuestBookPassword as jest.Mock).mockRejectedValue(new Error('비번 틀림'));
 
     const wrapper = createWrapper();
-    const { result } = renderHook(() => useGuestBookController().getIsPasswordMatch(), { wrapper });
+    // ✅ usePasswordMatch 훅을 직접 테스트 (별도 분리된 훅)
+    const { result } = renderHook(() => usePasswordMatch(), { wrapper });
 
     await expect(result.current.mutateAsync({ id: 1, password: 'wrong' })).rejects.toThrow(
       '비번 틀림'

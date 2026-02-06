@@ -8,7 +8,6 @@ import useGuestBookController, { GuestBookDto } from '@/hooks/useGuestBookContro
 import { useModal } from '@/hooks/useModal';
 import { Confirm } from '../Confirm';
 import { GuestBookForm } from '../GuestBookForm';
-// import { GuestBookForm } from '../GuestBookForm';
 import { PasswordForm } from '../PasswordForm';
 
 interface GuestBookCardProps {
@@ -50,10 +49,10 @@ export const GuestBookCard = ({ guestBook }: GuestBookCardProps) => {
                   <PasswordForm id={id} />,
                   null,
                   '방명록 작성 시 입력했던 비밀번호 입력',
-                  true
+                  false
                 ).then((result) => {
                   if (result) {
-                    openModal(<GuestBookForm id={id} />, null, '방명록 수정', true);
+                    openModal(<GuestBookForm id={id} />, null, '방명록 수정', false);
                   }
                 });
               }}
@@ -67,7 +66,7 @@ export const GuestBookCard = ({ guestBook }: GuestBookCardProps) => {
                   <PasswordForm id={id} />,
                   null,
                   '방명록 작성 시 입력했던 비밀번호 입력',
-                  true
+                  false
                 ).then((result) => {
                   if (result) {
                     openModal(
@@ -87,8 +86,8 @@ export const GuestBookCard = ({ guestBook }: GuestBookCardProps) => {
                         }}
                       />,
                       null,
-                      '방명록 수정',
-                      true
+                      '방명록 삭제',
+                      false
                     );
                   }
                 });
